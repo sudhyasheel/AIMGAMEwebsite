@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Reveal, MaskedLine, Eyebrow, EASE } from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import Timeline from "@/components/Timeline";
-import { STATS, MANIFESTO, SCHOLARS, PARTNERS, FEED } from "@/data/content";
+import { STATS, MANIFESTO, PARTNERS, FEED } from "@/data/content";
 
 const Hero = () => {
   const ref = useRef(null);
@@ -134,96 +134,76 @@ const Manifesto = () => (
   </section>
 );
 
-const FeaturedScholar = () => {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % SCHOLARS.length), 6000);
-    return () => clearInterval(t);
-  }, []);
-  const s = SCHOLARS[index];
-
-  return (
-    <section data-testid="featured-scholar-section" className="py-24 lg:py-32 bg-night text-sand relative grain overflow-hidden">
-      <div className="absolute inset-0 dot-grid-light opacity-40 pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
-          <div>
-            <Reveal><Eyebrow light>Graduate Spotlight</Eyebrow></Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="mt-4 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
-                Proof, not promises.
-              </h2>
-            </Reveal>
-          </div>
-          <Reveal delay={0.15}>
-            <Link
-              to="/transformations"
-              data-testid="featured-all-stories-link"
-              className="group inline-flex items-center gap-2 font-bold text-flame"
-            >
-              All transformations
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Reveal>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.6, ease: EASE }}
-                className="grid grid-cols-2 gap-4"
-              >
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/5]">
-                  <img src={s.before} alt={`${s.name} at entry`} className="h-full w-full object-cover" />
-                  <span className="absolute bottom-3 left-3 rounded-full bg-night/85 px-3 py-1 font-mono text-[10px] tracking-[0.25em]">AGE 5</span>
-                </div>
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/5] mt-10">
-                  <img src={s.after} alt={`${s.name} as graduate`} className="h-full w-full object-cover" />
-                  <span className="absolute bottom-3 left-3 rounded-full bg-flame px-3 py-1 font-mono text-[10px] tracking-[0.25em]">AGE 22</span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          <div className="lg:col-span-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.55, ease: EASE }}
-              >
-                <p className="font-mono text-xs tracking-[0.3em] text-flame font-bold">{s.years.toUpperCase()}</p>
-                <h3 className="mt-3 font-display font-extrabold text-4xl tracking-tight" data-testid="featured-scholar-name">{s.name}</h3>
-                <p className="mt-4 text-sand/70 text-lg leading-relaxed">{s.fact} — today, {s.role}.</p>
-                <blockquote className="mt-6 border-l-2 border-flame pl-6 font-display font-bold text-xl leading-snug text-sand/90">
-                  “{s.quote}”
-                </blockquote>
-              </motion.div>
-            </AnimatePresence>
-            <div className="mt-10 flex gap-2.5">
-              {SCHOLARS.map((_, i) => (
-                <button
-                  key={i}
-                  data-testid={`featured-dot-${i}`}
-                  onClick={() => setIndex(i)}
-                  aria-label={`Show scholar ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-500 ${i === index ? "w-10 bg-flame" : "w-2 bg-sand/30 hover:bg-sand/50"}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+const FeaturedScholar = () => (
+  <section data-testid="featured-scholar-section" className="py-24 lg:py-32 bg-night text-sand relative grain overflow-hidden">
+    <div className="absolute inset-0 dot-grid-light opacity-40 pointer-events-none" />
+    <div className="absolute top-1/4 left-[15%] h-96 w-96 rounded-full bg-flame/15 blur-3xl pointer-events-none" />
+    <div className="absolute bottom-1/4 right-[12%] h-96 w-96 rounded-full bg-leaf/20 blur-3xl pointer-events-none" />
+    <div className="relative max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
+      <div className="text-center mb-16">
+        <Reveal><Eyebrow light>Graduate Spotlight</Eyebrow></Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="mt-4 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+            Proof, not promises.
+          </h2>
+        </Reveal>
       </div>
-    </section>
-  );
-};
+
+      <div className="grid sm:grid-cols-2 gap-10 sm:gap-8 lg:gap-14 items-start">
+        <Reveal delay={0.15}>
+          <figure data-testid="featured-started" className="group">
+            <div className="relative">
+              <div className="absolute -inset-3 rounded-[2rem] bg-flame/20 blur-xl opacity-70 pointer-events-none" />
+              <div className="relative overflow-hidden rounded-3xl border border-sand/15 aspect-[4/3] bg-night">
+                <img
+                  src="/assets/started.png"
+                  alt="A young AimGame scholar playing connect-four at program entry"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+            </div>
+            <figcaption className="mt-6 text-center">
+              <p className="font-mono text-xs tracking-[0.3em] text-flame font-bold">HOW IT STARTED</p>
+              <p className="mt-2 text-sm text-sand/60">Play-based entry — the board game that found her.</p>
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <Reveal delay={0.3} className="sm:mt-16">
+          <figure data-testid="featured-going" className="group">
+            <div className="relative">
+              <div className="absolute -inset-3 rounded-[2rem] bg-leaf/25 blur-xl opacity-70 pointer-events-none" />
+              <div className="relative overflow-hidden rounded-3xl border border-sand/15 aspect-[4/3] bg-night">
+                <img
+                  src="/assets/going.png"
+                  alt="The same scholar, now a graduate, presenting with confidence"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+            </div>
+            <figcaption className="mt-6 text-center">
+              <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">HOW IT'S GOING!</p>
+              <p className="mt-2 text-sm text-sand/60">Graduate and professional — owning the room.</p>
+            </figcaption>
+          </figure>
+        </Reveal>
+      </div>
+
+      <Reveal delay={0.2}>
+        <div className="mt-16 text-center">
+          <Link
+            to="/transformations"
+            data-testid="featured-all-stories-link"
+            className="group inline-flex items-center gap-2 font-bold text-flame"
+          >
+            All transformations
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
 
 const TrustedBy = () => (
   <section data-testid="trusted-by-section" className="py-16 border-b border-ink/10">
