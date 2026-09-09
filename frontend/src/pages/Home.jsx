@@ -169,7 +169,7 @@ const FeaturedScholar = () => (
           </figure>
         </Reveal>
 
-        <Reveal delay={0.3} className="sm:mt-16">
+        <Reveal delay={0.3}>
           <figure data-testid="featured-going" className="group">
             <div className="relative">
               <div className="absolute -inset-3 rounded-[2rem] bg-leaf/25 blur-xl opacity-70 pointer-events-none" />
