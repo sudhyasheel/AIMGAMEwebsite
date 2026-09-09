@@ -25,7 +25,63 @@ const Transformations = () => (
       </div>
     </section>
 
-    <section className="pb-24 lg:pb-32">
+    <section data-testid="spotlight-section" className="py-20 lg:py-28 bg-night text-sand relative grain overflow-hidden">
+      <div className="absolute inset-0 dot-grid-light opacity-25 pointer-events-none" />
+      <div className="absolute top-1/4 left-[18%] h-96 w-96 rounded-full bg-flame/15 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-[15%] h-96 w-96 rounded-full bg-leaf/20 blur-3xl pointer-events-none" />
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
+        <Reveal>
+          <p className="text-center font-mono text-xs tracking-[0.3em] text-flame font-bold">SPOTLIGHT</p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="mt-4 text-center font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+            One scholar. Two photographs.<br className="hidden sm:block" /> Fifteen years between them.
+          </h2>
+        </Reveal>
+
+        <div className="mt-16 grid sm:grid-cols-2 gap-10 sm:gap-8 lg:gap-14 items-start">
+          <Reveal delay={0.15}>
+            <figure data-testid="spotlight-started" className="group">
+              <div className="relative">
+                <div className="absolute -inset-3 rounded-[2rem] bg-flame/20 blur-xl opacity-70 pointer-events-none" />
+                <div className="relative overflow-hidden rounded-3xl border border-sand/15 aspect-[4/3] bg-night">
+                  <img
+                    src="/assets/started.png"
+                    alt="A young AimGame scholar playing connect-four at program entry"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-6 text-center">
+                <p className="font-mono text-xs tracking-[0.3em] text-flame font-bold">HOW IT STARTED</p>
+                <p className="mt-2 text-sm text-sand/60">Play-based entry — the board game that found her.</p>
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          <Reveal delay={0.3} className="sm:mt-16">
+            <figure data-testid="spotlight-going" className="group">
+              <div className="relative">
+                <div className="absolute -inset-3 rounded-[2rem] bg-leaf/25 blur-xl opacity-70 pointer-events-none" />
+                <div className="relative overflow-hidden rounded-3xl border border-sand/15 aspect-[4/3] bg-night">
+                  <img
+                    src="/assets/going.png"
+                    alt="The same scholar, now a graduate, presenting with confidence"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-6 text-center">
+                <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">HOW IT'S GOING</p>
+                <p className="mt-2 text-sm text-sand/60">Graduate and professional — owning the room.</p>
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-24 lg:pb-32 lg:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         {SCHOLARS.map((s, i) => (
           <ScholarPair key={s.name} scholar={s} index={i} />
