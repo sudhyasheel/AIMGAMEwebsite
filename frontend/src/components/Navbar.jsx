@@ -30,15 +30,9 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-20">
-        <Link to="/" data-testid="nav-logo" className="flex items-center gap-3 group">
-          <span className="relative z-10 h-20 w-20 shrink-0 overflow-visible transition-transform duration-500 group-hover:rotate-3">
+        <Link to="/" data-testid="nav-logo" className="flex items-center group">
+          <span className="relative z-10 h-24 w-24 -my-2 shrink-0 overflow-visible transition-transform duration-500 group-hover:rotate-3">
             <img src="/assets/logo-t.png" alt="AimGame logo" className="h-full w-full object-contain" />
-          </span>
-          <span className="leading-none">
-            <span className="block font-display font-extrabold text-lg tracking-tight text-flame">AimGame</span>
-            <span className="block font-mono text-[9px] tracking-[0.3em] text-leaf font-semibold">
-              LIFE-CHANGING SCHOLARSHIPS
-            </span>
           </span>
         </Link>
 
