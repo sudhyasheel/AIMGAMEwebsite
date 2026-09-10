@@ -29,9 +29,9 @@ const Navbar = () => {
         scrolled ? "bg-sand/85 backdrop-blur-xl shadow-[0_1px_0_rgba(15,23,42,0.08)]" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-28">
         <Link to="/" data-testid="nav-logo" className="flex items-center group">
-          <span className="relative z-10 h-24 w-24 -my-2 shrink-0 overflow-visible transition-transform duration-500 group-hover:rotate-3">
+          <span className="relative z-10 h-28 w-28 shrink-0 overflow-visible transition-transform duration-500 group-hover:rotate-3">
             <img src="/assets/logo-t.png" alt="AimGame logo" className="h-full w-full object-contain" />
           </span>
         </Link>
