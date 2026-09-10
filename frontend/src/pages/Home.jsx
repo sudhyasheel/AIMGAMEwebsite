@@ -14,7 +14,7 @@ const Hero = () => {
   const gridY = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
   return (
-    <section ref={ref} data-testid="hero-section" className="relative overflow-hidden pt-32 lg:pt-40 pb-20 grain">
+    <section ref={ref} data-testid="hero-section" className="relative overflow-hidden pt-52 sm:pt-72 pb-20 grain">
       <motion.div style={{ y: gridY }} className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
       <div className="absolute -top-32 -right-32 h-[480px] w-[480px] rounded-full bg-flame/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 -left-40 h-[420px] w-[420px] rounded-full bg-leaf/10 blur-3xl pointer-events-none" />

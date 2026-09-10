@@ -47,7 +47,7 @@ const Admin = () => {
 
   if (!authed) {
     return (
-      <main data-testid="admin-page" className="pt-32 lg:pt-44 pb-32 min-h-[80vh]">
+      <main data-testid="admin-page" className="pt-52 sm:pt-72 pb-32 min-h-[80vh]">
         <div className="max-w-md mx-auto px-4">
           <div className="rounded-3xl bg-white border border-ink/10 p-10 text-center">
             <span className="mx-auto h-14 w-14 rounded-full bg-night text-flame inline-flex items-center justify-center">
@@ -82,7 +82,7 @@ const Admin = () => {
   const filtered = filter === "all" ? subs : subs.filter((s) => s.kind === filter);
 
   return (
-    <main data-testid="admin-dashboard" className="pt-32 lg:pt-40 pb-32 min-h-[80vh]">
+    <main data-testid="admin-dashboard" className="pt-52 sm:pt-72 pb-32 min-h-[80vh]">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>

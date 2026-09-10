@@ -6,7 +6,7 @@ import { SCHOLARS } from "@/data/content";
 
 const Transformations = () => (
   <main data-testid="transformations-page">
-    <section className="pt-32 lg:pt-44 pb-10 relative overflow-hidden grain">
+    <section className="pt-52 sm:pt-72 pb-10 relative overflow-hidden grain">
       <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <Reveal><Eyebrow>Transformations</Eyebrow></Reveal>

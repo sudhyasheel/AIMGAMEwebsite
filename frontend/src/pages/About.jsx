@@ -6,7 +6,7 @@ import { TRUST_SIGNALS } from "@/data/content";
 
 const About = () => (
   <main data-testid="about-page">
-    <section className="pt-32 lg:pt-44 pb-20 relative overflow-hidden grain">
+    <section className="pt-52 sm:pt-72 pb-20 relative overflow-hidden grain">
       <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <Reveal><Eyebrow>About & Trust</Eyebrow></Reveal>
