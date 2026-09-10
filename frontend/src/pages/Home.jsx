@@ -96,14 +96,6 @@ const Hero = () => {
             <div className="relative rounded-[2.5rem] bg-white border border-ink/10 p-10 shadow-[0_40px_80px_-30px_rgba(15,23,42,0.25)]">
               <img src="/assets/logo.png" alt="AimGame — Life-Changing Scholarships" className="w-full object-contain" data-testid="hero-logo" />
             </div>
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -left-8 rounded-2xl bg-night text-sand px-6 py-5 shadow-xl"
-            >
-              <p className="font-mono text-[10px] tracking-[0.3em] text-flame font-bold">THE ARC</p>
-              <p className="mt-1 font-display font-extrabold text-2xl">Age 5 → Age 22</p>
-            </motion.div>
           </motion.div>
         </div>
       </div>
