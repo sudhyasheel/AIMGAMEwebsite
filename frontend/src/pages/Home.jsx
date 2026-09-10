@@ -26,7 +26,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <Eyebrow>Responsible Charity Society · 80G Certified Since 2012</Eyebrow>
+            <Eyebrow>Eradicating Poverty in One Generation</Eyebrow>
           </motion.div>
 
           <h1 className="mt-8 font-display font-extrabold tracking-tight leading-[1.02] text-5xl sm:text-6xl lg:text-[5.4rem]">
