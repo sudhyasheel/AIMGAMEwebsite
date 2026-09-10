@@ -31,7 +31,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between h-20">
         <Link to="/" data-testid="nav-logo" className="flex items-center gap-3 group">
-          <span className="h-11 w-11 rounded-xl bg-white shadow-sm border border-ink/10 p-1 overflow-hidden transition-transform duration-500 group-hover:rotate-6">
+          <span className="relative z-10 h-[220px] w-[220px] -my-[70px] rounded-3xl bg-white shadow-lg border border-ink/10 p-2 overflow-hidden transition-transform duration-500 group-hover:rotate-3 shrink-0">
             <img src="/assets/logo.png" alt="AimGame logo" className="h-full w-full object-contain" />
           </span>
           <span className="leading-none">
