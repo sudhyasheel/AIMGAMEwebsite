@@ -91,8 +91,8 @@ export const LAYERS = [
 export const SCHOLARS = [
   {
     name: "Ananya Deshmukh",
-    before: img("photo-1503454537195-1dcabb73ffb9"),
-    after: img("photo-1573496359142-b8d87734a5a2"),
+    before: "/assets/started.jpg",
+    after: "/assets/going.jpg",
     years: "14 years in program",
     fact: "First in her family to graduate · B.Com",
     role: "Audit Associate, Pune",

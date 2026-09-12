@@ -24,9 +24,7 @@ const ScholarPair = ({ scholar, index }) => {
     >
       <div className={`lg:col-span-7 grid grid-cols-2 gap-4 sm:gap-6 ${flip ? "lg:order-2" : ""}`}>
         <Photo src={scholar.before} label="AGE 5 · ENTRY" alt={`${scholar.name} as a child`} testid={`scholar-before-${index}`} />
-        <div className="mt-8 sm:mt-14">
-          <Photo src={scholar.after} label="AGE 22 · GRADUATE" alt={`${scholar.name} as a graduate`} testid={`scholar-after-${index}`} />
-        </div>
+        <Photo src={scholar.after} label="AGE 22 · GRADUATE" alt={`${scholar.name} as a graduate`} testid={`scholar-after-${index}`} />
       </div>
 
       <div className={`lg:col-span-5 ${flip ? "lg:order-1" : ""}`}>
