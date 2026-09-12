@@ -175,7 +175,7 @@ export const MANIFESTO = [
   },
   {
     index: "02",
-    title: "The Wager",
+    title: "The Solution",
     body: "AimGame removes every interruption for fifteen consecutive years: school, tuition, transport, health, mentoring — from a play-based entry at five to a college degree and a first professional salary at twenty-two.",
   },
   {
