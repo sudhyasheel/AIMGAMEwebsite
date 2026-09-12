@@ -46,7 +46,7 @@ const Transformations = () => (
                 <div className="absolute -inset-3 rounded-[2rem] bg-flame/20 blur-xl opacity-70 pointer-events-none" />
                 <div className="relative overflow-hidden rounded-3xl border border-sand/15 aspect-[4/3] bg-night">
                   <img
-                    src="/assets/started.png"
+                    src="/assets/started.jpg"
                     alt="A young AimGame scholar playing connect-four at program entry"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
@@ -65,7 +65,7 @@ const Transformations = () => (
                 <div className="absolute -inset-3 rounded-[2rem] bg-leaf/25 blur-xl opacity-70 pointer-events-none" />
                 <div className="relative overflow-hidden rounded-3xl border border-sand/15 aspect-[4/3] bg-night">
                   <img
-                    src="/assets/going.png"
+                    src="/assets/going.jpg"
                     alt="The same scholar, now a graduate, presenting with confidence"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
