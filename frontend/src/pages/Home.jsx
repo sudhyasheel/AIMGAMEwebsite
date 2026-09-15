@@ -1,107 +1,102 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Reveal, MaskedLine, Eyebrow, EASE } from "@/components/Reveal";
+import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
+import { Reveal, MaskedLine, Eyebrow } from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
-import Timeline from "@/components/Timeline";
-import { STATS, MANIFESTO, PARTNERS, FEED } from "@/data/content";
+import { STATS, MANIFESTO, PARTNERS, FEED, MILESTONES } from "@/data/content";
 
-const Hero = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const logoY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const gridY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+const HERO_PHOTOS = [
+  { src: "/assets/field-1.jpg", alt: "AimGame scholars in a classroom game session" },
+  { src: "/assets/field-2.jpg", alt: "A scholar working through a written exercise" },
+  { src: "/assets/field-3.jpg", alt: "Scholars playing connect-four in an AimGame session" },
+  { src: "/assets/field-4.jpg", alt: "Scholars at a strategy board during selection day" },
+];
 
-  return (
-    <section ref={ref} data-testid="hero-section" className="relative overflow-hidden pt-52 sm:pt-72 pb-20 grain">
-      <motion.div style={{ y: gridY }} className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
-      <div className="absolute -top-32 -right-32 h-[480px] w-[480px] rounded-full bg-flame/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 -left-40 h-[420px] w-[420px] rounded-full bg-leaf/10 blur-3xl pointer-events-none" />
+const Hero = () => (
+  <section data-testid="hero-section" className="relative overflow-hidden pt-48 sm:pt-64 pb-16 grain">
+    <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
+    <div className="absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-flame/10 blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 grid lg:grid-cols-12 gap-14 items-center">
-        <div className="lg:col-span-7">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            <Eyebrow>Eradicating Poverty in One Generation</Eyebrow>
-          </motion.div>
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+      <h1 data-testid="hero-headline" className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf max-w-4xl">
+        <MaskedLine delay={0.1}>Eradicating poverty</MaskedLine>
+        <MaskedLine delay={0.25}>in one generation.</MaskedLine>
+      </h1>
 
-          <h1 className="mt-8 font-display font-extrabold tracking-tight leading-[1.02] text-5xl sm:text-6xl lg:text-[5.4rem]">
-            <MaskedLine delay={0.15}>One child.</MaskedLine>
-            <MaskedLine delay={0.3} className="text-leaf">Fifteen years.</MaskedLine>
-            <MaskedLine delay={0.45} className="text-flame">Poverty, ended.</MaskedLine>
-          </h1>
+      <div className="mt-12 sm:mt-14">
+        <Reveal><Eyebrow>The Program</Eyebrow></Reveal>
+        <Reveal delay={0.08}>
+          <h2 className="mt-4 font-display font-extrabold tracking-tight leading-[1.05] text-3xl sm:text-4xl lg:text-5xl max-w-3xl">
+            Fifteen years, engineered <span className="text-flame">end to end.</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-ink-muted">
+            AimGame is not a cheque and a prayer. It is a fifteen-year operating system for one child's
+            life — five milestones from age five to twenty-two, each one funded, managed and measured.
+            Tap a milestone to see exactly what happens.
+          </p>
+        </Reveal>
+      </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
-            className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-ink-muted"
-          >
-            AimGame is a life-changing scholarship that carries one child from a play-based entry at age five
-            to a college degree and a first professional salary at twenty-two — removing every interruption
-            along the way. One generation is all it takes.
-          </motion.p>
+      <Reveal delay={0.2}>
+        <div className="mt-10 flex items-center gap-4">
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-leaf font-bold">AGE 5</span>
+          <div className="relative flex-1 h-px bg-ink/15">
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[3px] w-1/5 rounded-full bg-flame" />
+          </div>
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-flame font-bold">AGE 22</span>
+        </div>
+      </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.85, ease: EASE }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
+      <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        {MILESTONES.map((m, i) => (
+          <Reveal key={m.title} delay={0.1 + i * 0.06} className="h-full">
             <Link
               to="/program"
-              data-testid="hero-cta-program"
-              className="group inline-flex items-center gap-3 rounded-full bg-flame px-7 py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
+              data-testid={`hero-milestone-${i}`}
+              className={`group flex h-full flex-col rounded-2xl border p-4 sm:p-5 transition-[background-color,border-color,transform] duration-500 hover:-translate-y-1 ${
+                i === 0 ? "bg-night text-sand border-night" : "bg-white border-ink/10 hover:border-flame/40"
+              }`}
             >
-              Explore the 15-Year Program
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/transformations"
-              data-testid="hero-cta-outcomes"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-ink/15 px-7 py-[14px] font-bold text-ink transition-colors duration-300 hover:border-leaf hover:text-leaf"
-            >
-              See the Outcomes
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.05 }}
-            className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-ink/10 pt-8"
-          >
-            {STATS.map((s, i) => (
-              <div key={i} data-testid={`hero-stat-${i}`}>
-                <p className="font-mono font-bold text-2xl sm:text-3xl text-ink">{s.value}</p>
-                <p className="mt-1.5 text-xs leading-snug text-ink-muted">{s.label}</p>
+              <div className="flex items-start justify-between gap-2">
+                <span className={`font-display font-extrabold text-2xl sm:text-3xl tracking-tight transition-colors duration-500 ${i === 0 ? "text-flame" : "text-ink/20 group-hover:text-flame/50"}`}>
+                  {m.age}
+                </span>
+                <span className={`h-6 w-6 rounded-full inline-flex items-center justify-center shrink-0 ${i === 0 ? "bg-flame text-white" : "bg-leaf-soft text-leaf"}`}>
+                  <Plus className="h-3 w-3" />
+                </span>
               </div>
-            ))}
-          </motion.div>
-        </div>
-
-        <div className="lg:col-span-5 relative hidden lg:block">
-          <motion.div
-            style={{ y: logoY }}
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, delay: 0.4, ease: EASE }}
-            className="relative"
-          >
-            <div className="absolute inset-0 translate-x-5 translate-y-5 rounded-[2.5rem] bg-leaf/15" />
-            <div className="relative rounded-[2.5rem] bg-white border border-ink/10 p-10 shadow-[0_40px_80px_-30px_rgba(15,23,42,0.25)]">
-              <img src="/assets/logo.png" alt="AimGame — Life-Changing Scholarships" className="w-full object-contain" data-testid="hero-logo" />
-            </div>
-          </motion.div>
-        </div>
+              <p className={`mt-3 font-mono text-[9px] tracking-[0.2em] ${i === 0 ? "text-sand/60" : "text-leaf"}`}>{m.year.toUpperCase()}</p>
+              <h3 className="mt-1.5 font-display font-bold text-sm sm:text-base leading-snug">{m.title}</h3>
+              <p className={`mt-2 text-[11px] leading-snug ${i === 0 ? "text-sand/65" : "text-ink-muted"}`}>{m.teaser}</p>
+            </Link>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+
+      <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {HERO_PHOTOS.map((p, i) => (
+          <Reveal key={p.src} delay={0.15 + i * 0.06}>
+            <div data-testid={`hero-photo-${i}`} className="group overflow-hidden rounded-2xl aspect-[5/4] bg-sand-deep">
+              <img src={p.src} alt={p.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <Reveal delay={0.2}>
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-ink/10 pt-8">
+          {STATS.map((s, i) => (
+            <div key={i} data-testid={`hero-stat-${i}`}>
+              <p className="font-mono font-bold text-2xl sm:text-3xl text-ink">{s.value}</p>
+              <p className="mt-1.5 text-xs leading-snug text-ink-muted">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
 
 const Manifesto = () => (
   <section data-testid="manifesto-section" className="py-24 lg:py-32">
@@ -281,19 +276,6 @@ const Home = () => (
     <Hero />
     <Marquee />
     <Manifesto />
-    <section className="pb-24 lg:pb-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-        <Reveal><Eyebrow>The Signature Arc</Eyebrow></Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="mt-4 mb-14 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight max-w-3xl">
-            Fifteen years. Five milestones. Zero interruptions.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.15}>
-          <Timeline compact />
-        </Reveal>
-      </div>
-    </section>
     <FeaturedScholar />
     <TrustedBy />
     <FieldFeed />
