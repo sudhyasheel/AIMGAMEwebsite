@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Building2, User, Gem, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
@@ -214,6 +215,20 @@ const StepSuccess = ({ mode, amount, onReset }) => (
 );
 
 const Partner = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash === "#partners") {
+      const t = setTimeout(() => {
+        const el = document.getElementById("current-partners");
+        if (el) {
+          if (window.__lenis) window.__lenis.scrollTo(el, { offset: -150 });
+          else el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [location.hash]);
+
   const [step, setStep] = useState("type");
   const [type, setType] = useState(null);
   const [amount, setAmount] = useState("2500");
@@ -305,7 +320,7 @@ const Partner = () => {
       <section className="pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
-            <div data-testid="current-partners-block" className="rounded-3xl bg-leaf-soft border border-leaf/15 p-8 sm:p-10">
+            <div id="current-partners" data-testid="current-partners-block" className="rounded-3xl bg-leaf-soft border border-leaf/15 p-8 sm:p-10">
               <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">CURRENT CSR PARTNERS</p>
               <div className="mt-6 flex flex-wrap gap-x-12 gap-y-4">
                 {PARTNERS.map((p) => (

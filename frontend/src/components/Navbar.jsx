@@ -3,10 +3,10 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const LINKS = [
-  { to: "/program", label: "The Program", id: "nav-link-program" },
-  { to: "/transformations", label: "Transformations", id: "nav-link-transformations" },
-  { to: "/about", label: "About & Trust", id: "nav-link-about" },
-  { to: "/contact", label: "Contact", id: "nav-link-contact" },
+  { to: "/program", label: "PROGRAM", id: "nav-link-program" },
+  { to: "/transformations", label: "RESULTS", id: "nav-link-results" },
+  { to: "/about", label: "ABOUT US", id: "nav-link-about" },
+  { to: "/partner#partners", label: "CSR PARTNERS", id: "nav-link-csr-partners" },
 ];
 
 const Navbar = () => {
@@ -53,10 +53,10 @@ const Navbar = () => {
           ))}
           <Link
             to="/partner"
-            data-testid="nav-cta-partner"
-            className="group inline-flex items-center gap-2 rounded-full bg-flame px-5 py-2.5 text-sm font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
+            data-testid="nav-cta-donate"
+            className="group inline-flex items-center gap-2 rounded-full bg-flame px-6 py-2.5 text-sm font-bold tracking-wide text-white transition-colors duration-300 hover:bg-flame-dark"
           >
-            Partner With Us
+            DONATE
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </nav>
@@ -86,10 +86,10 @@ const Navbar = () => {
             ))}
             <Link
               to="/partner"
-              data-testid="nav-cta-partner-mobile"
+              data-testid="nav-cta-donate-mobile"
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-flame px-6 py-3.5 font-bold text-white"
             >
-              Partner With Us <ArrowUpRight className="h-4 w-4" />
+              DONATE <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
