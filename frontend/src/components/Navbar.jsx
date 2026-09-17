@@ -41,7 +41,7 @@ const Navbar = () => {
             src="/assets/banner.png"
             alt="AimGame — Life-Changing Scholarships Across India"
             data-testid="nav-banner"
-            className={`w-auto transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-14 opacity-100"}`}
+            className={`w-auto transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-28 opacity-100"}`}
           />
           <nav className="flex items-center gap-8">
           {LINKS.map((l) => (
