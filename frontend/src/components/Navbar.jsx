@@ -36,7 +36,14 @@ const Navbar = () => {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex flex-col items-end gap-3">
+          <img
+            src="/assets/banner.png"
+            alt="AimGame — Life-Changing Scholarships Across India"
+            data-testid="nav-banner"
+            className={`w-auto transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-9 opacity-100"}`}
+          />
+          <nav className="flex items-center gap-8">
           {LINKS.map((l) => (
             <NavLink
               key={l.to}
@@ -59,7 +66,8 @@ const Navbar = () => {
             DONATE
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
-        </nav>
+          </nav>
+        </div>
 
         <button
           data-testid="nav-mobile-toggle"

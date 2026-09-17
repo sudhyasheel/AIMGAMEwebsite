@@ -17,16 +17,7 @@ const Hero = () => (
     <div className="absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-flame/10 blur-3xl pointer-events-none" />
 
     <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-      <Reveal>
-        <img
-          src="/assets/banner.png"
-          alt="AimGame — Life-Changing Scholarships Across India"
-          data-testid="hero-banner"
-          className="h-12 sm:h-16 w-auto"
-        />
-      </Reveal>
-
-      <h1 data-testid="hero-headline" className="mt-6 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf max-w-4xl">
+      <h1 data-testid="hero-headline" className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf max-w-4xl">
         <MaskedLine delay={0.1}>Eradicating poverty</MaskedLine>
         <MaskedLine delay={0.25}>in one generation.</MaskedLine>
       </h1>
