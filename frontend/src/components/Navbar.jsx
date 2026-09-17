@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className={`max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between transition-[height] duration-500 ${scrolled ? "h-20" : "h-44 sm:h-60"}`}>
         <Link to="/" data-testid="nav-logo" className="flex items-center group">
           <span className={`relative z-10 shrink-0 overflow-visible transition-all duration-500 group-hover:rotate-3 ${scrolled ? "h-16 w-16" : "h-40 sm:h-56"}`}>
-            <img src="/assets/logo-t.png" alt="AimGame logo" className="h-full w-full object-contain" />
+            <img src="/assets/logo-rc.png" alt="AimGame logo" className="h-full w-full object-contain" />
           </span>
         </Link>
 

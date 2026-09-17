@@ -12,31 +12,42 @@ const HERO_PHOTOS = [
 ];
 
 const Hero = () => (
-  <section data-testid="hero-section" className="relative overflow-hidden pt-48 sm:pt-64 pb-16 grain">
+  <section data-testid="hero-section" className="relative overflow-hidden pt-44 sm:pt-60 pb-16 grain">
     <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
     <div className="absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-flame/10 blur-3xl pointer-events-none" />
 
     <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-      <h1 data-testid="hero-headline" className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf max-w-4xl">
+      <Reveal>
+        <img
+          src="/assets/banner.png"
+          alt="AimGame — Life-Changing Scholarships Across India"
+          data-testid="hero-banner"
+          className="h-12 sm:h-16 w-auto"
+        />
+      </Reveal>
+
+      <h1 data-testid="hero-headline" className="mt-6 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf max-w-4xl">
         <MaskedLine delay={0.1}>Eradicating poverty</MaskedLine>
         <MaskedLine delay={0.25}>in one generation.</MaskedLine>
       </h1>
 
-      <div className="mt-12 sm:mt-14">
-        <Reveal><Eyebrow>The Program</Eyebrow></Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="mt-4 font-display font-extrabold tracking-tight leading-[1.05] text-3xl sm:text-4xl lg:text-5xl max-w-3xl">
-            Fifteen years, engineered <span className="text-flame">end to end.</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-ink-muted">
-            AimGame is not a cheque and a prayer. It is a fifteen-year operating system for one child's
-            life — five milestones from age five to twenty-two, each one funded, managed and measured.
-            Tap a milestone to see exactly what happens.
-          </p>
-        </Reveal>
-      </div>
+      <Reveal delay={0.2}>
+        <div className="mt-8 rounded-3xl bg-white border border-ink/10 p-3 sm:p-4 shadow-[0_24px_60px_-30px_rgba(15,23,42,0.2)]">
+          <img
+            src="/assets/journey.png"
+            alt="The AimGame journey — Year 1 start of program to Year 13-15 college graduate"
+            data-testid="hero-journey-timeline"
+            className="w-full rounded-2xl"
+          />
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.28}>
+        <p className="mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-ink-muted">
+          AimGame is not a cheque and a prayer. It is a fifteen-year operating system for one child's
+          life — five milestones from age five to twenty-two, each one funded, managed and measured.
+        </p>
+      </Reveal>
 
       <Reveal delay={0.2}>
         <div className="mt-10 flex items-center gap-4">
