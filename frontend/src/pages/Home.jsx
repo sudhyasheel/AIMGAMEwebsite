@@ -1,8 +1,73 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
-import { Reveal, MaskedLine, Eyebrow } from "@/components/Reveal";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ArrowUpRight, GraduationCap, HeartPulse, Briefcase } from "lucide-react";
+import { Reveal, MaskedLine, Eyebrow, EASE } from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { STATS, MANIFESTO, PARTNERS, FEED, MILESTONES } from "@/data/content";
+
+const PILLARS = [
+  {
+    id: "education",
+    icon: GraduationCap,
+    title: "EDUCATION",
+    text: "Fully sponsored English-medium schooling with managed logistics, tuition and after-school enrichment — the spine of the fifteen-year arc, from a play-based entry at five to a college degree.",
+  },
+  {
+    id: "healthcare",
+    icon: HeartPulse,
+    title: "HEALTHCARE",
+    text: "Health check-ups and medical support extended to the scholar's whole family — because a child's progress is only as stable as the household behind them, and no education should end with an untreated illness.",
+  },
+  {
+    id: "employment",
+    icon: Briefcase,
+    title: "EMPLOYMENT",
+    text: "The arc ends in a career, not a certificate: aptitude mapping, college applications, placement support and early-career guidance carry each scholar to their first professional salary.",
+  },
+];
+
+const HolisticCore = () => {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="mt-12" data-testid="holistic-core">
+      <Reveal>
+        <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">
+          THE HOLISTIC CORE OF OUR SERVICES
+        </p>
+      </Reveal>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {PILLARS.map((p, i) => (
+          <button
+            key={p.id}
+            data-testid={`pillar-${p.id}`}
+            onClick={() => setOpen(i)}
+            className={`flex items-center gap-4 rounded-xl bg-white px-6 py-5 border shadow-[0_10px_30px_-12px_rgba(15,23,42,0.15)] transition-all duration-300 hover:-translate-y-0.5 ${
+              open === i ? "border-flame/50" : "border-ink/5"
+            }`}
+          >
+            <p.icon className={`h-5 w-5 shrink-0 ${open === i ? "text-flame" : "text-leaf"}`} />
+            <span className="font-display font-bold tracking-wide text-left">{p.title}</span>
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={open}
+          data-testid="pillar-detail"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="mt-4 rounded-2xl bg-white border border-ink/10 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.12)] p-8"
+        >
+          <p className="font-mono text-[10px] tracking-[0.3em] text-flame font-bold">{PILLARS[open].title}</p>
+          <p className="mt-3 text-ink-muted leading-relaxed text-base sm:text-lg max-w-3xl">{PILLARS[open].text}</p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const HERO_PHOTOS = [
   { src: "/assets/field-1.jpg", alt: "AimGame scholars in a classroom game session" },
@@ -17,7 +82,13 @@ const Hero = () => (
     <div className="absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-flame/10 blur-3xl pointer-events-none" />
 
     <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-      <h1 data-testid="hero-headline" className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf max-w-4xl">
+      <Reveal>
+        <p data-testid="hero-kicker" className="font-display font-bold text-flame tracking-tight text-lg sm:text-xl lg:text-2xl">
+          From Poverty to Prosperity in 15 Years or Less
+        </p>
+      </Reveal>
+
+      <h1 data-testid="hero-headline" className="mt-3 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf">
         <MaskedLine delay={0.1}>Eradicating poverty</MaskedLine>
         <MaskedLine delay={0.25}>in one generation.</MaskedLine>
       </h1>
@@ -32,69 +103,37 @@ const Hero = () => (
           />
           <div className="absolute inset-0 flex">
             {MILESTONES.map((m, i) => (
-              <button
+              <Link
                 key={m.title}
+                to={`/program?m=${i}`}
                 data-testid={`hero-journey-zone-${i}`}
-                aria-label={`Explore ${m.title}`}
-                onClick={() => {
-                  const el = document.getElementById("milestones-strip");
-                  if (el) {
-                    if (window.__lenis) window.__lenis.scrollTo(el, { offset: -140 });
-                    else el.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                className="flex-1 h-full rounded-2xl cursor-pointer transition-colors duration-300 hover:bg-flame/10"
+                aria-label={`Explore ${m.title} on the program page`}
+                className="flex-1 h-full rounded-2xl transition-colors duration-300 hover:bg-flame/10"
               />
             ))}
           </div>
         </div>
         <p className="mt-4 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
-          TAP A YEAR TO EXPLORE THE MILESTONES BELOW — EACH ONE LEADS TO THE FULL PROGRAM
+          TAP A YEAR TO OPEN IT ON THE PROGRAM PAGE
         </p>
       </Reveal>
 
       <Reveal delay={0.28}>
-        <p className="mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-ink-muted">
-          AimGame is not a cheque and a prayer. It is a fifteen-year operating system for one child's
-          life — five milestones from age five to twenty-two, each one funded, managed and measured.
+        <p data-testid="hero-description" className="mt-8 text-base sm:text-lg leading-relaxed text-ink-muted">
+          AimGame is a game-based competition program created and managed by Responsible Charity Society that
+          identifies exceptional children in India's most under-resourced communities and sets them on a
+          15-year path to college graduation. What began as a search for a better way to reach children who
+          had every reason to distrust institutions became a precision system: weekly structured game sessions
+          that build critical thinking, ethics, and social development serve as the entry point and selection
+          engine for a full life-changing scholarship. The top three performers each year are chosen for RC
+          Foundation's holistic program — where Education, Healthcare, and Employment work together as a
+          single architecture — because we learned early that education alone cannot carry a child out of
+          poverty. It takes a complete system, long-term commitment, and the kind of human connection that
+          becomes family. AimGame is where that journey begins.
         </p>
       </Reveal>
 
-      <Reveal delay={0.2}>
-        <div className="mt-10 flex items-center gap-4">
-          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-leaf font-bold">YEAR 1</span>
-          <div className="relative flex-1 h-px bg-ink/15">
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[3px] w-1/5 rounded-full bg-flame" />
-          </div>
-          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-flame font-bold">YEAR 15</span>
-        </div>
-      </Reveal>
-
-      <div id="milestones-strip" className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-        {MILESTONES.map((m, i) => (
-          <Reveal key={m.title} delay={0.1 + i * 0.06} className="h-full">
-            <Link
-              to={`/program?m=${i}`}
-              data-testid={`hero-milestone-${i}`}
-              className={`group flex h-full flex-col rounded-2xl border p-4 sm:p-5 transition-[background-color,border-color,transform] duration-500 hover:-translate-y-1 ${
-                i === 0 ? "bg-night text-sand border-night" : "bg-white border-ink/10 hover:border-flame/40"
-              }`}
-            >
-              <div className="flex items-start justify-between gap-2">
-                <span className={`font-display font-extrabold text-2xl sm:text-3xl tracking-tight transition-colors duration-500 ${i === 0 ? "text-flame" : "text-ink/20 group-hover:text-flame/50"}`}>
-                  {m.age}
-                </span>
-                <span className={`h-6 w-6 rounded-full inline-flex items-center justify-center shrink-0 ${i === 0 ? "bg-flame text-white" : "bg-leaf-soft text-leaf"}`}>
-                  <Plus className="h-3 w-3" />
-                </span>
-              </div>
-              <p className={`mt-3 font-mono text-[9px] tracking-[0.2em] ${i === 0 ? "text-sand/60" : "text-leaf"}`}>{m.year.toUpperCase()}</p>
-              <h3 className="mt-1.5 font-display font-bold text-sm sm:text-base leading-snug">{m.title}</h3>
-              <p className={`mt-2 text-[11px] leading-snug ${i === 0 ? "text-sand/65" : "text-ink-muted"}`}>{m.teaser}</p>
-            </Link>
-          </Reveal>
-        ))}
-      </div>
+      <HolisticCore />
 
       <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         {HERO_PHOTOS.map((p, i) => (
