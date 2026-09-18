@@ -23,14 +23,34 @@ const Hero = () => (
       </h1>
 
       <Reveal delay={0.2}>
-        <div className="mt-8 rounded-3xl bg-white border border-ink/10 p-3 sm:p-4 shadow-[0_24px_60px_-30px_rgba(15,23,42,0.2)]">
+        <div className="relative mt-8" data-testid="hero-journey-wrap">
           <img
-            src="/assets/journey.png"
+            src="/assets/journey2.png"
             alt="The AimGame journey — Year 1 start of program to Year 13-15 college graduate"
             data-testid="hero-journey-timeline"
-            className="w-full rounded-2xl"
+            className="w-full"
           />
+          <div className="absolute inset-0 flex">
+            {MILESTONES.map((m, i) => (
+              <button
+                key={m.title}
+                data-testid={`hero-journey-zone-${i}`}
+                aria-label={`Explore ${m.title}`}
+                onClick={() => {
+                  const el = document.getElementById("milestones-strip");
+                  if (el) {
+                    if (window.__lenis) window.__lenis.scrollTo(el, { offset: -140 });
+                    else el.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="flex-1 h-full rounded-2xl cursor-pointer transition-colors duration-300 hover:bg-flame/10"
+              />
+            ))}
+          </div>
         </div>
+        <p className="mt-4 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
+          TAP A YEAR TO EXPLORE THE MILESTONES BELOW — EACH ONE LEADS TO THE FULL PROGRAM
+        </p>
       </Reveal>
 
       <Reveal delay={0.28}>
@@ -42,19 +62,19 @@ const Hero = () => (
 
       <Reveal delay={0.2}>
         <div className="mt-10 flex items-center gap-4">
-          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-leaf font-bold">AGE 5</span>
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-leaf font-bold">YEAR 1</span>
           <div className="relative flex-1 h-px bg-ink/15">
             <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[3px] w-1/5 rounded-full bg-flame" />
           </div>
-          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-flame font-bold">AGE 22</span>
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] text-flame font-bold">YEAR 15</span>
         </div>
       </Reveal>
 
-      <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div id="milestones-strip" className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {MILESTONES.map((m, i) => (
           <Reveal key={m.title} delay={0.1 + i * 0.06} className="h-full">
             <Link
-              to="/program"
+              to={`/program?m=${i}`}
               data-testid={`hero-milestone-${i}`}
               className={`group flex h-full flex-col rounded-2xl border p-4 sm:p-5 transition-[background-color,border-color,transform] duration-500 hover:-translate-y-1 ${
                 i === 0 ? "bg-night text-sand border-night" : "bg-white border-ink/10 hover:border-flame/40"
