@@ -51,7 +51,7 @@ const Navbar = () => {
               data-testid={l.id}
               className={({ isActive }) =>
                 `text-sm font-semibold tracking-wide transition-colors duration-300 ${
-                  isActive ? "text-flame" : "text-ink/70 hover:text-ink"
+                  isActive ? "text-leaf underline underline-offset-8 decoration-2 decoration-flame" : "text-leaf/70 hover:text-leaf"
                 }`
               }
             >
