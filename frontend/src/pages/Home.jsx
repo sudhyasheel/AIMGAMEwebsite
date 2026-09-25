@@ -30,24 +30,19 @@ const PILLARS = [
 const HolisticCore = () => {
   const [open, setOpen] = useState(0);
   return (
-    <div className="mt-12" data-testid="holistic-core">
-      <Reveal>
-        <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">
-          THE HOLISTIC CORE OF OUR SERVICES
-        </p>
-      </Reveal>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="mt-10" data-testid="holistic-core">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         {PILLARS.map((p, i) => (
           <button
             key={p.id}
             data-testid={`pillar-${p.id}`}
             onClick={() => setOpen(i)}
-            className={`flex items-center gap-4 rounded-xl bg-white px-6 py-5 border shadow-[0_10px_30px_-12px_rgba(15,23,42,0.15)] transition-all duration-300 hover:-translate-y-0.5 ${
-              open === i ? "border-flame/50" : "border-ink/5"
+            className={`flex items-center gap-5 rounded-2xl bg-white px-8 py-6 border-2 shadow-[0_14px_36px_-16px_rgba(15,23,42,0.18)] transition-all duration-300 hover:-translate-y-0.5 ${
+              open === i ? "border-flame" : "border-ink/5"
             }`}
           >
-            <p.icon className={`h-5 w-5 shrink-0 ${open === i ? "text-flame" : "text-leaf"}`} />
-            <span className="font-display font-bold tracking-wide text-left">{p.title}</span>
+            <p.icon className={`h-7 w-7 shrink-0 ${open === i ? "text-flame" : "text-leaf"}`} />
+            <span className="font-display font-extrabold tracking-wide text-lg text-left">{p.title}</span>
           </button>
         ))}
       </div>
@@ -158,23 +153,14 @@ const Hero = () => (
 
       <Reveal delay={0.2}>
         <ChevronTimeline />
-        <p className="mt-4 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
-          TAP A YEAR TO OPEN IT ON THE PROGRAM PAGE
-        </p>
       </Reveal>
 
       <Reveal delay={0.28}>
         <p data-testid="hero-description" className="mt-8 text-lg sm:text-xl leading-relaxed font-medium text-leaf">
-          AimGame is a game-based competition program created and managed by Responsible Charity Society that
-          identifies exceptional children in India's most under-resourced communities and sets them on a
-          15-year path to college graduation. What began as a search for a better way to reach children who
-          had every reason to distrust institutions became a precision system: weekly structured game sessions
-          that build critical thinking, ethics, and social development serve as the entry point and selection
-          engine for a full life-changing scholarship. The top three performers each year are chosen for RC
-          Foundation's holistic program — where Education, Healthcare, and Employment work together as a
-          single architecture — because we learned early that education alone cannot carry a child out of
-          poverty. It takes a complete system, long-term commitment, and the kind of human connection that
-          becomes family. AimGame is where that journey begins.
+          AimGame uses structured game competitions to identify, develop, and select high-potential children
+          from slum communities in India for our 15-year scholarship program, providing education, healthcare,
+          and employment support through college graduation. Created and managed by Responsible Charity
+          Society, AimGame is built to eradicate poverty in one generation.
         </p>
       </Reveal>
 
