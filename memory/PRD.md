@@ -52,6 +52,7 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Homepage timeline: icon boxes now mirror chevron geometry exactly (same widths/overlaps) — boxes 1-4 left-aligned to their chevron's left edge, box 5 right-aligned flush with the last chevron's arrow tip; boxes lengthened (w-24), chevron icons +31% (42px), pillar icons h-9; both rows share one horizontal scroll container on mobile so they stay aligned
 
 - Internships paragraphs switched to RC green semibold text-lg sm:text-xl, matching paragraph copy on Contact/CSR pages
+- Homepage: removed the EDUCATION/HEALTHCARE/EMPLOYMENT pillar segment below the timeline
 
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
