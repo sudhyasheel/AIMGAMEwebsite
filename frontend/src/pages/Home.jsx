@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, HeartPulse, Briefcase } from "lucide-react";
-import { Reveal, MaskedLine, EASE } from "@/components/Reveal";
+import { Reveal, MaskedLine } from "@/components/Reveal";
 import { MILESTONES } from "@/data/content";
 
 const TIMELINE_PHOTOS = [
@@ -63,20 +62,6 @@ const PillarRow = () => {
           </button>
         ))}
       </div>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={open}
-          data-testid="pillar-detail"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.45, ease: EASE }}
-          className="mt-4 rounded-2xl bg-white border border-ink/10 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.12)] p-8"
-        >
-          <p className="font-mono text-[10px] tracking-[0.3em] text-flame font-bold">{PILLARS[open].title}</p>
-          <p className="mt-3 text-ink-muted leading-relaxed text-base sm:text-lg max-w-3xl">{PILLARS[open].text}</p>
-        </motion.div>
-      </AnimatePresence>
     </div>
   );
 };

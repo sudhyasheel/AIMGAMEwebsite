@@ -32,9 +32,9 @@ const Navbar = () => {
         scrolled ? "bg-sand/85 backdrop-blur-xl shadow-[0_1px_0_rgba(15,23,42,0.08)]" : "bg-transparent"
       }`}
     >
-      <div className={`max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between transition-[height] duration-500 ${scrolled ? "h-20" : "h-44 sm:h-60"}`}>
+      <div className={`max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex items-center justify-between transition-[height] duration-500 ${scrolled ? "h-20" : "h-36 sm:h-48"}`}>
         <Link to="/" data-testid="nav-logo" className="flex items-center group">
-          <span className={`relative z-10 shrink-0 overflow-visible transition-all duration-500 group-hover:rotate-3 ${scrolled ? "h-16 w-16" : "h-40 sm:h-56"}`}>
+          <span className={`relative z-10 shrink-0 overflow-visible transition-all duration-500 group-hover:rotate-3 ${scrolled ? "h-16 w-16" : "h-32 w-32 sm:h-44 sm:w-44"}`}>
             <img src="/assets/logo-rc.png" alt="AimGame logo" className="h-full w-full object-contain" />
           </span>
         </Link>
