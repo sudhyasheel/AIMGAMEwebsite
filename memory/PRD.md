@@ -21,12 +21,13 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - RC team member reviewing submissions in the admin panel
 
 ## Core Requirements (static)
-- 6 pages: Home, The Program, Transformations, Partner/Donate, About/Trust, Contact
+- 7 pages: Home, The Program, Transformations, Partner/Donate, CSR Partners, About/Trust, Contact
 - Signature 15-year interactive timeline (horizontal desktop / vertical mobile, expandable milestones)
 - Before/after scholar gallery (no slider gimmick)
 - Gated donation flow: donor type → threshold logic (min ₹1,000; ≥₹1L or CSR/HNI → qualifying conversation)
 - Routed contact form; admin view of submissions
 - 80G/registration trust signals; CSR partner strip; social feed
+- Standardized page headers everywhere: left-aligned green uppercase H1 + orange subheader (text-2xl sm:text-3xl), max-w-7xl px-4 sm:px-8 lg:px-16, pt-44 sm:pt-60, grain + dot-grid
 
 ## Implemented (2026-09-09)
 - All 6 public pages + /admin panel (passcode: rc-aimgame-admin-2026)
@@ -37,6 +38,13 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Gated partner flow with SIMULATED payment, CSR/HNI qualifying forms → DB
 - Routed contact form → DB; admin dashboard with kind filters and counts
 - Mocked "from the field" feed and placeholder CSR partner wordmarks (MOCKED)
+
+## Implemented (2026-07-10)
+- NEW dedicated CSR Partners page (/csr-partners): "A Win-Win Partnership" header, "More Than a Donation. A Relationship." subheader, 3 green description paragraphs (₹1,00,000 threshold), CSR contact form (kind=csr → DB), credentials strip (80G, CSR Approved, Utilization Certificates, Customized Impact Reports, Annual Reports, Registered Credentials)
+- Contact page redesigned: "Let's Talk" + "Before we do, let's make sure we're the right fit." + green fit-check copy (₹10,000 individual / ₹1,00,000 CSR thresholds), routing rows to contact form / CSR page / Internships, routed topic form retained
+- Headers standardized (left-aligned, green/orange) on Donate + CSR Partners; subheaders enlarged to text-2xl sm:text-3xl site-wide
+- Our Story collage: photos ~45% smaller (h-24/sm:h-36 tiles), exactly 5 per row on desktop
+- Navbar CSR PARTNERS link now routes to /csr-partners
 
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment

@@ -42,12 +42,12 @@ const About = () => (
           </Reveal>
         </div>
 
-        <div data-testid="story-collage" className="mt-14 flex flex-wrap justify-center gap-2 sm:gap-3">
+        <div data-testid="story-collage" className="mt-14 max-w-[800px] mx-auto flex flex-wrap justify-center gap-2 sm:gap-3">
           {STORY_PHOTOS.map((p, i) => (
             <Reveal key={p.src} delay={0.05 + i * 0.04}>
               <div
                 data-testid={`story-photo-${i}`}
-                className="group h-28 w-28 sm:h-36 sm:w-36 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.25)]"
+                className="group h-24 w-24 sm:h-36 sm:w-36 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.25)]"
               >
                 <img
                   src={p.src}
