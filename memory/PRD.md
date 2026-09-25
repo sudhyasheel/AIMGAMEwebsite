@@ -27,7 +27,7 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Gated donation flow: donor type → threshold logic (min ₹1,000; ≥₹1L or CSR/HNI → qualifying conversation)
 - Routed contact form; admin view of submissions
 - 80G/registration trust signals; CSR partner strip; social feed
-- Standardized page headers everywhere: left-aligned green uppercase H1 + orange subheader (text-2xl sm:text-3xl), max-w-7xl px-4 sm:px-8 lg:px-16, pt-44 sm:pt-60, grain + dot-grid
+- Standardized page headers everywhere: left-aligned green uppercase H1 + orange subheader (text-3xl sm:text-4xl), max-w-7xl px-4 sm:px-8 lg:px-16, pt-44 sm:pt-60, grain + dot-grid
 
 ## Implemented (2026-09-09)
 - All 6 public pages + /admin panel (passcode: rc-aimgame-admin-2026)
@@ -43,7 +43,7 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - NEW dedicated CSR Partners page (/csr-partners): "A Win-Win Partnership" header, "More Than a Donation. A Relationship." subheader, 3 green description paragraphs (₹1,00,000 threshold), CSR contact form (kind=csr → DB), credentials strip (80G, CSR Approved, Utilization Certificates, Customized Impact Reports, Annual Reports, Registered Credentials)
 - Contact page redesigned: "Let's Talk" + "Before we do, let's make sure we're the right fit." + green fit-check copy (₹10,000 individual / ₹1,00,000 CSR thresholds), routing rows to contact form / CSR page / Internships, routed topic form retained
 - Headers standardized (left-aligned, green/orange) on Donate + CSR Partners; subheaders enlarged to text-2xl sm:text-3xl site-wide
-- Our Story collage: photos ~45% smaller (h-24/sm:h-36 tiles), exactly 5 per row on desktop
+- Our Story collage: 5 photos per row spanning the full subheader width end-to-end (grid-cols-5, ~221px tiles on desktop)
 - Navbar CSR PARTNERS link now routes to /csr-partners
 
 ## Prioritized Backlog

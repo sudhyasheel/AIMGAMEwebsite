@@ -68,7 +68,7 @@ const Contact = () => {
           <Reveal delay={0.12}>
             <p
               data-testid="contact-subheader"
-              className="mt-5 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight"
+              className="mt-5 font-display font-bold text-3xl sm:text-4xl text-flame tracking-tight"
             >
               Before we do, let's make sure we're the right fit.
             </p>

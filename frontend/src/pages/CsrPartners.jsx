@@ -142,7 +142,7 @@ const CsrPartners = () => (
         <Reveal delay={0.12}>
           <p
             data-testid="csr-subheader"
-            className="mt-5 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight"
+            className="mt-5 font-display font-bold text-3xl sm:text-4xl text-flame tracking-tight"
           >
             More Than a Donation. A Relationship.
           </p>
