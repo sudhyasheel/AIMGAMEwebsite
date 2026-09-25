@@ -106,7 +106,7 @@ const ChevronTimeline = () => (
           className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
           style={{ clipPath: chevronClip(i === 0) }}
         >
-          <div className="absolute inset-[6px]" style={{ clipPath: chevronClip(i === 0) }}>
+          <div className={`absolute ${i === 0 ? "inset-[12px]" : "inset-[6px]"}`} style={{ clipPath: chevronClip(i === 0) }}>
             <img
               src={TIMELINE_PHOTOS[i].src}
               alt={TIMELINE_PHOTOS[i].alt}
@@ -164,7 +164,7 @@ const Hero = () => (
       </Reveal>
 
       <Reveal delay={0.28}>
-        <p data-testid="hero-description" className="mt-8 text-base sm:text-lg leading-relaxed text-ink-muted">
+        <p data-testid="hero-description" className="mt-8 text-lg sm:text-xl leading-relaxed font-medium text-leaf">
           AimGame is a game-based competition program created and managed by Responsible Charity Society that
           identifies exceptional children in India's most under-resourced communities and sets them on a
           15-year path to college graduation. What began as a search for a better way to reach children who

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, HeartHandshake, HandHelping, Briefcase, Mail } from "lucide-react";
 import { toast } from "sonner";
@@ -20,6 +21,13 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", org: "", message: "" });
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const t = searchParams.get("topic");
+    const found = TOPICS.find((x) => x.id === t);
+    if (found) setTopic(found);
+  }, [searchParams]);
 
   const submit = async () => {
     if (!form.name || !form.email || !form.message) {

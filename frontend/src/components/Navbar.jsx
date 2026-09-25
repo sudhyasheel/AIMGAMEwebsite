@@ -3,10 +3,13 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const LINKS = [
-  { to: "/program", label: "PROGRAM", id: "nav-link-program" },
-  { to: "/transformations", label: "RESULTS", id: "nav-link-results" },
-  { to: "/about", label: "ABOUT US", id: "nav-link-about" },
+  { to: "/", label: "HOME", id: "nav-link-home", end: true },
+  { to: "/program", label: "THE WORK", id: "nav-link-the-work" },
+  { to: "/transformations", label: "THE RESULTS", id: "nav-link-the-results" },
+  { to: "/about", label: "OUR STORY", id: "nav-link-our-story" },
+  { to: "/contact?topic=career", label: "INTERNSHIPS", id: "nav-link-internships" },
   { to: "/partner#partners", label: "CSR PARTNERS", id: "nav-link-csr-partners" },
+  { to: "/contact", label: "LET'S TALK", id: "nav-link-lets-talk" },
 ];
 
 const Navbar = () => {
@@ -48,6 +51,7 @@ const Navbar = () => {
             <NavLink
               key={l.to}
               to={l.to}
+              end={l.end}
               data-testid={l.id}
               className={({ isActive }) =>
                 `text-sm font-semibold tracking-wide transition-colors duration-300 ${
@@ -86,6 +90,7 @@ const Navbar = () => {
               <NavLink
                 key={l.to}
                 to={l.to}
+                end={l.end}
                 data-testid={`${l.id}-mobile`}
                 className="font-display font-bold text-2xl text-ink"
               >
