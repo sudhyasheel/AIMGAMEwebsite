@@ -9,6 +9,7 @@ from pathlib import Path
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime, timezone
+import razorpay
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -17,6 +18,12 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 ADMIN_KEY = os.environ.get('ADMIN_KEY', '')
+
+RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', '')
+RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', '')
+rzp = None
+if RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET:
+    rzp = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -31,6 +38,19 @@ class SubmissionIn(BaseModel):
     message: Optional[str] = ""
     amount: Optional[float] = None
     meta: Optional[dict] = {}
+
+
+class DonationOrderIn(BaseModel):
+    amount: float
+    name: str
+    email: str
+    phone: Optional[str] = ""
+
+
+class DonationVerifyIn(BaseModel):
+    order_id: str
+    payment_id: str
+    signature: str
 
 
 @api_router.get("/")
@@ -54,6 +74,59 @@ async def list_submissions(x_admin_key: str = Header(default="")):
         raise HTTPException(status_code=401, detail="Invalid admin key")
     docs = await db.submissions.find({}, {"_id": 0}).sort("created_at", -1).to_list(2000)
     return {"submissions": docs}
+
+
+@api_router.get("/donations/config")
+async def donation_config():
+    return {"enabled": rzp is not None}
+
+
+@api_router.post("/donations/create-order")
+async def create_donation_order(payload: DonationOrderIn):
+    if not rzp:
+        raise HTTPException(status_code=503, detail="payments_not_configured")
+    if payload.amount < 1:
+        raise HTTPException(status_code=400, detail="Invalid amount")
+    order = rzp.order.create({
+        "amount": int(round(payload.amount * 100)),
+        "currency": "INR",
+        "payment_capture": 1,
+        "notes": {"name": payload.name, "email": payload.email, "purpose": "AimGame donation"},
+    })
+    doc = {
+        "id": str(uuid.uuid4()),
+        "kind": "donation",
+        "name": payload.name,
+        "email": payload.email,
+        "phone": payload.phone,
+        "org": "",
+        "message": "",
+        "amount": payload.amount,
+        "meta": {"razorpay_order_id": order["id"], "simulated": False},
+        "status": "created",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.submissions.insert_one(doc)
+    return {"order_id": order["id"], "amount": order["amount"], "key_id": RAZORPAY_KEY_ID}
+
+
+@api_router.post("/donations/verify")
+async def verify_donation(payload: DonationVerifyIn):
+    if not rzp:
+        raise HTTPException(status_code=503, detail="payments_not_configured")
+    try:
+        rzp.utility.verify_payment_signature({
+            "razorpay_order_id": payload.order_id,
+            "razorpay_payment_id": payload.payment_id,
+            "razorpay_signature": payload.signature,
+        })
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid payment signature")
+    await db.submissions.update_one(
+        {"meta.razorpay_order_id": payload.order_id},
+        {"$set": {"status": "paid", "meta.razorpay_payment_id": payload.payment_id}},
+    )
+    return {"ok": True}
 
 
 app.include_router(api_router)

@@ -22,12 +22,12 @@ const About = () => (
   <main data-testid="about-page">
     <section className="pt-44 sm:pt-60 pb-24 lg:pb-32 relative overflow-hidden grain">
       <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
-        <div className="text-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+        <div>
           <Reveal>
             <h1
               data-testid="story-header"
-              className="font-display font-extrabold tracking-tight leading-[1.08] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
+              className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
             >
               From Grassroots to Reality
             </h1>
@@ -35,7 +35,7 @@ const About = () => (
           <Reveal delay={0.12}>
             <p
               data-testid="story-subheader"
-              className="mt-6 font-display font-bold text-xl sm:text-2xl lg:text-3xl text-flame tracking-tight max-w-3xl mx-auto"
+              className="mt-5 font-display font-bold text-xl sm:text-2xl text-flame tracking-tight"
             >
               A shared vision turned into real solutions for children and families living in poverty.
             </p>

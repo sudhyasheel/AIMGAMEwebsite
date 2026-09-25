@@ -15,11 +15,11 @@ const Transformations = () => (
   <main data-testid="transformations-page">
     <section className="pt-44 sm:pt-60 pb-24 lg:pb-32 relative overflow-hidden grain">
       <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 text-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <Reveal>
           <h1
             data-testid="results-header"
-            className="font-display font-extrabold tracking-tight leading-[1.08] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
+            className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
           >
             Four Graduates.
             <br />
@@ -29,7 +29,7 @@ const Transformations = () => (
         <Reveal delay={0.12}>
           <p
             data-testid="results-subheader"
-            className="mt-6 font-display font-bold text-xl sm:text-2xl lg:text-3xl text-flame tracking-tight"
+            className="mt-5 font-display font-bold text-xl sm:text-2xl text-flame tracking-tight"
           >
             This is what 15 years of consistency looks like.
           </p>

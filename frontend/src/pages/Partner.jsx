@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Building2, User, Gem, ShieldCheck, CheckCircle2,
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
 import { PARTNERS, MIN_DONATION, CONVERSATION_THRESHOLD } from "@/data/content";
-import { submitInquiry } from "@/lib/api";
+import { submitInquiry, getDonationConfig, createDonationOrder, verifyDonation, loadRazorpay } from "@/lib/api";
 
 const PRESETS = [1000, 2500, 5000, 10000, 25000];
 const inr = (n) => "₹" + Number(n).toLocaleString("en-IN");
@@ -200,45 +200,96 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
   );
 };
 
-const StepPayment = ({ amount, form, setForm, onPay, onBack, busy }) => (
-  <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
-    <div className="rounded-2xl bg-white border border-ink/10 overflow-hidden">
-      <div className="bg-night text-sand px-6 py-5 flex items-center justify-between">
-        <div>
-          <p className="font-mono text-[10px] tracking-[0.3em] text-flame font-bold">SIMULATED PAYMENT</p>
-          <p className="mt-1 font-display font-extrabold text-3xl">{inr(amount)}</p>
-        </div>
-        <ShieldCheck className="h-8 w-8 text-leaf" />
-      </div>
-      <div className="p-6 space-y-4">
-        <input data-testid="pay-name" className={inputCls} placeholder="Full name (as on PAN, for 80G receipt)" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-        <input data-testid="pay-email" type="email" className={inputCls} placeholder="Email for receipt" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-        <input data-testid="pay-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-        <div className="rounded-xl border border-dashed border-ink/20 p-4 space-y-3 bg-sand-deep/50">
-          <input data-testid="pay-card-number" className={inputCls} placeholder="Card number (simulation)" maxLength={19} value={form.card} onChange={(e) => setForm({ ...form, card: e.target.value })} />
-          <div className="grid grid-cols-2 gap-3">
-            <input data-testid="pay-card-expiry" className={inputCls} placeholder="MM / YY" maxLength={7} value={form.expiry} onChange={(e) => setForm({ ...form, expiry: e.target.value })} />
-            <input data-testid="pay-card-cvv" className={inputCls} placeholder="CVV" maxLength={4} type="password" value={form.cvv} onChange={(e) => setForm({ ...form, cvv: e.target.value })} />
+const StepPayment = ({ amount, form, setForm, onPay, onPaid, onBack, busy, setBusy }) => {
+  const [live, setLive] = useState(false);
+
+  useEffect(() => {
+    getDonationConfig()
+      .then((r) => setLive(Boolean(r.data.enabled)))
+      .catch(() => setLive(false));
+  }, []);
+
+  const payLive = async () => {
+    setBusy(true);
+    try {
+      await loadRazorpay();
+      const res = await createDonationOrder({ amount, name: form.name, email: form.email, phone: form.phone });
+      const rzp = new window.Razorpay({
+        key: res.data.key_id,
+        amount: res.data.amount,
+        currency: "INR",
+        name: "Responsible Charity Society",
+        description: "AimGame — Life-Changing Scholarships",
+        order_id: res.data.order_id,
+        prefill: { name: form.name, email: form.email, contact: form.phone },
+        theme: { color: "#E8490F" },
+        handler: async (resp) => {
+          try {
+            await verifyDonation({
+              order_id: resp.razorpay_order_id,
+              payment_id: resp.razorpay_payment_id,
+              signature: resp.razorpay_signature,
+            });
+            onPaid();
+          } catch {
+            toast.error("Payment received but verification failed. Our team has been notified.");
+          }
+        },
+      });
+      rzp.open();
+    } catch {
+      toast.error("Could not start the payment. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
+      <div className="rounded-2xl bg-white border border-ink/10 overflow-hidden">
+        <div className="bg-night text-sand px-6 py-5 flex items-center justify-between">
+          <div>
+            <p className="font-mono text-[10px] tracking-[0.3em] text-flame font-bold">
+              {live ? "SECURE PAYMENT VIA RAZORPAY" : "SIMULATED PAYMENT"}
+            </p>
+            <p className="mt-1 font-display font-extrabold text-3xl">{inr(amount)}</p>
           </div>
+          <ShieldCheck className="h-8 w-8 text-leaf" />
         </div>
-        <button
-          data-testid="pay-submit-btn"
-          onClick={onPay}
-          disabled={busy || !form.name || !form.email}
-          className="w-full rounded-full bg-flame py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark disabled:opacity-40"
-        >
-          {busy ? "Processing…" : `Pay ${inr(amount)} (simulated)`}
-        </button>
-        <p className="text-center text-xs text-ink-muted">
-          Demo checkout — no real charge. Received by Responsible Charity Society · 80G certified since 2012.
-        </p>
+        <div className="p-6 space-y-4">
+          <input data-testid="pay-name" className={inputCls} placeholder="Full name (as on PAN, for 80G receipt)" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          <input data-testid="pay-email" type="email" className={inputCls} placeholder="Email for receipt" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          <input data-testid="pay-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          {!live && (
+            <div className="rounded-xl border border-dashed border-ink/20 p-4 space-y-3 bg-sand-deep/50">
+              <input data-testid="pay-card-number" className={inputCls} placeholder="Card number (simulation)" maxLength={19} value={form.card} onChange={(e) => setForm({ ...form, card: e.target.value })} />
+              <div className="grid grid-cols-2 gap-3">
+                <input data-testid="pay-card-expiry" className={inputCls} placeholder="MM / YY" maxLength={7} value={form.expiry} onChange={(e) => setForm({ ...form, expiry: e.target.value })} />
+                <input data-testid="pay-card-cvv" className={inputCls} placeholder="CVV" maxLength={4} type="password" value={form.cvv} onChange={(e) => setForm({ ...form, cvv: e.target.value })} />
+              </div>
+            </div>
+          )}
+          <button
+            data-testid="pay-submit-btn"
+            onClick={live ? payLive : onPay}
+            disabled={busy || !form.name || !form.email}
+            className="w-full rounded-full bg-flame py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark disabled:opacity-40"
+          >
+            {busy ? "Processing…" : live ? `Pay ${inr(amount)} — UPI, Cards, Netbanking` : `Pay ${inr(amount)} (simulated)`}
+          </button>
+          <p className="text-center text-xs text-ink-muted">
+            {live
+              ? "Secure checkout by Razorpay · Received by Responsible Charity Society · 80G certified since 2012."
+              : "Demo checkout — no real charge. Received by Responsible Charity Society · 80G certified since 2012."}
+          </p>
+        </div>
       </div>
-    </div>
-    <button data-testid="pay-back-btn" onClick={onBack} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-ink-muted hover:text-ink transition-colors">
-      <ArrowLeft className="h-4 w-4" /> Change amount
-    </button>
-  </motion.div>
-);
+      <button data-testid="pay-back-btn" onClick={onBack} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-ink-muted hover:text-ink transition-colors">
+        <ArrowLeft className="h-4 w-4" /> Change amount
+      </button>
+    </motion.div>
+  );
+};
 
 const StepQualify = ({ kind, form, setForm, onSubmit, onBack, busy }) => (
   <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
@@ -447,7 +498,7 @@ const Partner = () => {
                     <StepAmount amount={amount} setAmount={setAmount} onContinue={continueAmount} onBack={() => setStep("type")} busy={busy} />
                   )}
                   {step === "payment" && (
-                    <StepPayment amount={Number(amount)} form={payForm} setForm={setPayForm} onPay={doPay} onBack={() => setStep("amount")} busy={busy} />
+                    <StepPayment amount={Number(amount)} form={payForm} setForm={setPayForm} onPay={doPay} onPaid={() => setStep("success")} onBack={() => setStep("amount")} busy={busy} setBusy={setBusy} />
                   )}
                   {step === "qualify" && (
                     <StepQualify kind={type === "csr" ? "csr" : "hni"} form={qForm} setForm={setQForm} onSubmit={doQualify} onBack={() => setStep(type === "individual" ? "amount" : "type")} busy={busy} />

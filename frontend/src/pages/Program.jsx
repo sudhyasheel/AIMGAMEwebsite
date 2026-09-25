@@ -57,8 +57,8 @@ const Program = () => (
       <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <Reveal><Eyebrow>The Program</Eyebrow></Reveal>
         <Reveal delay={0.1}>
-          <h1 className="mt-6 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl max-w-4xl">
-            Fifteen years, engineered <span className="text-flame">end to end.</span>
+          <h1 className="mt-6 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl max-w-4xl text-leaf uppercase">
+            Fifteen years, engineered end to end.
           </h1>
         </Reveal>
         <Reveal delay={0.2}>

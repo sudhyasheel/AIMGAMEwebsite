@@ -111,12 +111,12 @@ const Internships = () => (
   <main data-testid="internships-page">
     <section className="pt-44 sm:pt-60 pb-20 relative overflow-hidden grain">
       <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-8">
-        <div className="text-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+        <div>
           <Reveal>
             <h1
               data-testid="internships-header"
-              className="font-display font-extrabold tracking-tight leading-[1.08] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
+              className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
             >
               Show Up. Play. Teach. Repeat.
             </h1>
@@ -124,7 +124,7 @@ const Internships = () => (
           <Reveal delay={0.12}>
             <p
               data-testid="internships-subheader"
-              className="mt-6 font-display font-bold text-xl sm:text-2xl lg:text-3xl text-flame tracking-tight"
+              className="mt-5 font-display font-bold text-xl sm:text-2xl text-flame tracking-tight"
             >
               Paid internships that actually mean something.
             </p>
