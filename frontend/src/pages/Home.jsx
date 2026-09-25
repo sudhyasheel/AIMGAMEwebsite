@@ -69,6 +69,58 @@ const HolisticCore = () => {
   );
 };
 
+const TIMELINE_PHOTOS = [
+  { src: "/assets/tl-1.jpg", alt: "Young scholar playing connect-four at program entry" },
+  { src: "/assets/tl-2.jpg", alt: "Scholar in her early program years" },
+  { src: "/assets/tl-3.jpg", alt: "Scholar grown confident through the program" },
+  { src: "/assets/tl-4.jpg", alt: "Scholar in school uniform, high school years" },
+  { src: "/assets/tl-5.jpg", alt: "AimGame college graduate presenting" },
+];
+
+const CHEVRON_COLORS = ["#E8490F", "#C2410C", "#9A6A0A", "#1E7A3C", "#0F4623"];
+
+const chevronClip = (first) =>
+  first
+    ? "polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%)"
+    : "polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%, 26px 50%)";
+
+const ChevronTimeline = () => (
+  <div data-testid="hero-journey-wrap" className="mt-8 flex overflow-x-auto no-scrollbar pb-1">
+    {MILESTONES.map((m, i) => (
+      <Link
+        key={m.title}
+        to={`/program?m=${i}`}
+        data-testid={`hero-journey-zone-${i}`}
+        aria-label={`Explore ${m.title} on the program page`}
+        className={`group flex flex-col shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""}`}
+      >
+        <div
+          className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
+          style={{ clipPath: chevronClip(i === 0) }}
+        >
+          <div className="absolute inset-[14px]" style={{ clipPath: chevronClip(i === 0) }}>
+            <img
+              src={TIMELINE_PHOTOS[i].src}
+              alt={TIMELINE_PHOTOS[i].alt}
+              data-testid={`hero-journey-photo-${i}`}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+        <div className="mt-3 flex flex-col items-center text-center px-1">
+          <span
+            className="rounded-full px-3 py-1 font-mono text-[10px] tracking-[0.15em] font-bold text-white"
+            style={{ backgroundColor: CHEVRON_COLORS[i] }}
+          >
+            {m.age}
+          </span>
+          <span className="mt-2 text-[11px] font-bold leading-tight text-ink">{m.title}</span>
+        </div>
+      </Link>
+    ))}
+  </div>
+);
+
 const HERO_PHOTOS = [
   { src: "/assets/field-1.jpg", alt: "AimGame scholars in a classroom game session" },
   { src: "/assets/field-2.jpg", alt: "A scholar working through a written exercise" },
@@ -83,36 +135,18 @@ const Hero = () => (
 
     <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
       <Reveal>
-        <p data-testid="hero-kicker" className="font-display font-bold text-flame tracking-tight text-lg sm:text-xl lg:text-2xl">
-          From Poverty to Prosperity in 15 Years or Less
+        <p data-testid="hero-kicker" className="font-display font-bold text-leaf tracking-[0.08em] uppercase text-lg sm:text-xl lg:text-2xl">
+          Poverty Eradication in One Generation.
         </p>
       </Reveal>
 
-      <h1 data-testid="hero-headline" className="mt-3 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf">
-        <MaskedLine delay={0.1}>Eradicating poverty</MaskedLine>
-        <MaskedLine delay={0.25}>in one generation.</MaskedLine>
+      <h1 data-testid="hero-headline" className="mt-3 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-flame">
+        <MaskedLine delay={0.1}>From Poverty to Prosperity</MaskedLine>
+        <MaskedLine delay={0.25}>in 15 Years or Less</MaskedLine>
       </h1>
 
       <Reveal delay={0.2}>
-        <div className="relative mt-8" data-testid="hero-journey-wrap">
-          <img
-            src="/assets/journey2.png"
-            alt="The AimGame journey — Year 1 start of program to Year 13-15 college graduate"
-            data-testid="hero-journey-timeline"
-            className="w-full"
-          />
-          <div className="absolute inset-0 flex">
-            {MILESTONES.map((m, i) => (
-              <Link
-                key={m.title}
-                to={`/program?m=${i}`}
-                data-testid={`hero-journey-zone-${i}`}
-                aria-label={`Explore ${m.title} on the program page`}
-                className="flex-1 h-full rounded-2xl transition-colors duration-300 hover:bg-flame/10"
-              />
-            ))}
-          </div>
-        </div>
+        <ChevronTimeline />
         <p className="mt-4 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
           TAP A YEAR TO OPEN IT ON THE PROGRAM PAGE
         </p>
