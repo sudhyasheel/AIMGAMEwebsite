@@ -112,7 +112,7 @@ const ChevronTimeline = () => (
         </div>
         <div className="mt-3 flex flex-col items-center text-center px-1">
           <span
-            className="h-12 w-12 rounded-xl inline-flex items-center justify-center shadow-sm p-2.5"
+            className="h-12 w-16 rounded-xl inline-flex items-center justify-center shadow-sm px-3 py-2.5"
             style={{ backgroundColor: CHEVRON_COLORS[i] }}
           >
             <img src={CHEVRON_ICONS[i]} alt="" className="h-full w-full object-contain" data-testid={`chevron-icon-${i}`} />
