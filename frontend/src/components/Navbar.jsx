@@ -46,7 +46,7 @@ const Navbar = () => {
             data-testid="nav-banner"
             className={`w-auto transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-28 opacity-100"}`}
           />
-          <nav className="flex items-center gap-8">
+          <nav className="flex items-center gap-5">
           {LINKS.map((l) => (
             <NavLink
               key={l.to}

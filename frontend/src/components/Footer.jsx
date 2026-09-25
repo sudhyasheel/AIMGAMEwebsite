@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Instagram, Facebook, Linkedin, Youtube, BadgeCheck, ShieldCheck, FileCheck2 } from "lucide-react";
 
 const Footer = () => (
   <footer data-testid="site-footer" className="bg-night text-sand relative grain">
@@ -59,7 +59,40 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="mt-16 pt-8 border-t border-sand/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-sand/50">
+      <div className="mt-14 flex flex-col lg:flex-row items-center justify-between gap-8 border-t border-sand/10 pt-10">
+        <div className="flex items-center gap-3">
+          {[
+            [Instagram, "instagram"],
+            [Facebook, "facebook"],
+            [Linkedin, "linkedin"],
+            [Youtube, "youtube"],
+          ].map(([Icon, name]) => (
+            <a
+              key={name}
+              href="#"
+              aria-label={name}
+              data-testid={`footer-social-${name}`}
+              className="h-11 w-11 rounded-full border border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          {[
+            [BadgeCheck, "80G CERTIFIED SINCE 2012"],
+            [ShieldCheck, "REGISTERED INDIAN NGO"],
+            [FileCheck2, "AUDITED ANNUALLY"],
+          ].map(([Icon, label]) => (
+            <span key={label} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
+              <Icon className="h-4 w-4 text-leaf" />
+              {label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10 pt-8 border-t border-sand/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-sand/50">
         <p>
           Donations are received by Responsible Charity Society, a registered Indian NGO. AimGame is its
           flagship program.
