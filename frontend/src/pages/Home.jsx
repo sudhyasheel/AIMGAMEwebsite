@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight, GraduationCap, HeartPulse, Briefcase, Users, MessagesSquare, ScrollText, Landmark } from "lucide-react";
+import { ArrowRight, ArrowUpRight, GraduationCap, HeartPulse, Briefcase } from "lucide-react";
 import { Reveal, MaskedLine, Eyebrow, EASE } from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import { STATS, MANIFESTO, PARTNERS, FEED, MILESTONES } from "@/data/content";
@@ -84,48 +84,51 @@ const chevronClip = (first) =>
     ? "polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%)"
     : "polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%, 26px 50%)";
 
-const CHEVRON_ICONS = [Users, MessagesSquare, GraduationCap, ScrollText, Landmark];
+const CHEVRON_ICONS = [
+  "/assets/icon-1.png",
+  "/assets/icon-2.png",
+  "/assets/icon-3.png",
+  "/assets/icon-4.png",
+  "/assets/icon-5.png",
+];
 
 const ChevronTimeline = () => (
   <div data-testid="hero-journey-wrap" className="mt-8 flex overflow-x-auto no-scrollbar pb-1">
-    {MILESTONES.map((m, i) => {
-      const Icon = CHEVRON_ICONS[i];
-      return (
-        <Link
-          key={m.title}
-          to={`/program?m=${i}`}
-          data-testid={`hero-journey-zone-${i}`}
-          aria-label={`Explore ${m.title} on the program page`}
-          className={`group flex flex-col shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""}`}
+    {MILESTONES.map((m, i) => (
+      <Link
+        key={m.title}
+        to={`/program?m=${i}`}
+        data-testid={`hero-journey-zone-${i}`}
+        aria-label={`Explore ${m.title} on the program page`}
+        className={`group flex flex-col shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""}`}
+      >
+        <div
+          className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
+          style={{ clipPath: chevronClip(i === 0) }}
         >
-          <div
-            className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
-            style={{ clipPath: chevronClip(i === 0) }}
+          <div className="absolute inset-[6px]" style={{ clipPath: chevronClip(i === 0) }}>
+            <img
+              src={TIMELINE_PHOTOS[i].src}
+              alt={TIMELINE_PHOTOS[i].alt}
+              data-testid={`hero-journey-photo-${i}`}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+        <div className="mt-3 flex flex-col items-center text-center px-1">
+          <span
+            className="h-12 w-12 rounded-xl inline-flex items-center justify-center shadow-sm p-2.5"
+            style={{ backgroundColor: CHEVRON_COLORS[i] }}
           >
-            <div className="absolute inset-[6px]" style={{ clipPath: chevronClip(i === 0) }}>
-              <img
-                src={TIMELINE_PHOTOS[i].src}
-                alt={TIMELINE_PHOTOS[i].alt}
-                data-testid={`hero-journey-photo-${i}`}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="mt-3 flex flex-col items-center text-center px-1">
-            <span
-              className="h-11 w-11 rounded-xl inline-flex items-center justify-center text-white shadow-sm"
-              style={{ backgroundColor: CHEVRON_COLORS[i] }}
-            >
-              <Icon className="h-5 w-5" />
-            </span>
-            <span className="mt-2 font-mono text-[10px] tracking-[0.15em] font-bold" style={{ color: CHEVRON_COLORS[i] }}>
-              {m.age}
-            </span>
-            <span className="mt-1.5 text-[11px] font-bold leading-tight text-ink">{m.title}</span>
-          </div>
-        </Link>
-      );
-    })}
+            <img src={CHEVRON_ICONS[i]} alt="" className="h-full w-full object-contain" data-testid={`chevron-icon-${i}`} />
+          </span>
+          <span className="mt-2 font-mono text-[10px] tracking-[0.15em] font-bold" style={{ color: CHEVRON_COLORS[i] }}>
+            {m.age}
+          </span>
+          <span className="mt-1.5 text-[11px] font-bold leading-tight text-ink">{m.title}</span>
+        </div>
+      </Link>
+    ))}
   </div>
 );
 
