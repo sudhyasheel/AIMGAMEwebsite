@@ -104,13 +104,15 @@ const ChevronTimeline = () => (
         <div className="relative mt-6">
           <div className="absolute left-0 right-0 top-7 h-[3px] rounded-full bg-gradient-to-r from-flame via-gold to-leaf-dark" />
           <div className="relative flex">
-            {MILESTONES.map((m, i) => (
+            {MILESTONES.map((m, i) => {
+              const last = i === MILESTONES.length - 1;
+              return (
               <Link
                 key={m.title}
                 to={`/program?m=${i}`}
                 data-testid={`hero-journey-icon-${i}`}
                 aria-label={`Explore ${m.title} on the program page`}
-                className={`group shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""} flex flex-col items-start`}
+                className={`group shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""} flex flex-col ${last ? "items-end" : "items-start"}`}
               >
                 <span
                   className="relative z-10 h-14 w-24 rounded-xl inline-flex items-center justify-center shadow-md ring-8 ring-sand transition-transform duration-300 group-hover:-translate-y-1"
@@ -118,12 +120,13 @@ const ChevronTimeline = () => (
                 >
                   <img src={CHEVRON_ICONS[i]} alt="" className="h-[42px] w-auto max-w-full object-contain" data-testid={`chevron-icon-${i}`} />
                 </span>
-                <span className="mt-2.5 w-32 -ml-4 text-center font-mono text-[10px] tracking-[0.15em] font-bold" style={{ color: CHEVRON_COLORS[i] }}>
+                <span className={`mt-2.5 ${last ? "w-24" : "w-32 -ml-4"} text-center font-mono text-[10px] tracking-[0.15em] font-bold`} style={{ color: CHEVRON_COLORS[i] }}>
                   {m.age}
                 </span>
-                <span className="mt-1.5 w-32 -ml-4 text-center text-[11px] font-bold leading-tight text-ink">{m.title}</span>
+                <span className={`mt-1.5 ${last ? "w-24" : "w-32 -ml-4"} text-center text-[11px] font-bold leading-tight text-ink`}>{m.title}</span>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
