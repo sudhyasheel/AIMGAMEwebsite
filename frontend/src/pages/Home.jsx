@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Reveal, MaskedLine } from "@/components/Reveal";
+import { motion, AnimatePresence } from "framer-motion";
+import { GraduationCap, HeartPulse, Briefcase } from "lucide-react";
+import { Reveal, MaskedLine, EASE } from "@/components/Reveal";
 import { MILESTONES } from "@/data/content";
 
 const TIMELINE_PHOTOS = [
@@ -19,6 +22,64 @@ const CHEVRON_ICONS = [
   "/assets/icon-4.png",
   "/assets/icon-5.png",
 ];
+
+const PILLARS = [
+  {
+    id: "education",
+    icon: GraduationCap,
+    title: "EDUCATION",
+    text: "Fully sponsored English-medium schooling with managed logistics, tuition and after-school enrichment — the spine of the fifteen-year arc, from a play-based entry at five to a college degree.",
+  },
+  {
+    id: "healthcare",
+    icon: HeartPulse,
+    title: "HEALTHCARE",
+    text: "Health check-ups and medical support extended to the scholar's whole family — because a child's progress is only as stable as the household behind them, and no education should end with an untreated illness.",
+  },
+  {
+    id: "employment",
+    icon: Briefcase,
+    title: "EMPLOYMENT",
+    text: "The arc ends in a career, not a certificate: aptitude mapping, college applications, placement support and early-career guidance carry each scholar to their first professional salary.",
+  },
+];
+
+const PillarRow = () => {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="mt-10" data-testid="holistic-core">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        {PILLARS.map((p, i) => (
+          <button
+            key={p.id}
+            data-testid={`pillar-${p.id}`}
+            onClick={() => setOpen(i)}
+            className={`flex items-center gap-5 rounded-2xl bg-white px-8 py-6 border-2 shadow-[0_14px_36px_-16px_rgba(15,23,42,0.18)] transition-all duration-300 hover:-translate-y-0.5 ${
+              open === i ? "border-flame" : "border-ink/5"
+            }`}
+          >
+            <p.icon className={`h-7 w-7 shrink-0 ${open === i ? "text-flame" : "text-leaf"}`} />
+            <span className="font-display font-extrabold tracking-wide text-lg text-left">{p.title}</span>
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={open}
+          data-testid="pillar-detail"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="mt-4 rounded-2xl bg-white border border-ink/10 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.12)] p-8"
+        >
+          <p className="font-mono text-[10px] tracking-[0.3em] text-flame font-bold">{PILLARS[open].title}</p>
+          <p className="mt-3 text-ink-muted leading-relaxed text-base sm:text-lg max-w-3xl">{PILLARS[open].text}</p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const chevronClip = (first) =>
   first
@@ -78,6 +139,8 @@ const ChevronTimeline = () => (
         ))}
       </div>
     </div>
+
+    <PillarRow />
   </div>
 );
 
