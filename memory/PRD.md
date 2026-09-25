@@ -46,6 +46,11 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Our Story collage: 5 photos per row spanning the full subheader width end-to-end (grid-cols-5, ~221px tiles on desktop)
 - Navbar CSR PARTNERS link now routes to /csr-partners
 
+## Implemented (2026-07-10, part 2)
+- Subheaders enlarged again to text-3xl sm:text-4xl site-wide (+20%)
+- Our Story collage: 5-across grid spanning the subheader width end-to-end
+- Homepage timeline: icon boxes now mirror chevron geometry exactly (same widths/overlaps) — each box's left edge pixel-matches its chevron's left edge; boxes lengthened (w-24), chevron icons +31% (42px), pillar icons h-9; both rows share one horizontal scroll container on mobile so they stay aligned
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

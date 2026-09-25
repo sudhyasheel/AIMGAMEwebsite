@@ -57,7 +57,7 @@ const PillarRow = () => {
               open === i ? "border-flame" : "border-ink/5"
             }`}
           >
-            <p.icon className={`h-7 w-7 shrink-0 ${open === i ? "text-flame" : "text-leaf"}`} />
+            <p.icon className={`h-9 w-9 shrink-0 ${open === i ? "text-flame" : "text-leaf"}`} />
             <span className="font-display font-extrabold tracking-wide text-lg text-left">{p.title}</span>
           </button>
         ))}
@@ -73,55 +73,59 @@ const chevronClip = (first) =>
 
 const ChevronTimeline = () => (
   <div data-testid="hero-journey-wrap" className="mt-10">
-    <div className="flex overflow-x-auto no-scrollbar pb-1">
-      {MILESTONES.map((m, i) => (
-        <Link
-          key={m.title}
-          to={`/program?m=${i}`}
-          data-testid={`hero-journey-zone-${i}`}
-          aria-label={`Explore ${m.title} on the program page`}
-          className={`group block shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""}`}
-        >
-          <div
-            className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
-            style={{ clipPath: chevronClip(i === 0) }}
-          >
-            <div className={`absolute ${i === 0 ? "inset-[12px]" : "inset-[6px]"}`} style={{ clipPath: chevronClip(i === 0) }}>
-              <img
-                src={TIMELINE_PHOTOS[i].src}
-                alt={TIMELINE_PHOTOS[i].alt}
-                data-testid={`hero-journey-photo-${i}`}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </Link>
-      ))}
-    </div>
-
-    <div className="relative mt-6">
-      <div className="absolute left-0 right-0 top-7 h-[3px] rounded-full bg-gradient-to-r from-flame via-gold to-leaf-dark" />
-      <div className="relative flex">
-        {MILESTONES.map((m, i) => (
-          <Link
-            key={m.title}
-            to={`/program?m=${i}`}
-            data-testid={`hero-journey-icon-${i}`}
-            aria-label={`Explore ${m.title} on the program page`}
-            className="group flex-1 flex flex-col items-center text-center px-1"
-          >
-            <span
-              className="relative z-10 h-14 w-20 rounded-xl inline-flex items-center justify-center shadow-md px-4 py-3 ring-8 ring-sand transition-transform duration-300 group-hover:-translate-y-1"
-              style={{ backgroundColor: CHEVRON_COLORS[i] }}
+    <div className="overflow-x-auto no-scrollbar pl-4 -ml-4">
+      <div className="min-w-[960px] sm:min-w-0 pb-1">
+        <div className="flex">
+          {MILESTONES.map((m, i) => (
+            <Link
+              key={m.title}
+              to={`/program?m=${i}`}
+              data-testid={`hero-journey-zone-${i}`}
+              aria-label={`Explore ${m.title} on the program page`}
+              className={`group block shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""}`}
             >
-              <img src={CHEVRON_ICONS[i]} alt="" className="h-full w-full object-contain" data-testid={`chevron-icon-${i}`} />
-            </span>
-            <span className="mt-2.5 font-mono text-[10px] tracking-[0.15em] font-bold" style={{ color: CHEVRON_COLORS[i] }}>
-              {m.age}
-            </span>
-            <span className="mt-1.5 text-[11px] font-bold leading-tight text-ink">{m.title}</span>
-          </Link>
-        ))}
+              <div
+                className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
+                style={{ clipPath: chevronClip(i === 0) }}
+              >
+                <div className={`absolute ${i === 0 ? "inset-[12px]" : "inset-[6px]"}`} style={{ clipPath: chevronClip(i === 0) }}>
+                  <img
+                    src={TIMELINE_PHOTOS[i].src}
+                    alt={TIMELINE_PHOTOS[i].alt}
+                    data-testid={`hero-journey-photo-${i}`}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="relative mt-6">
+          <div className="absolute left-0 right-0 top-7 h-[3px] rounded-full bg-gradient-to-r from-flame via-gold to-leaf-dark" />
+          <div className="relative flex">
+            {MILESTONES.map((m, i) => (
+              <Link
+                key={m.title}
+                to={`/program?m=${i}`}
+                data-testid={`hero-journey-icon-${i}`}
+                aria-label={`Explore ${m.title} on the program page`}
+                className={`group shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""} flex flex-col items-start`}
+              >
+                <span
+                  className="relative z-10 h-14 w-24 rounded-xl inline-flex items-center justify-center shadow-md ring-8 ring-sand transition-transform duration-300 group-hover:-translate-y-1"
+                  style={{ backgroundColor: CHEVRON_COLORS[i] }}
+                >
+                  <img src={CHEVRON_ICONS[i]} alt="" className="h-[42px] w-auto max-w-full object-contain" data-testid={`chevron-icon-${i}`} />
+                </span>
+                <span className="mt-2.5 w-32 -ml-4 text-center font-mono text-[10px] tracking-[0.15em] font-bold" style={{ color: CHEVRON_COLORS[i] }}>
+                  {m.age}
+                </span>
+                <span className="mt-1.5 w-32 -ml-4 text-center text-[11px] font-bold leading-tight text-ink">{m.title}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
 
