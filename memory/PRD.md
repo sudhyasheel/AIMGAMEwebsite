@@ -53,6 +53,7 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 
 - Internships paragraphs switched to RC green semibold text-lg sm:text-xl, matching paragraph copy on Contact/CSR pages
 - Homepage: removed the EDUCATION/HEALTHCARE/EMPLOYMENT pillar segment below the timeline
+- Our Story: added 5 user-uploaded team photos (story-10..14.jpg, normalized to 1200x1200 JPG) after the last tile — collage now 14 photos in 5/5/4 rows
 
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
