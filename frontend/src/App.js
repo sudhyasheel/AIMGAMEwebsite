@@ -11,6 +11,7 @@ import Transformations from "@/pages/Transformations";
 import Partner from "@/pages/Partner";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Internships from "@/pages/Internships";
 import Admin from "@/pages/Admin";
 
 const ScrollToTop = () => {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/partner" element={<Partner />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/internships" element={<Internships />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
         <Footer />

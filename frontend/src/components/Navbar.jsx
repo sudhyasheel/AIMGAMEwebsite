@@ -7,7 +7,7 @@ const LINKS = [
   { to: "/program", label: "THE WORK", id: "nav-link-the-work" },
   { to: "/transformations", label: "THE RESULTS", id: "nav-link-the-results" },
   { to: "/about", label: "OUR STORY", id: "nav-link-our-story" },
-  { to: "/contact?topic=career", label: "INTERNSHIPS", id: "nav-link-internships" },
+  { to: "/internships", label: "INTERNSHIPS", id: "nav-link-internships" },
   { to: "/partner#partners", label: "CSR PARTNERS", id: "nav-link-csr-partners" },
   { to: "/contact", label: "LET'S TALK", id: "nav-link-lets-talk" },
 ];
