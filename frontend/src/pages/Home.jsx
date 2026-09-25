@@ -155,6 +155,8 @@ const Hero = () => (
         <ChevronTimeline />
       </Reveal>
 
+      <HolisticCore />
+
       <Reveal delay={0.28}>
         <p data-testid="hero-description" className="mt-8 text-lg sm:text-xl leading-relaxed font-medium text-leaf">
           AimGame uses structured game competitions to identify, develop, and select high-potential children
@@ -163,8 +165,6 @@ const Hero = () => (
           Society, AimGame is built to eradicate poverty in one generation.
         </p>
       </Reveal>
-
-      <HolisticCore />
 
       <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         {HERO_PHOTOS.map((p, i) => (
