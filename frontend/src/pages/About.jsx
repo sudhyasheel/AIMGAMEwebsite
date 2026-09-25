@@ -42,9 +42,9 @@ const About = () => (
           </Reveal>
         </div>
 
-        <div data-testid="story-collage" className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div data-testid="story-collage" className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
           {STORY_PHOTOS.map((p, i) => (
-            <Reveal key={p.src} delay={0.08 + i * 0.06} className={i === 0 ? "col-span-2 row-span-2" : ""}>
+            <Reveal key={p.src} delay={0.05 + i * 0.04}>
               <div
                 data-testid={`story-photo-${i}`}
                 className="group h-full w-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.25)]"
@@ -60,10 +60,10 @@ const About = () => (
           ))}
         </div>
 
-        <div className="mt-14 max-w-3xl mx-auto space-y-6">
+        <div className="mt-14 max-w-6xl mx-auto space-y-7">
           {STORY_TEXT.map((para, i) => (
             <Reveal key={i} delay={0.08 + i * 0.08}>
-              <p data-testid={`story-paragraph-${i}`} className="text-ink text-base sm:text-lg leading-relaxed">
+              <p data-testid={`story-paragraph-${i}`} className="text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
                 {para}
               </p>
             </Reveal>
