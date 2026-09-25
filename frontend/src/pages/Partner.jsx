@@ -452,19 +452,19 @@ const Partner = () => {
     <main data-testid="partner-page">
       <section className="pt-44 sm:pt-60 pb-12 relative overflow-hidden grain">
         <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
-            <h1 className="font-display font-extrabold tracking-tight leading-[1.08] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase" data-testid="donate-header">
+            <h1 className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase" data-testid="donate-header">
               Donate
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
-            <p className="mt-5 font-display font-bold text-xl sm:text-2xl text-flame tracking-tight">
+            <p data-testid="donate-subheader" className="mt-5 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight">
               Every rupee becomes years of education.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p className="mt-5 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-ink-muted">
+            <p className="mt-5 max-w-2xl text-sm sm:text-base leading-relaxed text-ink-muted">
               Gifts are received by Responsible Charity Society, a registered Indian NGO — 80G certified
               since 2012 — and fund AimGame, its flagship program. India-based giving only, minimum{" "}
               {inr(MIN_DONATION)}.

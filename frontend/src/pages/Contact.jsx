@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, HeartHandshake, HandHelping, Briefcase, Mail } from "lucide-react";
+import { ArrowDown, ArrowUpRight, CheckCircle2, HeartHandshake, HandHelping, Briefcase, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
 import { submitInquiry } from "@/lib/api";
@@ -29,6 +29,13 @@ const Contact = () => {
     if (found) setTopic(found);
   }, [searchParams]);
 
+  const scrollToForm = () => {
+    const el = document.getElementById("contact-form");
+    if (!el) return;
+    if (window.__lenis) window.__lenis.scrollTo(el, { offset: -140 });
+    else el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const submit = async () => {
     if (!form.name || !form.email || !form.message) {
       toast.error("Please fill your name, email and message.");
@@ -47,31 +54,105 @@ const Contact = () => {
 
   return (
     <main data-testid="contact-page">
-      <section className="pt-52 sm:pt-72 pb-24 lg:pb-32 relative overflow-hidden grain">
+      <section className="pt-44 sm:pt-60 pb-16 relative overflow-hidden grain">
         <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 grid lg:grid-cols-12 gap-14">
-          <div className="lg:col-span-5">
-            <Reveal><Eyebrow>Contact</Eyebrow></Reveal>
-            <Reveal delay={0.1}>
-              <h1 className="mt-6 font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl">
-                The right inbox, <span className="text-flame">first time.</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mt-8 text-ink-muted leading-relaxed text-base sm:text-lg max-w-md">
-                No generic catch-all. Choose why you're writing and your message lands with the person who
-                can act on it — partnerships, program, hiring or the office.
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+          <Reveal>
+            <h1
+              data-testid="contact-header"
+              className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
+            >
+              Let's Talk
+            </h1>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p
+              data-testid="contact-subheader"
+              className="mt-5 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight"
+            >
+              Before we do, let's make sure we're the right fit.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 max-w-4xl space-y-6">
+            <Reveal delay={0.18}>
+              <p data-testid="contact-description-1" className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+                We're not chasing every donation, we're building long-term partnerships with people and
+                organizations ready to walk a decade-long journey with us, from a child's first day in our
+                program to their college graduation. That kind of commitment takes real focus, and we'd
+                rather give our full attention to fewer, stronger relationships than spread ourselves thin.
               </p>
             </Reveal>
-            <Reveal delay={0.28}>
-              <div className="mt-10 rounded-2xl bg-leaf-soft border border-leaf/15 p-6">
-                <p className="font-mono text-[10px] tracking-[0.3em] text-leaf font-bold">RESPONSE TIME</p>
-                <p className="mt-2 font-display font-bold text-lg text-leaf-dark">Within two working days.</p>
-              </div>
+            <Reveal delay={0.24}>
+              <p data-testid="contact-description-2" className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+                Because of that, we work with a starting threshold for support: ₹10,000 for individual
+                donors and ₹1,00,000 for CSR partners. If that sounds like you, we'd love to talk.
+              </p>
             </Reveal>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="mt-12 max-w-4xl space-y-4">
+            <Reveal delay={0.3}>
+              <div data-testid="contact-fit-individual" className="flex flex-wrap items-center gap-x-4 gap-y-3 rounded-2xl bg-white border border-ink/10 px-6 py-5">
+                <p className="flex-1 min-w-[240px] font-semibold text-ink text-base sm:text-lg">
+                  Are you an individual looking to support our work?
+                </p>
+                <button
+                  data-testid="contact-continue-below-btn"
+                  onClick={scrollToForm}
+                  className="group inline-flex items-center gap-2 rounded-full bg-flame px-5 py-2.5 text-sm font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
+                >
+                  Continue below
+                  <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+                </button>
+              </div>
+            </Reveal>
+            <Reveal delay={0.36}>
+              <div data-testid="contact-fit-csr" className="flex flex-wrap items-center gap-x-4 gap-y-3 rounded-2xl bg-white border border-ink/10 px-6 py-5">
+                <p className="flex-1 min-w-[240px] font-semibold text-ink text-base sm:text-lg">
+                  Are you a CSR Director, Corporate Owner, or Representative?
+                </p>
+                <Link
+                  to="/csr-partners"
+                  data-testid="contact-csr-link"
+                  className="group inline-flex items-center gap-2 rounded-full bg-leaf px-5 py-2.5 text-sm font-bold text-white transition-colors duration-300 hover:bg-leaf-dark"
+                >
+                  Visit our CSR Partners page
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.42}>
+              <div data-testid="contact-fit-internships" className="flex flex-wrap items-center gap-x-4 gap-y-3 rounded-2xl bg-white border border-ink/10 px-6 py-5">
+                <p className="flex-1 min-w-[240px] font-semibold text-ink text-base sm:text-lg">
+                  And if you're interested in our internship opportunities,
+                </p>
+                <Link
+                  to="/internships"
+                  data-testid="contact-internships-link"
+                  className="group inline-flex items-center gap-2 rounded-full border-2 border-leaf/30 px-5 py-2 text-sm font-bold text-leaf transition-colors duration-300 hover:border-leaf hover:bg-leaf hover:text-white"
+                >
+                  visit our Internships page
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-form" className="pb-24 lg:pb-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+          <div className="max-w-3xl">
+            <Reveal><Eyebrow>Contact Form</Eyebrow></Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="mt-4 font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-ink">
+                Write to the right desk.
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="mt-10 max-w-3xl">
             <AnimatePresence mode="wait">
               {done ? (
                 <motion.div

@@ -9,6 +9,7 @@ import Home from "@/pages/Home";
 import Program from "@/pages/Program";
 import Transformations from "@/pages/Transformations";
 import Partner from "@/pages/Partner";
+import CsrPartners from "@/pages/CsrPartners";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Internships from "@/pages/Internships";
@@ -41,6 +42,7 @@ function App() {
     };
   }, []);
 
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -51,6 +53,7 @@ function App() {
           <Route path="/program" element={<Program />} />
           <Route path="/transformations" element={<Transformations />} />
           <Route path="/partner" element={<Partner />} />
+          <Route path="/csr-partners" element={<CsrPartners />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/internships" element={<Internships />} />

@@ -29,7 +29,7 @@ const Transformations = () => (
         <Reveal delay={0.12}>
           <p
             data-testid="results-subheader"
-            className="mt-5 font-display font-bold text-xl sm:text-2xl text-flame tracking-tight"
+            className="mt-5 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight"
           >
             This is what 15 years of consistency looks like.
           </p>

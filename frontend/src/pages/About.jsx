@@ -35,25 +35,25 @@ const About = () => (
           <Reveal delay={0.12}>
             <p
               data-testid="story-subheader"
-              className="mt-5 font-display font-bold text-xl sm:text-2xl text-flame tracking-tight"
+              className="mt-5 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight"
             >
               A shared vision turned into real solutions for children and families living in poverty.
             </p>
           </Reveal>
         </div>
 
-        <div data-testid="story-collage" className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+        <div data-testid="story-collage" className="mt-14 flex flex-wrap justify-center gap-2 sm:gap-3">
           {STORY_PHOTOS.map((p, i) => (
             <Reveal key={p.src} delay={0.05 + i * 0.04}>
               <div
                 data-testid={`story-photo-${i}`}
-                className="group h-full w-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.25)]"
+                className="group h-28 w-28 sm:h-36 sm:w-36 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.25)]"
               >
                 <img
                   src={p.src}
                   alt={p.alt}
-                  loading={i < 2 ? "eager" : "lazy"}
-                  className="h-full w-full object-cover aspect-square transition-transform duration-700 group-hover:scale-[1.04]"
+                  loading={i < 5 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
             </Reveal>

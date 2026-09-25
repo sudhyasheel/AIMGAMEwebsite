@@ -141,7 +141,7 @@ const Hero = () => (
       </h1>
 
       <Reveal delay={0.35}>
-        <p data-testid="hero-subheader" className="mt-5 font-display font-bold tracking-tight text-xl sm:text-2xl text-flame">
+        <p data-testid="hero-subheader" className="mt-5 font-display font-bold tracking-tight text-2xl sm:text-3xl text-flame">
           From Poverty to Prosperity in 15 Years or Less
         </p>
       </Reveal>

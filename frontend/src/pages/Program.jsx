@@ -62,7 +62,7 @@ const Program = () => (
           </h1>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-ink-muted">
+          <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-ink-muted">
             AimGame is not a cheque and a prayer. It is a fifteen-year operating system for one child's life —
             five milestones from age five to twenty-two, each one funded, managed and measured. Tap a
             milestone to see exactly what happens.
