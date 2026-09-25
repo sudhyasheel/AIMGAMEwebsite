@@ -134,7 +134,7 @@ const Internships = () => (
         <div className="mt-12 space-y-6">
           {PARAGRAPHS.map((p, i) => (
             <Reveal key={i} delay={0.06 + i * 0.07}>
-              <p data-testid={`internships-paragraph-${i}`} className="text-ink text-base sm:text-lg leading-relaxed">
+              <p data-testid={`internships-paragraph-${i}`} className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
                 {p}
               </p>
             </Reveal>
