@@ -2,86 +2,26 @@ import { Link } from "react-router-dom";
 import { Reveal, MaskedLine } from "@/components/Reveal";
 import { MILESTONES } from "@/data/content";
 
-const TIMELINE_PHOTOS = [
-  { src: "/assets/tl-1.jpg", alt: "Young scholar playing connect-four at program entry" },
-  { src: "/assets/tl-2.jpg", alt: "Scholar in her early program years" },
-  { src: "/assets/tl-3.jpg", alt: "Scholar grown confident through the program" },
-  { src: "/assets/tl-4.jpg", alt: "Scholar in school uniform, high school years" },
-  { src: "/assets/tl-5.jpg", alt: "AimGame college graduate presenting" },
-];
-
-const CHEVRON_COLORS = ["#E8490F", "#C2410C", "#9A6A0A", "#1E7A3C", "#0F4623"];
-
-const CHEVRON_ICONS = [
-  "/assets/icon-1.png",
-  "/assets/icon-2.png",
-  "/assets/icon-3.png",
-  "/assets/icon-4.png",
-  "/assets/icon-5.png",
-];
-
-const chevronClip = (first) =>
-  first
-    ? "polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%)"
-    : "polygon(0 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 0 100%, 26px 50%)";
-
-const ChevronTimeline = () => (
+const HeroGraphic = () => (
   <div data-testid="hero-journey-wrap" className="mt-10">
-    <div className="overflow-x-auto no-scrollbar pl-4 -ml-4">
-      <div className="min-w-[960px] sm:min-w-0 pb-1">
-        <div className="flex">
+    <div className="overflow-x-auto no-scrollbar">
+      <div className="relative min-w-[900px] sm:min-w-0">
+        <img
+          src="/assets/hero-timeline.jpg"
+          alt="The AimGame journey: Year 1 Start Program and School Enrollment, Year 3 Conversational English Unlocked, Year 6 Graduates Class 10, Year 8 High School Graduation, Year 13-15 College Graduate"
+          data-testid="hero-timeline-graphic"
+          className="w-full h-auto rounded-2xl"
+        />
+        <div className="absolute inset-0 flex">
           {MILESTONES.map((m, i) => (
             <Link
               key={m.title}
               to={`/program?m=${i}`}
               data-testid={`hero-journey-zone-${i}`}
               aria-label={`Explore ${m.title} on the program page`}
-              className={`group block shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""}`}
-            >
-              <div
-                className="relative h-36 sm:h-44 lg:h-52 bg-white transition-transform duration-300 group-hover:-translate-y-1"
-                style={{ clipPath: chevronClip(i === 0) }}
-              >
-                <div className={`absolute ${i === 0 ? "inset-[12px]" : "inset-[6px]"}`} style={{ clipPath: chevronClip(i === 0) }}>
-                  <img
-                    src={TIMELINE_PHOTOS[i].src}
-                    alt={TIMELINE_PHOTOS[i].alt}
-                    data-testid={`hero-journey-photo-${i}`}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-            </Link>
+              className="block flex-1"
+            />
           ))}
-        </div>
-
-        <div className="relative mt-6">
-          <div className="absolute left-0 right-0 top-7 h-[3px] rounded-full bg-gradient-to-r from-flame via-gold to-leaf-dark" />
-          <div className="relative flex">
-            {MILESTONES.map((m, i) => {
-              const last = i === MILESTONES.length - 1;
-              return (
-              <Link
-                key={m.title}
-                to={`/program?m=${i}`}
-                data-testid={`hero-journey-icon-${i}`}
-                aria-label={`Explore ${m.title} on the program page`}
-                className={`group shrink-0 w-52 sm:w-auto sm:flex-1 ${i > 0 ? "-ml-5" : ""} flex flex-col ${last ? "items-end" : "items-start"}`}
-              >
-                <span
-                  className="relative z-10 h-14 w-24 rounded-xl inline-flex items-center justify-center shadow-md ring-8 ring-sand transition-transform duration-300 group-hover:-translate-y-1"
-                  style={{ backgroundColor: CHEVRON_COLORS[i] }}
-                >
-                  <img src={CHEVRON_ICONS[i]} alt="" className="h-[42px] w-auto max-w-full object-contain" data-testid={`chevron-icon-${i}`} />
-                </span>
-                <span className={`mt-2.5 ${last ? "w-24" : "w-32 -ml-4"} text-center font-mono text-[10px] tracking-[0.15em] font-bold`} style={{ color: CHEVRON_COLORS[i] }}>
-                  {m.age}
-                </span>
-                <span className={`mt-1.5 ${last ? "w-24" : "w-32 -ml-4"} text-center text-[11px] font-bold leading-tight text-ink`}>{m.title}</span>
-              </Link>
-              );
-            })}
-          </div>
         </div>
       </div>
     </div>
@@ -106,7 +46,7 @@ const Hero = () => (
       </Reveal>
 
       <Reveal delay={0.2}>
-        <ChevronTimeline />
+        <HeroGraphic />
       </Reveal>
 
       <Reveal delay={0.28}>
