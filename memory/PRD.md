@@ -56,6 +56,7 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Our Story: added 5 user-uploaded team photos (story-10..14.jpg, normalized to 1200x1200 JPG) after the last tile — collage now 14 photos in 5/5/4 rows
 
 - Homepage: main journey graphic replaced with user-uploaded banner (hero-timeline.jpg, 1600x535); 5 invisible hotspot links preserve milestone deep-links to /program?m=0..4; horizontal scroll on mobile for readability
+- Homepage: hero description updated to new "Created and managed by Responsible Charity Society..." copy, enlarged to text-2xl sm:text-3xl, gap to graphic tightened (mt-8)
 
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment

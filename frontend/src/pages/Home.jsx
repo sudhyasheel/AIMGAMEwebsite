@@ -50,11 +50,11 @@ const Hero = () => (
       </Reveal>
 
       <Reveal delay={0.28}>
-        <p data-testid="hero-description" className="mt-14 text-xl sm:text-2xl leading-relaxed font-semibold text-leaf">
-          AimGame uses structured game competitions to identify, develop, and select high-potential children
-          from slum communities in India for our 15-year scholarship program, providing education, healthcare,
-          and employment support through college graduation. Created and managed by Responsible Charity
-          Society, AimGame is built to eradicate poverty in one generation.
+        <p data-testid="hero-description" className="mt-8 text-2xl sm:text-3xl leading-relaxed font-semibold text-leaf">
+          Created and managed by Responsible Charity Society, AimGame uses competitive play to select children
+          from slum communities in India for an immersive 15-year scholarship program, providing access to
+          quality education, healthcare, and employment support through college graduation with a clear path
+          to poverty eradication in one generation.
         </p>
       </Reveal>
     </div>
