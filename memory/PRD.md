@@ -66,6 +66,13 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Photos: real RC assets for entrance game/school/graduate blocks, curated dignified Unsplash photos for the rest (all URLs verified HTTP 200)
 - Old milestone Timeline/Marquee/layers accordion removed from /program (homepage hotspots still route to /program?m=N)
 
+## Implemented (2026-07-12)
+- RESULTS page rebuilt: "The Proof: From Poverty to College Graduate" header, 4 graduate profiles (2 real before/after diptychs + 2 curated placeholders), "Right Behind Them" scholars strip (YEAR 1/3/6/8), green CTA band (Donate → /partner, Partner With Us → /csr-partners)
+- OUR STORY: added "Our Community Centers" section (Kolkata + Pune cards) after story text
+- DONATE page: new header "Donate Today and Be Part of the Journey" + subheader + description + CSR partnership link; Priority Giving flow — gifts ≥ ₹1,00,000 route to Giving Desk panel (headline/body/back-line per spec) with contact-method + gift-range form (kind=hni, via=giving-desk); trust cards now: Indian Registered Non-Profit, 80G Certified, CSR Approved, Sec 135 Compliance
+- Footer: real social links (FB/IG/LinkedIn/YouTube @responsiblecharity, new tab), 4 certification items, full 7-link menu repeated, disclaimer & terms line
+- Footer testid regex fixed to handle digits/apostrophes
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

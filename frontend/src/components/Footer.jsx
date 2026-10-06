@@ -52,7 +52,7 @@ const Footer = () => (
               <li key={to}>
                 <Link
                   to={to}
-                  data-testid={`footer-link-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
+                  data-testid={`footer-link-${label.toLowerCase().replace(/'/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`}
                   className="text-sand/80 hover:text-flame transition-colors duration-300 font-medium"
                 >
                   {label}
@@ -96,7 +96,7 @@ const Footer = () => (
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
           {CERTIFICATIONS.map(([Icon, label]) => (
-            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
+            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/'/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
               <Icon className="h-4 w-4 text-leaf" />
               {label}
             </span>
