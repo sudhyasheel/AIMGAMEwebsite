@@ -58,6 +58,14 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Homepage: main journey graphic replaced with user-uploaded banner (hero-timeline.jpg, 1600x535); 5 invisible hotspot links preserve milestone deep-links to /program?m=0..4; horizontal scroll on mobile for readability
 - Homepage: hero description updated to new "Created and managed by Responsible Charity Society..." copy, enlarged to text-2xl sm:text-3xl, gap to graphic tightened (mt-8)
 
+## Implemented (2026-07-11)
+- THE WORK page fully rebuilt per user spec: new header/subheader/description, three pillar sections (Education 01, Healthcare 02, Employment 03) each with intro line + 6 photo blocks in 3x2 grid + Facebook album link (facebook.com/responsiblecharity/photos_albums, new tab, noopener)
+- Sticky pillar nav (Education/Healthcare/Employment): pins under main navbar after hero, gold scroll-spy active state + underline, gold progress line, lenis offset jumps, hash anchors (/program#education etc.), aria-current + keyboard support
+- Employment blocks 4 & 6 carry "Partner with us" links to /csr-partners
+- Parents as Partners band (light green) + dark closing CTA band (Meet Our Graduates → /transformations, Let's Talk → /contact)
+- Photos: real RC assets for entrance game/school/graduate blocks, curated dignified Unsplash photos for the rest (all URLs verified HTTP 200)
+- Old milestone Timeline/Marquee/layers accordion removed from /program (homepage hotspots still route to /program?m=N)
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

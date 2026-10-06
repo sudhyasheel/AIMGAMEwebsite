@@ -1,0 +1,24 @@
+{
+  "summary": "Frontend-only testing of the rebuilt /program (THE WORK) page and homepage hotspot regression. All functional checks passed: standardized header/subheader/description render correctly, 18 pillar cards (6 per pillar) present with data-testids, all 22 images load (naturalWidth > 0, no broken images including 3 local tl-*.jpg assets and all Unsplash URLs), sticky pillar nav pins at top=80px below the main navbar (56px tall), scroll-spy correctly activates healthcare and employment aria-current='true' as user scrolls, pillar-progress line grows to ~62% at mid-page, click-jump on pillar-nav-healthcare lands title below the nav bar (390px top, visible), direct anchor load /program#employment lands at the Employment section (h2 top=390px, visible below pinned nav), all 3 album links point to https://www.facebook.com/responsiblecharity/photos_albums with target=_blank and rel='noopener noreferrer', partner-link-employment-3 and partner-link-employment-5 both point to /csr-partners, parents band visible with light green bg + photo, CTA band 'Meet Our Graduates' -> /transformations and 'Let's Talk' -> /contact correct, mobile 375px: nav 56px tall one row, no horizontal overflow (scrollWidth=375), homepage hotspots: 5 hero-journey-zone-* elements, clicking first navigates to /program?m=0 correctly, zero console errors on /program.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/program click-jump + direct anchor", "issues": ["Pillar titles land ~390px from viewport top after click/anchor jump — well below pinned nav (bottom at 136px) so not hidden, but slightly deeper than the spec's 'just below the sticky bar' intent. Appears to come from scroll-mt-40 (160px) combined with section py-16/py-20 top padding (~80px) plus the Lenis offset of -150. Not a bug, cosmetic only; main agent can tighten scroll-mt or reduce section pt if a snugger landing is desired."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Program.jsx is 441 lines — still OK but approaching the point where PILLARS data + IMG map could be extracted into /app/frontend/src/data/pillars.js for cleanliness.",
+    "Scroll-spy threshold is a hardcoded 180px in onScroll — matches the current nav bottom (136px) with some buffer, but if the main navbar height changes this will drift. Consider deriving from the nav's getBoundingClientRect().bottom.",
+    "The pillar-progress bar is positioned absolute inside a sticky nav — works, but on very short viewports the 0.5 line sits inside the nav's shadow and is subtle. Minor polish, not a bug."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested)", "frontend": "100%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "/program page is fully working as specified. All 18 pillar-card-<pillar>-N testids, pillar-nav-<id>, album-link-<id>, partner-link-employment-3/5, pillar-progress, parents-band, cta-graduates-btn, cta-talk-btn, work-header/subheader/description testids are stable selectors. Homepage uses hero-journey-zone-0..4 for 5 hotspots that route to /program?m=N."
+}
