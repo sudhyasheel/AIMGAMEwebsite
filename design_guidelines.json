@@ -1,62 +1,64 @@
 {
-  "project_name": "Responsible Charity Society - AimGame Life-Changing Scholarships",
-  "archetype": "ARCHETYPE 4: SWISS & HIGH-CONTRAST / EDITORIAL STATEMENT (With Vibrant Orange & Deep Green Accents)",
-  "design_tone": "Confident, declarative, evidence-based, typography-led. Minimal photography with high intentionality. Awwwards Site-of-the-Day editorial aesthetic.",
-  "theme": "Light mode default with dark slate contrast accents (Warm Off-white #FAF8F5 / Ivory background, Obsidian text #0F172A, Energetic Orange #E8490F / #F04E12, Deep Trust Green #166534 / #1E7A3C)",
+  "project_name": "Responsible Charity Society - AimGame 15-Year Scholarship Program",
+  "theme": "Orange + Green Editorial Non-Profit Theme",
+  "archetype": "ORGANIC & EARTHY / SWISS EDITORIAL HYBRID",
+  "image_urls": {
+    "education_arts_fix": "https://images.unsplash.com/photo-1592060036126-1b6d5139dea4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBjaGlsZHJlbiUyMGFydCUyMGNsYXNzfGVufDB8fHx8MTc5MTMxMDMyNHww&ixlib=rb-4.1.0&q=85",
+    "description": "Indian children participating in a creative art and painting workshop on the floor, focused, joyful, and dignified."
+  },
   "typography": {
-    "heading_font": "Outfit / Playfair Display / Syne or Clash Display fallback (Google Font: Outfit & Playfair Display)",
-    "body_font": "Inter or Plus Jakarta Sans (Clean, high-legibility sans-serif)",
-    "mono_font": "JetBrains Mono (For numbers, dates, age stats, 80G badges, manifesto indices)",
-    "scale": {
-      "hero_title": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]",
-      "section_title": "text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight",
-      "subsection_title": "text-xl sm:text-2xl font-semibold tracking-tight",
-      "body": "text-base sm:text-lg leading-relaxed text-slate-700",
-      "eyebrow": "text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-emerald-800 font-semibold"
+    "headings": {
+      "font_family": "Poppins, sans-serif",
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "h3": "text-xl sm:text-2xl font-semibold",
+      "h4": "text-lg sm:text-xl font-medium"
+    },
+    "body": {
+      "font_family": "Plus Jakarta Sans, sans-serif",
+      "base": "text-base leading-relaxed text-ink-muted",
+      "small": "text-sm leading-normal"
+    },
+    "accent": {
+      "font_family": "JetBrains Mono, monospace",
+      "overline": "text-xs uppercase tracking-[0.2em] font-medium"
     }
   },
   "colors": {
-    "primary_orange": "#E8490F",
-    "primary_orange_hover": "#C93B05",
-    "primary_green": "#166534",
-    "primary_green_dark": "#0F4623",
-    "bg_warm_white": "#FAF8F5",
-    "bg_surface": "#FFFFFF",
-    "bg_soft_sand": "#F3EFEA",
-    "text_main": "#0F172A",
-    "text_muted": "#475569",
-    "border_subtle": "rgba(15, 23, 42, 0.1)",
-    "accent_gold": "#D97706",
-    "dark_section_bg": "#0B1320"
+    "palette": {
+      "flame": "#E8490F",
+      "flame_dark": "#C93B05",
+      "flame_soft": "#FDEBE2",
+      "leaf": "#166534",
+      "leaf_dark": "#0F4623",
+      "leaf_soft": "#E7F0EA",
+      "sand": "#FAF8F5",
+      "sand_deep": "#F3EFEA",
+      "ink": "#0F172A",
+      "ink_muted": "#475569",
+      "night": "#0B1320",
+      "gold": "#D97706"
+    },
+    "rules": {
+      "contrast": "Ensure text contrast ratio meets APCA/WCAG AA guidelines (min 4.5:1 for standard text).",
+      "tinted_grey": "Always tint greys with warm sand or cool blue tones instead of flat neutral grey."
+    }
   },
-  "visual_enhancers": {
-    "hero": "Kinetic Hero with line-by-line masked reveal animation, subtle floating grain texture, prominent brand badge, key metrics callouts",
-    "timeline": "Signature 15-Year Timeline component (horizontal track on desktop with Lenis/drag, vertical stepper on mobile) covering ages 5->22 with 5 key expandable milestones",
-    "transformations": "Respectful side-by-side childhood vs graduate/early career photo comparison cards, age 5 stats vs age 22 current salary/role stats",
-    "marquee": "Slow editorial ribbon showing trust signals ('80G CERTIFIED SINCE 2012', '15-YEAR FULL-CYCLE SCHOLARSHIP', '100% COLLEGE GRADUATION', 'DIRECT FAMILY ERADICATION OF POVERTY')",
-    "manifesto": "Numbered manifesto chapters with oversized indices (01, 02, 03) and high-contrast typography",
-    "donation_flow": "3-Step Gated Partnership Flow (Type Selection -> Threshold Check -> Direct Mocked Payment OR CSR/HNI Qualification Form routed to database & admin panel)",
-    "admin_view": "Built-in /admin or modal route displaying routed contact & CSR inquiry submissions"
+  "layouts": {
+    "editorial_grid": "Asymmetric multi-column Swiss/editorial layout with generous padding (p-8 to p-16).",
+    "education_grid": "High-impact visual story grid showcasing dignified Indian scholarship recipients, creative arts workshops, and long-term educational outcomes."
   },
-  "image_urls": {
-    "scholar_entry_boy": "https://images.unsplash.com/photo-1659985281435-d8d3ea55b55c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBzdHVkZW50JTIwZWR1Y2F0aW9uJTIwc2Nob29sJTIwZ3JhZHVhdGlvbiUyMGZ1dHVyZSUyMGxlYWRlcnxlbnwwfHx8fDE3ODg5MzU3MjB8MA&ixlib=rb-4.1.0&q=85",
-    "scholar_grad_female": "https://images.unsplash.com/photo-1633061273960-9c33bf7cc0c6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxpbmRpYW4lMjBzdHVkZW50JTIwZWR1Y2F0aW9uJTIwc2Nob29sJTIwZ3JhZHVhdGlvbiUyMGZ1dHVyZSUyMGxlYWRlcnxlbnwwfHx8fDE3ODg5MzU3MjB8MA&ixlib=rb-4.1.0&q=85",
-    "scholar_grad_male": "https://images.unsplash.com/photo-1495995424756-6a5a3f9e7543?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBzdHVkZW50JTIwZWR1Y2F0aW9uJTIwc2Nob29sJTIwZ3JhZHVhdGlvbiUyMGZ1dHVyZSUyMGxlYWRlcnxlbnwwfHx8fDE3ODg5MzU3MjB8MA&ixlib=rb-4.1.0&q=85",
-    "scholar_classroom_girl": "https://images.unsplash.com/flagged/photo-1574097656146-0b43b7660cb6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGxlYXJuaW5nJTIwY2xhc3Nyb29tJTIwbm90ZWJvb2t8ZW58MHx8fHwxNzg4OTM1NzIzfDA&ixlib=rb-4.1.0&q=85",
-    "scholar_classroom_group": "https://images.unsplash.com/photo-1572847748080-bac263fae977?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGxlYXJuaW5nJTIwY2xhc3Nyb29tJTIwbm90ZWJvb2t8ZW58MHx8fHwxNzg4OTM1NzIzfDA&ixlib=rb-4.1.0&q=85"
+  "motion": {
+    "hover_transitions": "transition-all duration-300 ease-out",
+    "micro_interactions": "Subtle scale shifts (scale-105 on card hover) and smooth fade-ins."
   },
-  "instructions_to_main_agent": [
-    "Ensure all 6 key pages/sections are fully implemented with top-tier aesthetic polish: Home, The Program, Transformations, Partner/Donate, About/Trust, Contact.",
-    "Include built-in Admin Panel modal/view to examine saved CSR inquiries & routed contact submissions.",
-    "Implement Lenis smooth scrolling or Framer Motion scroll triggers for buttery liquid motion.",
-    "Include high-contrast data-testid attributes on all interactive elements (buttons, inputs, filters, tabs, forms).",
-    "Implement the signature 15-Year AimGame Timeline visually with interactive milestone expansion.",
-    "Use primary Orange (#E8490F) and Green (#166534) intentionally based on the official AimGame logo guidelines."
-  ],
-  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
-    "Do NOT use pure black background or low-contrast text. Maintain APCA readability.",
-    "Never use raw generic Inter for headlines. Use Outfit / Playfair Display.",
-    "Ensure responsive padding (px-4 sm:px-8 lg:px-16) and never cram content.",
-    "Ensure headers have backdrop-blur and soft background opacity to prevent overlap artifacts."
-  ]
+  "accessibility": {
+    "test_ids": "All key interactive and content elements MUST include data-testid attributes.",
+    "alt_text": "All images must feature respectful, descriptive alt text for screen readers."
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": {
+    "component_reuse": "Prioritize pre-existing UI primitives in src/components/ui/.",
+    "testing": "Ensure data-testid attributes are present on all key interactive elements.",
+    "photography": "Always use dignified, authentic photography in Indian contexts."
+  }
 }
