@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import { MapPin } from "lucide-react";
 
 const STORY_PHOTOS = [
   { src: "/assets/story-1.jpg", alt: "Responsible Charity Society team member" },
@@ -21,6 +22,11 @@ const STORY_TEXT = [
   "In late 2010, a group of friends came together in India and saw something that stayed with them: children with real potential, families with real determination, and no real system built to help them break the cycle of poverty for good. So they built one.",
   "What began as informal, grassroots volunteer work grew into Responsible Charity Society: a structured, 15-year model now spanning Kolkata, Pune, and Mumbai, guided over the years by a shared vision that education alone isn't enough. Lasting change takes education, healthcare, family support, and consistent mentorship, sustained over the entire span of a childhood.",
   "Today, that vision lives on through AimGame, our flagship program, carried forward by a growing team of local staff, mentors, and partners who make it work every day.",
+];
+
+const CENTERS = [
+  { city: "Kolkata", note: "Our larger center — the heart of the program's day-to-day life.", testid: "center-kolkata" },
+  { city: "Pune", note: "Our second center, home to the same day-to-day rhythm.", testid: "center-pune" },
 ];
 
 const About = () => (
@@ -73,6 +79,48 @@ const About = () => (
               </p>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-24">
+          <Reveal>
+            <h2
+              data-testid="centers-header"
+              className="font-display font-extrabold tracking-tight leading-[1.05] text-3xl sm:text-4xl lg:text-5xl text-leaf uppercase"
+            >
+              Our Community Centers
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p
+              data-testid="centers-subheader"
+              className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight max-w-4xl"
+            >
+              Two community centers, Kolkata and Pune, built for everything a scholarship alone can't provide.
+            </p>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p data-testid="centers-description" className="mt-6 max-w-3xl text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+              Our community centers are where the program lives day to day: extracurricular activities, parent
+              workshops, supply distribution, tutor sessions, visitor tours. A second home for our students,
+              not just a place they're required to be.
+            </p>
+          </Reveal>
+          <div className="mt-10 grid sm:grid-cols-2 gap-6 max-w-4xl">
+            {CENTERS.map((c, i) => (
+              <Reveal key={c.city} delay={0.1 + i * 0.08}>
+                <div
+                  data-testid={c.testid}
+                  className="h-full rounded-3xl bg-white border border-ink/10 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40"
+                >
+                  <span className="h-12 w-12 rounded-2xl bg-leaf-soft text-leaf inline-flex items-center justify-center">
+                    <MapPin className="h-5 w-5" />
+                  </span>
+                  <p className="mt-5 font-display font-extrabold text-2xl tracking-tight">{c.city}</p>
+                  <p className="mt-2 text-sm text-ink-muted leading-relaxed">{c.note}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

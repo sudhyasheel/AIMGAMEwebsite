@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Building2, User, Gem, ShieldCheck, CheckCircle2, BadgeCheck, FileCheck2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, User, Gem, ShieldCheck, CheckCircle2, BadgeCheck, FileCheck2 } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
 import { PARTNERS, MIN_DONATION, CONVERSATION_THRESHOLD } from "@/data/content";
@@ -36,10 +36,10 @@ const SCHOLAR_PHOTOS = [
 ];
 
 const TRUST_ITEMS = [
+  { icon: ShieldCheck, title: "Indian Registered Non-Profit", desc: "Receipts issued by Responsible Charity Society.", testid: "trust-registered" },
   { icon: BadgeCheck, title: "80G Certified", desc: "Tax-deductible under Section 80G, continuously since 2012.", testid: "trust-80g" },
-  { icon: Building2, title: "CSR Ready", desc: "Structured partnerships with scholar-wise reporting.", testid: "trust-csr" },
-  { icon: ShieldCheck, title: "Registered Indian NGO", desc: "Receipts issued by Responsible Charity Society.", testid: "trust-registered" },
-  { icon: FileCheck2, title: "Audited Annually", desc: "Statements shared with partners on request.", testid: "trust-audited" },
+  { icon: Building2, title: "CSR Approved", desc: "Structured partnerships with scholar-wise reporting.", testid: "trust-csr" },
+  { icon: FileCheck2, title: "Sec 135 Compliance", desc: "CSR documentation aligned with Section 135 of the Companies Act.", testid: "trust-audited" },
 ];
 
 const Donut = () => {
@@ -179,7 +179,7 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
       />
       {aboveThreshold && (
         <p data-testid="threshold-notice" className="mt-4 rounded-xl bg-leaf-soft text-leaf-dark text-sm font-semibold px-4 py-3 text-center">
-          Contributions of {inr(CONVERSATION_THRESHOLD)}+ begin with a conversation with our team — no online transaction.
+          Online checkout covers gifts up to {inr(CONVERSATION_THRESHOLD)} — larger gifts go through our Giving Desk by direct bank transfer, so no gateway fee comes out of your gift.
         </p>
       )}
       <div className="mt-8 flex items-center justify-between">
@@ -192,7 +192,7 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
           onClick={onContinue}
           className="inline-flex items-center gap-2 rounded-full bg-flame px-7 py-3.5 font-bold text-white transition-all duration-300 hover:bg-flame-dark disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          {aboveThreshold ? "Start the Conversation" : `Continue · ${valid ? inr(amount) : ""}`}
+          {aboveThreshold ? "Talk to Our Giving Desk" : `Continue · ${valid ? inr(amount) : ""}`}
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>
@@ -341,6 +341,59 @@ const StepQualify = ({ kind, form, setForm, onSubmit, onBack, busy }) => (
   </motion.div>
 );
 
+const StepGivingDesk = ({ form, setForm, onSubmit, onBack, busy }) => (
+  <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
+    <div data-testid="priority-giving-box" className="rounded-2xl bg-leaf-soft border border-leaf/20 p-6">
+      <p className="font-mono text-[10px] tracking-[0.25em] text-leaf font-bold">PRIORITY GIVING</p>
+      <h3 className="mt-2 font-display font-extrabold text-2xl tracking-tight">
+        Giving {inr(CONVERSATION_THRESHOLD)} or more?
+      </h3>
+      <p className="mt-3 text-sm text-leaf-dark/80 leading-relaxed">
+        We'll pair you with a dedicated contact at RC who answers your questions quickly, walks you through
+        where your gift goes, and arranges your gift by direct bank transfer, so no payment-gateway fee comes
+        out of it. Your 80G receipt and impact updates are handled personally.
+      </p>
+    </div>
+    <div className="mt-5 rounded-2xl bg-white border border-ink/10 p-6 space-y-4">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <input data-testid="desk-name" className={inputCls} placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+        <input data-testid="desk-org" className={inputCls} placeholder="Organisation (optional)" value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} />
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        <input data-testid="desk-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+        <input data-testid="desk-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        <select data-testid="desk-method" className={inputCls} value={form.method} onChange={(e) => setForm({ ...form, method: e.target.value })}>
+          <option value="">Preferred contact method…</option>
+          <option>Phone call</option>
+          <option>WhatsApp</option>
+          <option>Email</option>
+        </select>
+        <select data-testid="desk-range" className={inputCls} value={form.range} onChange={(e) => setForm({ ...form, range: e.target.value })}>
+          <option value="">Approximate gift range…</option>
+          <option>₹1L – ₹5L</option>
+          <option>₹5L – ₹25L</option>
+          <option>₹25L – ₹1Cr</option>
+          <option>Above ₹1Cr</option>
+        </select>
+      </div>
+      <textarea data-testid="desk-note" rows={3} className={inputCls} placeholder="A note for the Giving Desk (optional)" value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} />
+      <button
+        data-testid="giving-desk-submit-btn"
+        onClick={onSubmit}
+        disabled={busy || !form.name || !form.email}
+        className="w-full rounded-full bg-leaf py-4 font-bold text-white transition-colors duration-300 hover:bg-leaf-dark disabled:opacity-40"
+      >
+        {busy ? "Sending…" : "Talk to Our Giving Desk →"}
+      </button>
+    </div>
+    <button data-testid="giving-desk-back-btn" onClick={onBack} className="mt-6 text-sm font-bold text-ink-muted hover:text-flame transition-colors">
+      Prefer to give online? Choose any amount up to {inr(CONVERSATION_THRESHOLD)} above.
+    </button>
+  </motion.div>
+);
+
 const StepSuccess = ({ mode, amount, onReset }) => (
   <motion.div
     data-testid="partner-success"
@@ -387,6 +440,7 @@ const Partner = () => {
   const [busy, setBusy] = useState(false);
   const [payForm, setPayForm] = useState({ name: "", email: "", phone: "", card: "", expiry: "", cvv: "" });
   const [qForm, setQForm] = useState({ org: "", name: "", email: "", phone: "", focus: "", range: "", message: "" });
+  const [deskForm, setDeskForm] = useState({ name: "", org: "", email: "", phone: "", method: "", range: "", note: "" });
 
   const pickType = (t) => {
     setType(t);
@@ -394,7 +448,7 @@ const Partner = () => {
   };
 
   const continueAmount = () => {
-    if (Number(amount) >= CONVERSATION_THRESHOLD) setStep("qualify");
+    if (Number(amount) >= CONVERSATION_THRESHOLD) setStep("givingdesk");
     else setStep("payment");
   };
 
@@ -438,12 +492,34 @@ const Partner = () => {
     }
   };
 
+  const doDesk = async () => {
+    setBusy(true);
+    try {
+      await submitInquiry({
+        kind: "hni",
+        name: deskForm.name,
+        email: deskForm.email,
+        phone: deskForm.phone,
+        org: deskForm.org,
+        message: deskForm.note,
+        amount: Number(amount),
+        meta: { method: deskForm.method, range: deskForm.range, via: "giving-desk" },
+      });
+      setStep("success");
+    } catch {
+      toast.error("Could not send. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const reset = () => {
     setStep("type");
     setType(null);
     setAmount("2500");
     setPayForm({ name: "", email: "", phone: "", card: "", expiry: "", cvv: "" });
     setQForm({ org: "", name: "", email: "", phone: "", focus: "", range: "", message: "" });
+    setDeskForm({ name: "", org: "", email: "", phone: "", method: "", range: "", note: "" });
   };
 
   const successMode = type === "individual" && Number(amount) < CONVERSATION_THRESHOLD ? "donation" : "conversation";
@@ -455,19 +531,31 @@ const Partner = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
             <h1 className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase" data-testid="donate-header">
-              Donate
+              Donate Today and Be Part of the Journey
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
             <p data-testid="donate-subheader" className="mt-5 font-display font-bold text-3xl sm:text-4xl text-flame tracking-tight">
-              Every rupee becomes years of education.
+              Every gift becomes part of a scholar's 15-year path out of poverty.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
             <p className="mt-5 max-w-2xl text-sm sm:text-base leading-relaxed text-ink-muted">
-              Gifts are received by Responsible Charity Society, a registered Indian NGO — 80G certified
-              since 2012 — and fund AimGame, its flagship program. India-based giving only, minimum{" "}
-              {inr(MIN_DONATION)}.
+              Every scholar's journey is carried by people who chose to be part of it. See what one year takes
+              on the left, then choose how you'd like to give on the right. Every gift comes with an 80G
+              receipt.
+            </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <p className="mt-4 text-sm text-ink">
+              Giving on behalf of a company?{" "}
+              <Link
+                to="/csr-partners"
+                data-testid="donate-csr-link"
+                className="inline-flex items-center gap-1 font-bold text-flame transition-colors hover:text-flame-dark"
+              >
+                Let's talk about a CSR partnership <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </p>
           </Reveal>
         </div>
@@ -484,7 +572,7 @@ const Partner = () => {
               <div className="flex items-center justify-center gap-2 mb-8 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
                 {["01 TYPE", "02 DETAILS", "03 DONE"].map((s, i) => (
                   <span key={s} className="flex items-center gap-2">
-                    <span className={`${(step === "type" && i === 0) || (["amount", "payment", "qualify"].includes(step) && i === 1) || (step === "success" && i === 2) ? "text-flame font-bold" : ""}`}>
+                    <span className={`${(step === "type" && i === 0) || (["amount", "payment", "qualify", "givingdesk"].includes(step) && i === 1) || (step === "success" && i === 2) ? "text-flame font-bold" : ""}`}>
                       {s}
                     </span>
                     {i < 2 && <span className="w-6 h-px bg-ink/20" />}
@@ -502,6 +590,9 @@ const Partner = () => {
                   )}
                   {step === "qualify" && (
                     <StepQualify kind={type === "csr" ? "csr" : "hni"} form={qForm} setForm={setQForm} onSubmit={doQualify} onBack={() => setStep(type === "individual" ? "amount" : "type")} busy={busy} />
+                  )}
+                  {step === "givingdesk" && (
+                    <StepGivingDesk form={deskForm} setForm={setDeskForm} onSubmit={doDesk} onBack={() => setStep("amount")} busy={busy} />
                   )}
                   {step === "success" && <StepSuccess mode={successMode} amount={Number(amount)} onReset={reset} />}
                 </motion.div>

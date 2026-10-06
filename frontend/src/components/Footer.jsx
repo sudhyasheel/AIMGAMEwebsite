@@ -1,5 +1,29 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Instagram, Facebook, Linkedin, Youtube, BadgeCheck, ShieldCheck, FileCheck2 } from "lucide-react";
+import { ArrowUpRight, Instagram, Facebook, Linkedin, Youtube, BadgeCheck, ShieldCheck, FileCheck2, Building2 } from "lucide-react";
+
+const SOCIALS = [
+  { Icon: Instagram, name: "instagram", href: "https://www.instagram.com/responsiblecharity" },
+  { Icon: Facebook, name: "facebook", href: "https://www.facebook.com/responsiblecharity" },
+  { Icon: Linkedin, name: "linkedin", href: "https://www.linkedin.com/company/responsiblecharity" },
+  { Icon: Youtube, name: "youtube", href: "https://www.youtube.com/@responsiblecharity" },
+];
+
+const MENU = [
+  ["Home", "/"],
+  ["The Work", "/program"],
+  ["The Results", "/transformations"],
+  ["Our Story", "/about"],
+  ["Internships", "/internships"],
+  ["CSR Partners", "/csr-partners"],
+  ["Let's Talk", "/contact"],
+];
+
+const CERTIFICATIONS = [
+  [ShieldCheck, "INDIAN REGISTERED NON-PROFIT ORGANIZATION"],
+  [BadgeCheck, "80G CERTIFIED"],
+  [Building2, "CSR APPROVED"],
+  [FileCheck2, "SEC 135 COMPLIANCE"],
+];
 
 const Footer = () => (
   <footer data-testid="site-footer" className="bg-night text-sand relative grain">
@@ -22,14 +46,9 @@ const Footer = () => (
         </div>
 
         <div className="lg:col-span-3">
-          <p className="font-mono text-xs tracking-[0.25em] text-sand/50 mb-5">EXPLORE</p>
+          <p className="font-mono text-xs tracking-[0.25em] text-sand/50 mb-5">MENU</p>
           <ul className="space-y-3">
-            {[
-              ["The Program", "/program"],
-              ["Transformations", "/transformations"],
-              ["About & Trust", "/about"],
-              ["Contact", "/contact"],
-            ].map(([label, to]) => (
+            {MENU.map(([label, to]) => (
               <li key={to}>
                 <Link
                   to={to}
@@ -61,15 +80,12 @@ const Footer = () => (
 
       <div className="mt-14 flex flex-col lg:flex-row items-center justify-between gap-8 border-t border-sand/10 pt-10">
         <div className="flex items-center gap-3">
-          {[
-            [Instagram, "instagram"],
-            [Facebook, "facebook"],
-            [Linkedin, "linkedin"],
-            [Youtube, "youtube"],
-          ].map(([Icon, name]) => (
+          {SOCIALS.map(({ Icon, name, href }) => (
             <a
               key={name}
-              href="#"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={name}
               data-testid={`footer-social-${name}`}
               className="h-11 w-11 rounded-full border border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
@@ -79,12 +95,8 @@ const Footer = () => (
           ))}
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          {[
-            [BadgeCheck, "80G CERTIFIED SINCE 2012"],
-            [ShieldCheck, "REGISTERED INDIAN NGO"],
-            [FileCheck2, "AUDITED ANNUALLY"],
-          ].map(([Icon, label]) => (
-            <span key={label} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
+          {CERTIFICATIONS.map(([Icon, label]) => (
+            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
               <Icon className="h-4 w-4 text-leaf" />
               {label}
             </span>
@@ -104,6 +116,13 @@ const Footer = () => (
           </Link>
         </div>
       </div>
+
+      <p data-testid="footer-disclaimer" className="mt-6 text-[11px] text-sand/40 leading-relaxed max-w-4xl">
+        Disclaimer & Terms of Use: This website and all its content are the property of Responsible Charity
+        Society and may not be reproduced without written permission. Information here is provided for general
+        awareness; donation terms, 80G receipts and CSR documentation are issued in accordance with applicable
+        Indian law.
+      </p>
     </div>
   </footer>
 );
