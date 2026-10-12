@@ -75,6 +75,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 
 - THE WORK restructure (v2): Education keeps 6 blocks (3x2); Healthcare reduced to 3 blocks in one row (family care, check-ups, hygiene); Employment reduced to 3 blocks in one row (internships+partner link, real job connections, industry workshops+partner link); album links restyled as buttons; NEW mid-width Education Partners band (6 logo slots — PLACEHOLDERS awaiting school/college logos) between Employment and Parents band
 
+- THE WORK block copy finalized per user spec: Education (Game Competitions, Quality Schools, Tuitions, Music/Art/Dance, Physical Education, Field Trips & More; intro "It starts with games..."), Healthcare 3 blocks (Workshops & Prevention Plans / Diagnosis, Check-ups, Medicines & Procedures / Sanitary Napkins & General Hygiene), Employment 3 blocks (Career Counseling & Industry Workshops / CV Preparation & Interview Training / Internships & Job Connections, partner links on 1 & 3). Drive folder image sources are not publicly accessible — current photos kept until user shares files
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
