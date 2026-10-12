@@ -7,6 +7,7 @@ const LINKS = [
   { to: "/program", label: "THE WORK", id: "nav-link-the-work" },
   { to: "/transformations", label: "THE RESULTS", id: "nav-link-the-results" },
   { to: "/about", label: "OUR STORY", id: "nav-link-our-story" },
+  { to: "/community-centers", label: "OUR COMMUNITY CENTERS", id: "nav-link-community-centers" },
   { to: "/internships", label: "INTERNSHIPS", id: "nav-link-internships" },
   { to: "/csr-partners", label: "CSR PARTNERS", id: "nav-link-csr-partners" },
   { to: "/contact", label: "LET'S TALK", id: "nav-link-lets-talk" },
@@ -46,7 +47,7 @@ const Navbar = () => {
             data-testid="nav-banner"
             className={`w-auto transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-28 opacity-100"}`}
           />
-          <nav className="flex items-center gap-5">
+          <nav className="flex items-center gap-4">
           {LINKS.map((l) => (
             <NavLink
               key={l.to}
@@ -54,7 +55,7 @@ const Navbar = () => {
               end={l.end}
               data-testid={l.id}
               className={({ isActive }) =>
-                `text-sm font-semibold tracking-wide transition-colors duration-300 ${
+                `whitespace-nowrap text-[13px] font-semibold tracking-normal transition-colors duration-300 ${
                   isActive ? "text-leaf underline underline-offset-8 decoration-2 decoration-flame" : "text-leaf/70 hover:text-leaf"
                 }`
               }
@@ -65,7 +66,7 @@ const Navbar = () => {
           <Link
             to="/partner"
             data-testid="nav-cta-donate"
-            className="group inline-flex items-center gap-2 rounded-full bg-flame px-6 py-2.5 text-sm font-bold tracking-wide text-white transition-colors duration-300 hover:bg-flame-dark"
+            className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-flame px-5 py-2.5 text-[13px] font-bold tracking-wide text-white transition-colors duration-300 hover:bg-flame-dark"
           >
             DONATE
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

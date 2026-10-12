@@ -82,6 +82,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Album Buttons system built to spec: shared reusable component (src/components/AlbumButtons.jsx) driven by a link index (src/data/albums.js — page/block/label/city/url/verified/checked columns, no code change needed to update links); unverified rows hidden; single "See more photos" button when cities share an album; Facebook icon + new tab + noopener; 44px tap targets; click tracking via window.dataLayer (album_click with page/block/city); used on all 3 pillars, Education Partners, Parents band, and Our Community Centers
 - Closing CTA band and sticky pillar nav re-confirmed against the developer brief (already matching: 3 nav items only, pin under header, gold active + underline, progress line, aria-current, reduced-motion instant jump)
 
+- NEW top-level page OUR COMMUNITY CENTERS (/community-centers): standardized header/subheader + new day-to-day description, Kolkata (01, larger) and Pune (02) sections with 3 curated center-scene photos each + album buttons (Drive folders shared by user are not public — real center photos pending); nav tab added after OUR STORY; footer menu updated; navbar tightened (13px, nowrap) so all 8 tabs fit one row
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

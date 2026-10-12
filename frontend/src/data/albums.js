@@ -20,6 +20,9 @@ export const ALBUM_LINKS = [
   // OUR STORY — Our Community Centers
   { page: "our-story", block: "community-centers", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   { page: "our-story", block: "community-centers", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  // COMMUNITY CENTERS page
+  { page: "community-centers", block: "kolkata", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "community-centers", block: "pune", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
 ];
 
 // Per spec: one button per city with its own verified album, always Kolkata → Pune → Mumbai;

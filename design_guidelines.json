@@ -1,64 +1,64 @@
 {
-  "project_name": "Responsible Charity Society - AimGame 15-Year Scholarship Program",
-  "theme": "Orange + Green Editorial Non-Profit Theme",
-  "archetype": "ORGANIC & EARTHY / SWISS EDITORIAL HYBRID",
-  "image_urls": {
-    "education_arts_fix": "https://images.unsplash.com/photo-1592060036126-1b6d5139dea4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBjaGlsZHJlbiUyMGFydCUyMGNsYXNzfGVufDB8fHx8MTc5MTMxMDMyNHww&ixlib=rb-4.1.0&q=85",
-    "description": "Indian children participating in a creative art and painting workshop on the floor, focused, joyful, and dignified."
+  "project_name": "Responsible Charity Society - AimGame Community Centers",
+  "app_type": "nonprofit editorial website",
+  "color_theme": {
+    "palette_name": "Flame Orange + Leaf Green Editorial Archetype",
+    "primary": "#E8490F",
+    "primary_dark": "#C93B05",
+    "primary_soft": "#FDEBE2",
+    "secondary": "#166534",
+    "secondary_dark": "#0F4623",
+    "secondary_soft": "#E7F0EA",
+    "background": "#FAF8F5",
+    "card_background": "#FFFFFF",
+    "text_main": "#0F172A",
+    "text_muted": "#475569",
+    "accent_gold": "#D97706"
   },
   "typography": {
     "headings": {
       "font_family": "Poppins, sans-serif",
-      "h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight",
-      "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
-      "h3": "text-xl sm:text-2xl font-semibold",
-      "h4": "text-lg sm:text-xl font-medium"
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-semibold text-ink tracking-tight",
+      "h3": "text-xl sm:text-2xl font-semibold text-ink"
     },
     "body": {
       "font_family": "Plus Jakarta Sans, sans-serif",
-      "base": "text-base leading-relaxed text-ink-muted",
-      "small": "text-sm leading-normal"
+      "base": "text-base text-ink/80 leading-relaxed",
+      "small": "text-sm text-ink-muted"
     },
-    "accent": {
-      "font_family": "JetBrains Mono, monospace",
-      "overline": "text-xs uppercase tracking-[0.2em] font-medium"
+    "mono": {
+      "font_family": "JetBrains Mono, monospace"
     }
   },
-  "colors": {
-    "palette": {
-      "flame": "#E8490F",
-      "flame_dark": "#C93B05",
-      "flame_soft": "#FDEBE2",
-      "leaf": "#166534",
-      "leaf_dark": "#0F4623",
-      "leaf_soft": "#E7F0EA",
-      "sand": "#FAF8F5",
-      "sand_deep": "#F3EFEA",
-      "ink": "#0F172A",
-      "ink_muted": "#475569",
-      "night": "#0B1320",
-      "gold": "#D97706"
-    },
-    "rules": {
-      "contrast": "Ensure text contrast ratio meets APCA/WCAG AA guidelines (min 4.5:1 for standard text).",
-      "tinted_grey": "Always tint greys with warm sand or cool blue tones instead of flat neutral grey."
+  "image_urls": {
+    "kolkata_center_1": "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGNsYXNzcm9vbSUyMGxlYXJuaW5nfGVufDB8fHx8MTc5MTgxMTkwM3ww&ixlib=rb-4.1.0&q=85",
+    "kolkata_center_2": "https://images.unsplash.com/photo-1627475312657-3752fa068473?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBjaGlsZHJlbiUyMHBsYXlpbmclMjBnYW1lcyUyMGdyb3VwfGVufDB8fHx8MTc5MTgxMTg5OHww&ixlib=rb-4.1.0&q=85",
+    "kolkata_center_3": "https://images.unsplash.com/photo-1764661441867-473a59a765bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA6OTV8MHwxfHNlYXJjaHwyfHx5b2dhJTIwY2xhc3MlMjBncm91cCUyMGluZGlhfGVufDB8fHx8MTc5MTgxMTkwM3ww&ixlib=rb-4.1.0&q=85",
+    "pune_center_1": "https://images.unsplash.com/photo-1637257526540-43d96c33fbe7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBraWRzJTIwYXJ0JTIwbXVzaWMlMjBjbGFzc3xlbnwwfHx8fDE3OTE4MTE5MDR8MA&ixlib=rb-4.1.0&q=85",
+    "pune_center_2": "https://images.unsplash.com/photo-1529209076408-5a115ec9f1c6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBjb21tdW5pdHklMjBtZWV0aW5nJTIwd29ya3Nob3AlMjBncm91cHxlbnwwfHx8fDE3OTE4MTE4OTl8MA&ixlib=rb-4.1.0&q=85",
+    "pune_center_3": "https://images.unsplash.com/photo-1551731409-43eb3e517a1a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBjb21tdW5pdHklMjBtZWV0aW5nJTIwd29ya3Nob3AlMjBncm91cHxlbnwwfHx8fDE3OTE4MTE4OTl8MA&ixlib=rb-4.1.0&q=85"
+  },
+  "layout_and_structure": {
+    "page_title": "Our Community Centers",
+    "hero_section": "Editorial warm header featuring Kolkata & Pune center statistics, dot-grid motif, and mission callout.",
+    "center_sections": {
+      "kolkata": {
+        "name": "Kolkata Community Hub",
+        "description": "After-school tutoring, board games, yoga, and youth development programs in Kolkata.",
+        "photos": ["kolkata_center_1", "kolkata_center_2", "kolkata_center_3"]
+      },
+      "pune": {
+        "name": "Pune Innovation & Learning Center",
+        "description": "Music & arts education, community workshops, and parent engagement meetings in Pune.",
+        "photos": ["pune_center_1", "pune_center_2", "pune_center_3"]
+      }
     }
   },
-  "layouts": {
-    "editorial_grid": "Asymmetric multi-column Swiss/editorial layout with generous padding (p-8 to p-16).",
-    "education_grid": "High-impact visual story grid showcasing dignified Indian scholarship recipients, creative arts workshops, and long-term educational outcomes."
-  },
-  "motion": {
-    "hover_transitions": "transition-all duration-300 ease-out",
-    "micro_interactions": "Subtle scale shifts (scale-105 on card hover) and smooth fade-ins."
-  },
-  "accessibility": {
-    "test_ids": "All key interactive and content elements MUST include data-testid attributes.",
-    "alt_text": "All images must feature respectful, descriptive alt text for screen readers."
-  },
-  "UNIVERSAL GUIDELINES FOR MAIN AGENT": {
-    "component_reuse": "Prioritize pre-existing UI primitives in src/components/ui/.",
-    "testing": "Ensure data-testid attributes are present on all key interactive elements.",
-    "photography": "Always use dignified, authentic photography in Indian contexts."
-  }
+  "instructions_to_main_agent": [
+    "Render the newly specified 6 photos on the OUR COMMUNITY CENTERS page with dignified captions and group-focused framing.",
+    "Ensure all interactive elements have data-testid attributes (e.g., data-testid='kolkata-center-card', data-testid='pune-center-card').",
+    "Maintain high contrast ratios for text accessibility (WCAG AA standard).",
+    "Do not use photo-1574097656146 which is dead."
+  ]
 }
