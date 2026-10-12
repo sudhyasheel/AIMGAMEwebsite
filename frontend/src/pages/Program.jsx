@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, ArrowRight, GraduationCap } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-
-const FB_ALBUMS = "https://www.facebook.com/responsiblecharity/photos_albums";
+import AlbumButtons from "@/components/AlbumButtons";
 
 const IMG = {
   tuition: "https://images.unsplash.com/photo-1623303366639-0e330d7c3d9f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjBjaGlsZHJlbiUyMGVkdWNhdGlvbiUyMGNsYXNzcm9vbSUyMHN0dWR5JTIwc3BvcnRzJTIwZmllbGR0cmlwfGVufDB8fHx8MTc5MTMwOTc1OXww&ixlib=rb-4.1.0&q=85",
@@ -229,37 +228,10 @@ const PillarSection = ({ pillar }) => (
 
       <Reveal delay={0.1}>
         <p className="mt-10 text-ink-muted">{pillar.closing}</p>
-        <a
-          href={FB_ALBUMS}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-testid={`album-link-${pillar.id}`}
-          className="group mt-4 inline-flex items-center gap-2 rounded-full border-2 border-flame/40 px-6 py-3 font-bold text-sm text-flame transition-all duration-300 hover:bg-flame hover:text-white hover:border-flame"
-        >
-          {pillar.albumLabel}
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        <AlbumButtons page="our-work" block={pillar.id} align="start" />
       </Reveal>
     </div>
   </section>
-);
-
-const AlbumButtons = ({ cities, testidPrefix, align = "center" }) => (
-  <div className={`mt-6 flex flex-wrap gap-3 ${align === "center" ? "justify-center" : "justify-start"}`}>
-    {cities.map((city) => (
-      <a
-        key={city}
-        href={FB_ALBUMS}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid={`${testidPrefix}-album-${city.toLowerCase()}`}
-        className="group inline-flex items-center gap-2 rounded-full border-2 border-flame/40 px-6 py-3 font-bold text-sm text-flame transition-all duration-300 hover:bg-flame hover:text-white hover:border-flame"
-      >
-        {city} albums
-        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </a>
-    ))}
-  </div>
 );
 
 const EducationPartners = () => (
@@ -276,7 +248,7 @@ const EducationPartners = () => (
             across India. These institutions are pillars of their communities, and they understand our
             students' backgrounds and challenges. Together, year after year, we help every scholar succeed.
           </p>
-          <AlbumButtons cities={["Kolkata", "Pune"]} testidPrefix="edupartners" />
+          <AlbumButtons page="our-work" block="education-partners" />
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
               <div
@@ -402,7 +374,7 @@ const Program = () => {
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <AlbumButtons cities={["Kolkata", "Pune", "Mumbai"]} testidPrefix="parents" align="start" />
+              <AlbumButtons page="our-work" block="parents" align="start" />
             </Reveal>
           </div>
           <Reveal delay={0.1}>

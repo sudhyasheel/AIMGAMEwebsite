@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import AlbumButtons from "@/components/AlbumButtons";
 import { MapPin } from "lucide-react";
 
 const STORY_PHOTOS = [
@@ -121,6 +122,9 @@ const About = () => (
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.2}>
+            <AlbumButtons page="our-story" block="community-centers" align="start" />
+          </Reveal>
         </div>
       </div>
     </section>
