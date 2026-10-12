@@ -6,10 +6,25 @@ import { Reveal, EASE } from "@/components/Reveal";
 import { submitInquiry } from "@/lib/api";
 
 const PARAGRAPHS = [
-  "Our internships are paid, deliberately. That's not a perk, it's a statement: we're asking for commitment, accountability, and responsibility, and we compensate people accordingly. This isn't a resume-filler or a volunteer weekend, it's real work with real students who are counting on consistency.",
-  "We look for interns fluent in the local language alongside English and Hindi, ready to commit for a minimum of 4 to 6 months. In practice, most stay far longer. Some of our interns have been with us for nearly a decade, working alongside the same students year after year and watching firsthand what long-term consistency actually builds, which is exactly what makes AimGame work.",
-  "In return, you get more than a line on your resume. You get a certificate, a letter of recommendation earned through real impact, and a place in a community that gathers, celebrates, and genuinely becomes an extended family. This is exclusive by design, engagement by choice, and gratification that comes from watching a child's entire trajectory shift because you showed up, consistently, for years.",
-  "Questions go through email only, no calls, no unscheduled visits. Orientation happens monthly in Kolkata and Pune.",
+  "Our internships are paid, and that's on purpose. We ask for real commitment and accountability, and we believe that deserves fair pay. This isn't a resume-filler or a volunteer weekend. It's real work with real students who count on you showing up.",
+  "We're looking for interns who speak the local language along with English and Hindi, and who can stay at least 4 to 6 months. Most stay much longer. Some have been with us for nearly a decade, growing alongside the same students year after year and seeing what steady care really builds.",
+  "In return, you'll earn a certificate, a letter of recommendation, and a place in a warm community that gathers, celebrates, and feels like an extended family. You'll also get the joy of watching a child's whole path change because you kept showing up.",
+  "Questions are best sent by email. We don't take calls or unscheduled visits. Orientation is held monthly in Kolkata and Pune.",
+];
+
+const INTERN_PHOTOS = [
+  {
+    src: "https://images.unsplash.com/photo-1771577125646-b38ed7b14411?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjB2b2x1bnRlZXIlMjB0ZWFjaGluZyUyMGNoaWxkcmVuJTIwbWVudG9yfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
+    alt: "An intern teaching children at a community center",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1777732340202-1444ea7a8bfa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjB2b2x1bnRlZXIlMjBwbGF5aW5nJTIwYm9hcmQlMjBnYW1lJTIwY2hpbGRyZW4lMjBzcG9ydHN8ZW58MHx8fHwxNzkxODEyMzg0fDA&ixlib=rb-4.1.0&q=85",
+    alt: "An intern playing a board game with children",
+  },
+  {
+    src: "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHx0dXRvcmluZyUyMG1lbnRvcmluZyUyMHNlc3Npb24lMjBJbmRpYSUyMGNoaWxkcmVuJTIwY2xhc3Nyb29tfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
+    alt: "A tutoring session at a community center",
+  },
 ];
 
 const CITIES = [
@@ -118,7 +133,7 @@ const Internships = () => (
               data-testid="internships-header"
               className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
             >
-              Show Up. Play. Teach. Repeat.
+              Show Up. Play. Teach. Repeat!
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
@@ -129,6 +144,24 @@ const Internships = () => (
               Paid internships that actually mean something.
             </p>
           </Reveal>
+        </div>
+
+        <div data-testid="internships-photos" className="mt-12 grid sm:grid-cols-3 gap-4 sm:gap-6">
+          {INTERN_PHOTOS.map((p, i) => (
+            <Reveal key={p.src} delay={0.05 + i * 0.06}>
+              <div
+                data-testid={`internships-photo-${i}`}
+                className="group aspect-[4/3] overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_24px_50px_-28px_rgba(15,23,42,0.25)]"
+              >
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+            </Reveal>
+          ))}
         </div>
 
         <div className="mt-12 space-y-6">

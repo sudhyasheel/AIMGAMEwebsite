@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BadgeCheck, Building2, FileCheck2, FileBarChart2, FolderOpen, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { BadgeCheck, Building2, FileCheck2, FileBarChart2, FolderOpen, ShieldCheck, Files, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
 import { submitInquiry } from "@/lib/api";
@@ -12,12 +12,13 @@ const PARAGRAPHS = [
 ];
 
 const CREDENTIALS = [
-  { icon: BadgeCheck, title: "80G Certified", desc: "Tax-deductible receipts under Section 80G, continuously since 2012.", testid: "csr-credential-80g" },
+  { icon: ShieldCheck, title: "Indian Registered Non-Profit Organization", desc: "Responsible Charity Society — a registered Indian NGO.", testid: "csr-credential-registered" },
+  { icon: BadgeCheck, title: "80G Tax Deductible", desc: "Donations eligible for deduction under Section 80G of the Income Tax Act, 1961.", testid: "csr-credential-80g" },
   { icon: Building2, title: "CSR Approved", desc: "Structured CSR partnerships with board-ready reporting.", testid: "csr-credential-csr" },
-  { icon: FileCheck2, title: "Utilization Certificates", desc: "Formal utilization certificates for every contribution.", testid: "csr-credential-utilization" },
+  { icon: FileCheck2, title: "Sec 135 Compliance", desc: "CSR documentation aligned with Section 135 of the Companies Act.", testid: "csr-credential-sec135" },
+  { icon: Files, title: "Utilization Certificates", desc: "Formal utilization certificates for every contribution.", testid: "csr-credential-utilization" },
   { icon: FileBarChart2, title: "Customized Impact Reports", desc: "Direct impact reports on the scholars you support.", testid: "csr-credential-impact" },
-  { icon: FolderOpen, title: "Annual Reports", desc: "Full annual reports shared with every partner.", testid: "csr-credential-annual" },
-  { icon: ShieldCheck, title: "Registered Credentials", desc: "Responsible Charity Society — a registered Indian NGO.", testid: "csr-credential-registered" },
+  { icon: FolderOpen, title: "Annual Reports & Financials", desc: "Full annual reports and financials shared with every partner.", testid: "csr-credential-annual" },
 ];
 
 const inputCls =
@@ -178,7 +179,7 @@ const CsrPartners = () => (
     <section className="pb-24 lg:pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <Reveal><Eyebrow>Your Side, Made Easy</Eyebrow></Reveal>
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {CREDENTIALS.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.06}>
               <div data-testid={c.testid} className="h-full rounded-2xl bg-white border border-ink/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40">

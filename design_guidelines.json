@@ -1,64 +1,52 @@
 {
-  "project_name": "Responsible Charity Society - AimGame Community Centers",
-  "app_type": "nonprofit editorial website",
-  "color_theme": {
-    "palette_name": "Flame Orange + Leaf Green Editorial Archetype",
-    "primary": "#E8490F",
-    "primary_dark": "#C93B05",
-    "primary_soft": "#FDEBE2",
-    "secondary": "#166534",
-    "secondary_dark": "#0F4623",
-    "secondary_soft": "#E7F0EA",
-    "background": "#FAF8F5",
-    "card_background": "#FFFFFF",
-    "text_main": "#0F172A",
-    "text_muted": "#475569",
-    "accent_gold": "#D97706"
+  "theme": {
+    "archetype": "ORGANIC & EARTHY / INDIAN EDITORIAL NONPROFIT",
+    "mode": "light",
+    "primary_colors": {
+      "flame_orange": "#E8490F",
+      "flame_dark": "#C93B05",
+      "flame_soft": "#FDEBE2",
+      "deep_green": "#166534",
+      "green_dark": "#0F4623",
+      "green_soft": "#E7F0EA"
+    },
+    "neutral_colors": {
+      "sand_base": "#FAF8F5",
+      "sand_deep": "#F3EFEA",
+      "ink_dark": "#0F172A",
+      "ink_muted": "#475569"
+    }
   },
   "typography": {
-    "headings": {
-      "font_family": "Poppins, sans-serif",
-      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink",
-      "h2": "text-2xl sm:text-3xl lg:text-4xl font-semibold text-ink tracking-tight",
-      "h3": "text-xl sm:text-2xl font-semibold text-ink"
-    },
-    "body": {
-      "font_family": "Plus Jakarta Sans, sans-serif",
-      "base": "text-base text-ink/80 leading-relaxed",
-      "small": "text-sm text-ink-muted"
-    },
-    "mono": {
-      "font_family": "JetBrains Mono, monospace"
-    }
+    "font_family_display": "Poppins, sans-serif",
+    "font_family_body": "Plus Jakarta Sans, sans-serif",
+    "font_family_mono": "JetBrains Mono, monospace",
+    "headline_hero": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight",
+    "headline_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+    "subheading": "text-lg sm:text-xl font-medium",
+    "body_text": "text-base leading-relaxed text-ink-muted"
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "p-4, p-6, p-8, p-12, p-16, p-24",
+    "bento_grid": "MODE A: TETRIS GRID (col-span-full md:col-span-8 row-span-2, col-span-4, etc.)",
+    "padding_rules": "All containers with borders must have internal padding (p-6 or p-8) to avoid text collision."
   },
   "image_urls": {
-    "kolkata_center_1": "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGNsYXNzcm9vbSUyMGxlYXJuaW5nfGVufDB8fHx8MTc5MTgxMTkwM3ww&ixlib=rb-4.1.0&q=85",
-    "kolkata_center_2": "https://images.unsplash.com/photo-1627475312657-3752fa068473?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBjaGlsZHJlbiUyMHBsYXlpbmclMjBnYW1lcyUyMGdyb3VwfGVufDB8fHx8MTc5MTgxMTg5OHww&ixlib=rb-4.1.0&q=85",
-    "kolkata_center_3": "https://images.unsplash.com/photo-1764661441867-473a59a765bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA6OTV8MHwxfHNlYXJjaHwyfHx5b2dhJTIwY2xhc3MlMjBncm91cCUyMGluZGlhfGVufDB8fHx8MTc5MTgxMTkwM3ww&ixlib=rb-4.1.0&q=85",
-    "pune_center_1": "https://images.unsplash.com/photo-1637257526540-43d96c33fbe7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBraWRzJTIwYXJ0JTIwbXVzaWMlMjBjbGFzc3xlbnwwfHx8fDE3OTE4MTE5MDR8MA&ixlib=rb-4.1.0&q=85",
-    "pune_center_2": "https://images.unsplash.com/photo-1529209076408-5a115ec9f1c6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBjb21tdW5pdHklMjBtZWV0aW5nJTIwd29ya3Nob3AlMjBncm91cHxlbnwwfHx8fDE3OTE4MTE4OTl8MA&ixlib=rb-4.1.0&q=85",
-    "pune_center_3": "https://images.unsplash.com/photo-1551731409-43eb3e517a1a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBjb21tdW5pdHklMjBtZWV0aW5nJTIwd29ya3Nob3AlMjBncm91cHxlbnwwfHx8fDE3OTE4MTE4OTl8MA&ixlib=rb-4.1.0&q=85"
+    "intern_teaching": "https://images.unsplash.com/photo-1771577125646-b38ed7b14411?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjB2b2x1bnRlZXIlMjB0ZWFjaGluZyUyMGNoaWxkcmVuJTIwbWVudG9yfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
+    "intern_play": "https://images.unsplash.com/photo-1777732340202-1444ea7a8bfa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjB2b2x1bnRlZXIlMjBwbGF5aW5nJTIwYm9hcmQlMjBnYW1lJTIwY2hpbGRyZW4lMjBzcG9ydHN8ZW58MHx8fHwxNzkxODEyMzg0fDA&ixlib=rb-4.1.0&q=85",
+    "intern_classroom": "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHx0dXRvcmluZyUyMG1lbnRvcmluZyUyMHNlc3Npb24lMjBJbmRpYSUyMGNoaWxkcmVuJTIwY2xhc3Nyb29tfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85"
   },
-  "layout_and_structure": {
-    "page_title": "Our Community Centers",
-    "hero_section": "Editorial warm header featuring Kolkata & Pune center statistics, dot-grid motif, and mission callout.",
-    "center_sections": {
-      "kolkata": {
-        "name": "Kolkata Community Hub",
-        "description": "After-school tutoring, board games, yoga, and youth development programs in Kolkata.",
-        "photos": ["kolkata_center_1", "kolkata_center_2", "kolkata_center_3"]
-      },
-      "pune": {
-        "name": "Pune Innovation & Learning Center",
-        "description": "Music & arts education, community workshops, and parent engagement meetings in Pune.",
-        "photos": ["pune_center_1", "pune_center_2", "pune_center_3"]
-      }
-    }
+  "component_guidelines": {
+    "header": "Sticky glassmorphism header with backdrop-blur-md bg-sand/80 z-50",
+    "buttons": "Pill-shaped or rounded-lg with flame-orange primary fill and deep-green accent hover states",
+    "cards": "Subtle border with 1px stroke (border-ink/10), p-6 padding, hover translate animation",
+    "interactivity": "Include data-testid on all interactive controls (buttons, navigation links, filters)"
   },
-  "instructions_to_main_agent": [
-    "Render the newly specified 6 photos on the OUR COMMUNITY CENTERS page with dignified captions and group-focused framing.",
-    "Ensure all interactive elements have data-testid attributes (e.g., data-testid='kolkata-center-card', data-testid='pune-center-card').",
-    "Maintain high contrast ratios for text accessibility (WCAG AA standard).",
-    "Do not use photo-1574097656146 which is dead."
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Do NOT use transparent backgrounds for headers without blur",
+    "Use 2-3x generous padding and clean contrast",
+    "Ensure all interactive elements have data-testid attributes",
+    "Use live verified Unsplash URLs for internship page photos",
+    "Maintain the orange (#E8490F) + green (#166534) + sand (#FAF8F5) editorial palette"
   ]
 }

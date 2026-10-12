@@ -21,7 +21,7 @@ const MENU = [
 
 const CERTIFICATIONS = [
   [ShieldCheck, "INDIAN REGISTERED NON-PROFIT ORGANIZATION"],
-  [BadgeCheck, "80G CERTIFIED"],
+  [BadgeCheck, "80G TAX DEDUCTIBLE"],
   [Building2, "CSR APPROVED"],
   [FileCheck2, "SEC 135 COMPLIANCE"],
 ];
@@ -118,7 +118,12 @@ const Footer = () => (
         </div>
       </div>
 
-      <p data-testid="footer-disclaimer" className="mt-6 text-[11px] text-sand/40 leading-relaxed max-w-4xl">
+      <p data-testid="footer-80g-note" className="mt-8 text-[11px] text-sand/50 leading-relaxed max-w-4xl">
+        Donations to Responsible Charity Society are eligible for deduction under Section 80G of the Income
+        Tax Act, 1961.
+      </p>
+
+      <p data-testid="footer-disclaimer" className="mt-4 text-[11px] text-sand/40 leading-relaxed max-w-4xl">
         Disclaimer & Terms of Use: This website and all its content are the property of Responsible Charity
         Society and may not be reproduced without written permission. Information here is provided for general
         awareness; donation terms, 80G receipts and CSR documentation are issued in accordance with applicable

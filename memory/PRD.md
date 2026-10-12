@@ -84,6 +84,10 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 
 - NEW top-level page OUR COMMUNITY CENTERS (/community-centers): standardized header/subheader + new day-to-day description, Kolkata (01, larger) and Pune (02) sections with 3 curated center-scene photos each + album buttons (Drive folders shared by user are not public — real center photos pending); nav tab added after OUR STORY; footer menu updated; navbar tightened (13px, nowrap) so all 8 tabs fit one row
 
+- Internships: header now "Show Up. Play. Teach. Repeat!", new 4-paragraph description copy, 3 curated intern-themed photos (intern teaching/play/classroom) — Drive folder not public, real photos pending
+- CSR Partners: credentials strip now 7 items per spec (Indian Registered Non-Profit Organization, 80G Tax Deductible, CSR Approved, Sec 135 Compliance, Utilization Certificates, Customized Impact Reports, Annual Reports & Financials)
+- Footer: "80G CERTIFIED" → "80G TAX DEDUCTIBLE"; new 80G eligibility line (Section 80G, Income Tax Act 1961 — Reg. No. and validity dates pending from user)
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
