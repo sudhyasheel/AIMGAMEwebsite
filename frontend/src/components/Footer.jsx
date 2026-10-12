@@ -13,7 +13,6 @@ const MENU = [
   ["The Work", "/program"],
   ["The Results", "/transformations"],
   ["Our Story", "/about"],
-  ["Community Centers", "/community-centers"],
   ["Internships", "/internships"],
   ["CSR Partners", "/csr-partners"],
   ["Let's Talk", "/contact"],

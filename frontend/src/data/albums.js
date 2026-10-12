@@ -17,12 +17,9 @@ export const ALBUM_LINKS = [
   { page: "our-work", block: "parents", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   { page: "our-work", block: "parents", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   { page: "our-work", block: "parents", label: "See more photos", city: "Mumbai", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  // OUR STORY — Our Community Centers
-  { page: "our-story", block: "community-centers", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  { page: "our-story", block: "community-centers", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  // COMMUNITY CENTERS page
-  { page: "community-centers", block: "kolkata", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  { page: "community-centers", block: "pune", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  // OUR STORY — Our Community Centers (per-center)
+  { page: "our-story", block: "kolkata", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-story", block: "pune", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
 ];
 
 // Per spec: one button per city with its own verified album, always Kolkata → Pune → Mumbai;

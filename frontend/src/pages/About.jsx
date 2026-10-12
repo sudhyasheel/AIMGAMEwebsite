@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/Reveal";
+import { Reveal, Eyebrow } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 import { MapPin } from "lucide-react";
 
@@ -26,8 +26,46 @@ const STORY_TEXT = [
 ];
 
 const CENTERS = [
-  { city: "Kolkata", note: "Our larger center — the heart of the program's day-to-day life.", testid: "center-kolkata" },
-  { city: "Pune", note: "Our second center, home to the same day-to-day rhythm.", testid: "center-pune" },
+  {
+    id: "kolkata",
+    index: "01",
+    city: "Kolkata",
+    tag: "Our larger center",
+    photos: [
+      {
+        src: "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&q=85",
+        alt: "Students in an after-school tutoring session at the Kolkata community center",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1627475312657-3752fa068473?crop=entropy&cs=srgb&fm=jpg&q=85",
+        alt: "Children playing indoor games together at the Kolkata community center",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1764661441867-473a59a765bc?crop=entropy&cs=srgb&fm=jpg&q=85",
+        alt: "A group class in session at the Kolkata community center",
+      },
+    ],
+  },
+  {
+    id: "pune",
+    index: "02",
+    city: "Pune",
+    tag: "Our second center",
+    photos: [
+      {
+        src: "https://images.unsplash.com/photo-1637257526540-43d96c33fbe7?crop=entropy&cs=srgb&fm=jpg&q=85",
+        alt: "Children in a music and art class at the Pune community center",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1529209076408-5a115ec9f1c6?crop=entropy&cs=srgb&fm=jpg&q=85",
+        alt: "A group activity in the hall at the Pune community center",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1551731409-43eb3e517a1a?crop=entropy&cs=srgb&fm=jpg&q=85",
+        alt: "A parents and community meeting at the Pune community center",
+      },
+    ],
+  },
 ];
 
 const About = () => (
@@ -101,30 +139,52 @@ const About = () => (
           </Reveal>
           <Reveal delay={0.14}>
             <p data-testid="centers-description" className="mt-6 max-w-3xl text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
-              Our community centers are where the program lives day to day: extracurricular activities, parent
-              workshops, supply distribution, tutor sessions, visitor tours. A second home for our students,
+              Our community centers are where the program lives day to day. After school, students come for
+              tutoring, music classes, yoga and games. Parents come for meetings and workshops. Supplies are
+              distributed here, and visitors are welcome by arrangement. It's a second home for our students,
               not just a place they're required to be.
             </p>
           </Reveal>
-          <div className="mt-10 grid sm:grid-cols-2 gap-6 max-w-4xl">
-            {CENTERS.map((c, i) => (
-              <Reveal key={c.city} delay={0.1 + i * 0.08}>
-                <div
-                  data-testid={c.testid}
-                  className="h-full rounded-3xl bg-white border border-ink/10 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40"
-                >
-                  <span className="h-12 w-12 rounded-2xl bg-leaf-soft text-leaf inline-flex items-center justify-center">
-                    <MapPin className="h-5 w-5" />
-                  </span>
-                  <p className="mt-5 font-display font-extrabold text-2xl tracking-tight">{c.city}</p>
-                  <p className="mt-2 text-sm text-ink-muted leading-relaxed">{c.note}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
           <Reveal delay={0.2}>
-            <AlbumButtons page="our-story" block="community-centers" align="start" />
+            <p className="mt-6 text-ink-muted text-base sm:text-lg">
+              Two centers today: <span className="font-bold text-ink">Kolkata</span>, our larger center, and{" "}
+              <span className="font-bold text-ink">Pune</span>.
+            </p>
           </Reveal>
+
+          {CENTERS.map((c) => (
+            <div key={c.id} data-testid={`center-section-${c.id}`} className="mt-16">
+              <Reveal>
+                <Eyebrow>{`Center ${c.index} · ${c.tag}`}</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.06}>
+                <h3 className="mt-3 flex items-center gap-3 font-display font-extrabold tracking-tight text-2xl sm:text-3xl text-leaf uppercase">
+                  <MapPin className="h-6 w-6 text-flame shrink-0" />
+                  {c.city}
+                </h3>
+              </Reveal>
+              <div className="mt-8 grid sm:grid-cols-3 gap-4 sm:gap-6">
+                {c.photos.map((p, i) => (
+                  <Reveal key={p.src} delay={0.05 + i * 0.06}>
+                    <div
+                      data-testid={`center-photo-${c.id}-${i}`}
+                      className="group aspect-[4/3] overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_24px_50px_-28px_rgba(15,23,42,0.25)]"
+                    >
+                      <img
+                        src={p.src}
+                        alt={p.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+              <Reveal delay={0.12}>
+                <AlbumButtons page="our-story" block={c.id} align="start" />
+              </Reveal>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -11,7 +11,6 @@ import Transformations from "@/pages/Transformations";
 import Partner from "@/pages/Partner";
 import CsrPartners from "@/pages/CsrPartners";
 import About from "@/pages/About";
-import Centers from "@/pages/Centers";
 import Contact from "@/pages/Contact";
 import Internships from "@/pages/Internships";
 import Admin from "@/pages/Admin";
@@ -56,7 +55,6 @@ function App() {
           <Route path="/partner" element={<Partner />} />
           <Route path="/csr-partners" element={<CsrPartners />} />
           <Route path="/about" element={<About />} />
-          <Route path="/community-centers" element={<Centers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/internships" element={<Internships />} />
           <Route path="/admin" element={<Admin />} />

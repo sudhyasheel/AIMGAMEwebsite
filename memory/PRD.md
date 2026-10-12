@@ -88,6 +88,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - CSR Partners: credentials strip now 7 items per spec (Indian Registered Non-Profit Organization, 80G Tax Deductible, CSR Approved, Sec 135 Compliance, Utilization Certificates, Customized Impact Reports, Annual Reports & Financials)
 - Footer: "80G CERTIFIED" → "80G TAX DEDUCTIBLE"; new 80G eligibility line (Section 80G, Income Tax Act 1961 — Reg. No. and validity dates pending from user)
 
+- Community Centers merged INTO Our Story page (after staff photos + story text): full description copy, Center 01 Kolkata / Center 02 Pune sections with 3 photos each + per-center album buttons; standalone /community-centers page, nav tab, route and footer link removed
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
