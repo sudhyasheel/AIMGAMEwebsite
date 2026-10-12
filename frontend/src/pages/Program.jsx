@@ -244,6 +244,24 @@ const PillarSection = ({ pillar }) => (
   </section>
 );
 
+const AlbumButtons = ({ cities, testidPrefix, align = "center" }) => (
+  <div className={`mt-6 flex flex-wrap gap-3 ${align === "center" ? "justify-center" : "justify-start"}`}>
+    {cities.map((city) => (
+      <a
+        key={city}
+        href={FB_ALBUMS}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-testid={`${testidPrefix}-album-${city.toLowerCase()}`}
+        className="group inline-flex items-center gap-2 rounded-full border-2 border-flame/40 px-6 py-3 font-bold text-sm text-flame transition-all duration-300 hover:bg-flame hover:text-white hover:border-flame"
+      >
+        {city} albums
+        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </a>
+    ))}
+  </div>
+);
+
 const EducationPartners = () => (
   <section data-testid="education-partners-band" className="py-16 sm:py-20 border-t border-ink/10">
     <div className="max-w-5xl mx-auto px-4 sm:px-8">
@@ -254,9 +272,11 @@ const EducationPartners = () => (
             The Schools & Colleges Behind Our Scholars
           </h2>
           <p className="mt-4 text-ink-muted max-w-2xl mx-auto leading-relaxed">
-            English-medium schools and colleges across Kolkata and Pune open their doors to every AimGame
-            scholar.
+            Our scholars study at accredited private schools, colleges and universities with years of service
+            across India. These institutions are pillars of their communities, and they understand our
+            students' backgrounds and challenges. Together, year after year, we help every scholar succeed.
           </p>
+          <AlbumButtons cities={["Kolkata", "Pune"]} testidPrefix="edupartners" />
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
               <div
@@ -375,9 +395,14 @@ const Program = () => {
             </Reveal>
             <Reveal delay={0.14}>
               <p className="mt-6 text-leaf-dark/80 text-lg leading-relaxed max-w-xl">
-                Every scholar's progress is shared with a family. Parents join workshops at our centers,
-                receive health support of their own, and stay involved through every milestone.
+                Parents are with us from day one. They're kept in the loop on every decision, visited at home
+                by our team, and welcome at our centers for workshops and updates on their child's grades.
+                Healthcare support extends to them too. When a family is part of the program, what starts in
+                the classroom carries on at home.
               </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <AlbumButtons cities={["Kolkata", "Pune", "Mumbai"]} testidPrefix="parents" align="start" />
             </Reveal>
           </div>
           <Reveal delay={0.1}>
