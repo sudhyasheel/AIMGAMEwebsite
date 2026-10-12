@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight, GraduationCap } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 
 const FB_ALBUMS = "https://www.facebook.com/responsiblecharity/photos_albums";
@@ -12,13 +12,7 @@ const IMG = {
   fieldtrip: "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBjaGlsZHJlbiUyMGVkdWNhdGlvbiUyMGNsYXNzcm9vbSUyMHN0dWR5JTIwc3BvcnRzJTIwZmllbGR0cmlwfGVufDB8fHx8MTc5MTMwOTc1OXww&ixlib=rb-4.1.0&q=85",
   healthFamily: "https://images.unsplash.com/photo-1680778467822-6097c2bd8232?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxJbmRpYW4lMjBjb21tdW5pdHklMjBoZWFsdGglMjBjaGVja3VwJTIwd29ya3Nob3AlMjBkaXN0cmlidXRpb24lMjBzdXBwbGllc3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
   healthCheckup: "https://images.unsplash.com/photo-1680759291617-2923935d803a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjBjb21tdW5pdHklMjBoZWFsdGglMjBjaGVja3VwJTIwd29ya3Nob3AlMjBkaXN0cmlidXRpb24lMjBzdXBwbGllc3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
-  healthPlan: "https://images.unsplash.com/photo-1680759291357-9e1b771323d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjBjb21tdW5pdHklMjBoZWFsdGglMjBjaGVja3VwJTIwd29ya3Nob3AlMjBkaXN0cmlidXRpb24lMjBzdXBwbGllc3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
-  healthSupplies: "https://images.unsplash.com/photo-1778864874969-16e2432b2709?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBjb21tdW5pdHklMjBoZWFsdGglMjBjaGVja3VwJTIwd29ya3Nob3AlMjBkaXN0cmlidXRpb24lMjBzdXBwbGllc3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
   healthHygiene: "https://images.unsplash.com/photo-1572847748080-bac263fae977?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGxlYXJuaW5nJTIwY2xhc3Nyb29tJTIwbm90ZWJvb2t8ZW58MHx8fHwxNzg4OTM1NzIzfDA&ixlib=rb-4.1.0&q=85",
-  healthWorkshop: "https://images.unsplash.com/photo-1719159381916-062fa9f435a6?crop=entropy&cs=srgb&fm=jpg&q=85",
-  careerCounseling: "https://images.unsplash.com/photo-1714976694781-216bfc30214e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjB5b3VuZyUyMHByb2Zlc3Npb25hbCUyMG9mZmljZSUyMGRlc2slMjBjYXJlZXIlMjB3b3Jrc2hvcCUyMGludGVydmlld3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
-  careerCv: "https://images.unsplash.com/photo-1686771416317-b964cc4e0002?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3NzF8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjB5b3VuZyUyMHByb2Zlc3Npb25hbCUyMG9mZmljZSUyMGRlc2slMjBjYXJlZXIlMjB3b3Jrc2hvcCUyMGludGVydmlld3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
-  careerInterview: "https://images.unsplash.com/photo-1686771416537-bf4a4f263d88?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3NzF8MHwxfHNlYXJjaHwyfHxJbmRpYW4lMjB5b3VuZyUyMHByb2Zlc3Npb25hbCUyMG9mZmljZSUyMGRlc2slMjBjYXJlZXIlMjB3b3Jrc2hvcCUyMGludGVydmlld3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
   careerInternship: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3NzF8MHwxfHNlYXJjaHxfHxJbmRpYW4lMjB5b3VuZyUyMHByb2Zlc3Npb25hbCUyMG9mZmljZSUyMGRlc2slMjBjYXJlZXIlMjB3b3Jrc2hvcCUyMGludGVydmlld3xlbnwwfHx8fDE3OTEzMDk3NTl8MA&ixlib=rb-4.1.0&q=85",
   careerWorkshop: "https://images.unsplash.com/photo-1775113586139-b583cc93517f?crop=entropy&cs=srgb&fm=jpg&q=85",
   parentsWorkshop: "https://images.unsplash.com/photo-1680759291088-d3e935226178?crop=entropy&cs=srgb&fm=jpg&q=85",
@@ -90,28 +84,10 @@ const PILLARS = [
         alt: "A health check-up day at a community center",
       },
       {
-        title: "PREVENTIVE CARE PLANS",
-        text: "Plans built around each family's needs, aimed at preventing illness before it becomes an emergency.",
-        img: IMG.healthPlan,
-        alt: "A staff member walking a parent through a care plan",
-      },
-      {
-        title: "MEDICINES & MEDICAL PROCEDURES",
-        text: "Prescriptions, treatments and small surgeries paid for, so no family has to choose between medical care and everything else.",
-        img: IMG.healthSupplies,
-        alt: "Medicine and care supplies stocked at a community center",
-      },
-      {
         title: "HYGIENE SUPPLIES & SANITARY NAPKINS",
         text: "Hygiene essentials are distributed and stocked at our centers all year, so girls never miss school.",
         img: IMG.healthHygiene,
         alt: "Schoolgirls together at a supply distribution day",
-      },
-      {
-        title: "HEALTH WORKSHOPS",
-        text: "Workshops for students and parents on the practical habits that keep families well.",
-        img: IMG.healthWorkshop,
-        alt: "A health workshop in session with a group of parents",
       },
     ],
     closing: "…and more.",
@@ -123,24 +99,6 @@ const PILLARS = [
     title: "Employment",
     intro: "The finish line isn't graduation. It's the first day on the job.",
     blocks: [
-      {
-        title: "CAREER COUNSELING",
-        text: "One-on-one guidance that helps each scholar choose a path that fits their strengths, well before college ends.",
-        img: IMG.careerCounseling,
-        alt: "A counselor in conversation with a student",
-      },
-      {
-        title: "CV & PRESENTATION",
-        text: "Hands-on help building a CV that shows what a scholar has achieved, and presenting themselves with confidence.",
-        img: IMG.careerCv,
-        alt: "A scholar working on documents with a mentor",
-      },
-      {
-        title: "INTERVIEW PREPARATION",
-        text: "Practice rounds and feedback, so the first real interview isn't the first interview.",
-        img: IMG.careerInterview,
-        alt: "A practice interview session across a table",
-      },
       {
         title: "INTERNSHIPS THROUGH OUR NETWORK",
         text: "Introductions to friends and contacts in our network who open the door to real, on-the-job experience.",
@@ -268,18 +226,50 @@ const PillarSection = ({ pillar }) => (
       </div>
 
       <Reveal delay={0.1}>
-        <p className="mt-10 text-ink-muted">
-          {pillar.closing}{" "}
-          <a
-            href={FB_ALBUMS}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid={`album-link-${pillar.id}`}
-            className="inline-flex items-center gap-1.5 font-bold text-flame transition-colors hover:text-flame-dark"
-          >
-            {pillar.albumLabel} <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </p>
+        <p className="mt-10 text-ink-muted">{pillar.closing}</p>
+        <a
+          href={FB_ALBUMS}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid={`album-link-${pillar.id}`}
+          className="group mt-4 inline-flex items-center gap-2 rounded-full border-2 border-flame/40 px-6 py-3 font-bold text-sm text-flame transition-all duration-300 hover:bg-flame hover:text-white hover:border-flame"
+        >
+          {pillar.albumLabel}
+          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+      </Reveal>
+    </div>
+  </section>
+);
+
+const EducationPartners = () => (
+  <section data-testid="education-partners-band" className="py-16 sm:py-20 border-t border-ink/10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-8">
+      <Reveal>
+        <div className="rounded-3xl bg-white border border-ink/10 p-10 sm:p-14 text-center">
+          <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">EDUCATION PARTNERS</p>
+          <h2 className="mt-4 font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-leaf uppercase">
+            The Schools & Colleges Behind Our Scholars
+          </h2>
+          <p className="mt-4 text-ink-muted max-w-2xl mx-auto leading-relaxed">
+            English-medium schools and colleges across Kolkata and Pune open their doors to every AimGame
+            scholar.
+          </p>
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                data-testid={`education-partner-slot-${i}`}
+                className="rounded-2xl border border-dashed border-ink/20 bg-sand px-6 py-8 flex flex-col items-center gap-3"
+              >
+                <GraduationCap className="h-6 w-6 text-leaf/50" />
+                <span className="font-mono text-[10px] tracking-[0.2em] text-ink-muted font-semibold">
+                  PARTNER LOGO
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </Reveal>
     </div>
   </section>
@@ -365,6 +355,8 @@ const Program = () => {
           <PillarSection key={p.id} pillar={p} />
         ))}
       </div>
+
+      <EducationPartners />
 
       <section data-testid="parents-band" className="bg-leaf-soft border-y border-leaf/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-16 sm:py-20 grid lg:grid-cols-2 gap-10 items-center">

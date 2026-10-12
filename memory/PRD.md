@@ -73,6 +73,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Footer: real social links (FB/IG/LinkedIn/YouTube @responsiblecharity, new tab), 4 certification items, full 7-link menu repeated, disclaimer & terms line
 - Footer testid regex fixed to handle digits/apostrophes
 
+- THE WORK restructure (v2): Education keeps 6 blocks (3x2); Healthcare reduced to 3 blocks in one row (family care, check-ups, hygiene); Employment reduced to 3 blocks in one row (internships+partner link, real job connections, industry workshops+partner link); album links restyled as buttons; NEW mid-width Education Partners band (6 logo slots — PLACEHOLDERS awaiting school/college logos) between Employment and Parents band
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
