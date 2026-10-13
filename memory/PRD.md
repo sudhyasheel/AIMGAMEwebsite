@@ -90,6 +90,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 
 - Community Centers merged INTO Our Story page (after staff photos + story text): full description copy, Center 01 Kolkata / Center 02 Pune sections with 3 photos each + per-center album buttons; standalone /community-centers page, nav tab, route and footer link removed
 
+- Homepage hero graphic is now a two-phase animation: 12 real game-competition photos (sliced from user-uploaded grid into hero-grid-1..12.jpg, 300px tiles) flip in one by one (rotateY, 0.12s stagger), hold 5 seconds, then the timeline banner wipes in left-to-right (clip-path inset, 1.2s) with the 5 milestone hotspot links intact; reduced-motion skips straight to the banner
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

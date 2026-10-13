@@ -1,32 +1,83 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Reveal, MaskedLine } from "@/components/Reveal";
 import { MILESTONES } from "@/data/content";
 
-const HeroGraphic = () => (
-  <div data-testid="hero-journey-wrap" className="mt-10">
-    <div className="overflow-x-auto no-scrollbar">
-      <div className="relative min-w-[900px] sm:min-w-0">
-        <img
-          src="/assets/hero-timeline.jpg"
-          alt="The AimGame journey: Year 1 Start Program and School Enrollment, Year 3 Conversational English Unlocked, Year 6 Graduates Class 10, Year 8 High School Graduation, Year 13-15 College Graduate"
-          data-testid="hero-timeline-graphic"
-          className="w-full h-auto rounded-2xl"
-        />
-        <div className="absolute inset-0 flex">
-          {MILESTONES.map((m, i) => (
-            <Link
-              key={m.title}
-              to={`/program?m=${i}`}
-              data-testid={`hero-journey-zone-${i}`}
-              aria-label={`Explore ${m.title} on the program page`}
-              className="block flex-1"
-            />
-          ))}
+const GRID_PHOTOS = Array.from({ length: 12 }, (_, i) => `/assets/hero-grid-${i + 1}.jpg`);
+const FLIP_STAGGER = 0.12;
+const FLIP_DURATION = 0.5;
+const HOLD_MS = 5000;
+
+const HeroGraphic = () => {
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setShowBanner(true);
+      return;
+    }
+    const flipDone = (GRID_PHOTOS.length - 1) * FLIP_STAGGER * 1000 + FLIP_DURATION * 1000;
+    const t = setTimeout(() => setShowBanner(true), flipDone + HOLD_MS);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <div data-testid="hero-journey-wrap" className="mt-10">
+      <div className="overflow-x-auto no-scrollbar">
+        <div className="relative min-w-[900px] sm:min-w-0">
+          <div className="relative aspect-[3/1] rounded-2xl overflow-hidden">
+            <div data-testid="hero-grid-flip" className="absolute inset-0 grid grid-cols-6 grid-rows-2 gap-1.5 sm:gap-2">
+              {GRID_PHOTOS.map((src, i) => (
+                <motion.div
+                  key={src}
+                  data-testid={`hero-grid-photo-${i}`}
+                  className="relative overflow-hidden rounded-lg bg-white"
+                  initial={{ rotateY: 90, opacity: 0 }}
+                  animate={{ rotateY: 0, opacity: 1 }}
+                  transition={{ delay: i * FLIP_STAGGER, duration: FLIP_DURATION, ease: "easeOut" }}
+                  style={{ transformPerspective: 600, backfaceVisibility: "hidden" }}
+                >
+                  <img
+                    src={src}
+                    alt={`AimGame game competition moment ${i + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              className="absolute inset-0 z-10"
+              initial={false}
+              animate={showBanner ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
+              transition={{ duration: 1.2, ease: [0.77, 0, 0.18, 1] }}
+            >
+              <img
+                src="/assets/hero-timeline.jpg"
+                alt="The AimGame journey: Year 1 Start Program and School Enrollment, Year 3 Conversational English Unlocked, Year 6 Graduates Class 10, Year 8 High School Graduation, Year 13-15 College Graduate"
+                data-testid="hero-timeline-graphic"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 flex">
+                {MILESTONES.map((m, i) => (
+                  <Link
+                    key={m.title}
+                    to={`/program?m=${i}`}
+                    data-testid={`hero-journey-zone-${i}`}
+                    aria-label={`Explore ${m.title} on the program page`}
+                    className="block flex-1"
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Hero = () => (
   <section data-testid="hero-section" className="relative overflow-hidden pt-44 sm:pt-60 pb-24 lg:pb-32 grain">
