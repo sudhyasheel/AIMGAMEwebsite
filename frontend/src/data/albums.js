@@ -14,9 +14,9 @@ export const ALBUM_LINKS = [
   { page: "our-work", block: "education-partners", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   { page: "our-work", block: "education-partners", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   // THE WORK — Parents as Partners band
-  { page: "our-work", block: "parents", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  { page: "our-work", block: "parents", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  { page: "our-work", block: "parents", label: "See more photos", city: "Mumbai", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-work", block: "parents", label: "KOLKATA", city: "Kolkata", url: "https://www.facebook.com/media/set/?set=a.116071365070581&type=3", verified: true, checked: CHECKED },
+  { page: "our-work", block: "parents", label: "PUNE", city: "Pune", url: "https://www.facebook.com/media/set/?set=a.1468170039860700&type=3", verified: true, checked: CHECKED },
+  { page: "our-work", block: "parents", label: "MUMBAI", city: "Mumbai", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3", verified: true, checked: CHECKED },
   // OUR STORY — Our Community Centers (per-center)
   { page: "our-story", block: "kolkata", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   { page: "our-story", block: "pune", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
@@ -32,5 +32,5 @@ export const getAlbumButtons = (page, block) => {
     if (rows.length > 1) return [{ label: "See more photos", url: urls[0], city: null }];
     return [{ label: rows[0].label, url: urls[0], city: rows[0].city }];
   }
-  return rows.map((r) => ({ label: r.city ? `${r.city} albums` : r.label, url: r.url, city: r.city }));
+  return rows.map((r) => ({ label: r.label || (r.city ? `${r.city} albums` : "See more photos"), url: r.url, city: r.city }));
 };

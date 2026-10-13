@@ -109,6 +109,11 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Education Partners band: first 2 real logos in (The Modern Academy, DY Patil School of Hospitality & Tourism Studies Navi Mumbai), 4 placeholder slots remain
 - All 12 pillar blocks now use real RC photos
 
+- Parents as Partners: real group-meeting photo; 3 city album buttons (KOLKATA/PUNE/MUMBAI) with user-provided FB album URLs via the link index; "See more photos" removed
+- Education Partners: all 6 real logos in (Modern Academy, DY Patil Hospitality, Indira PGDM, South City International, IHM Hyderabad, I.P. Memorial)
+- Homepage: new description copy ("Created by Responsible Charity Society..."), grid hold shortened to 2.5s
+- Nav menu font bumped to 14px
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

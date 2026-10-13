@@ -54,7 +54,7 @@ const Navbar = () => {
               end={l.end}
               data-testid={l.id}
               className={({ isActive }) =>
-                `whitespace-nowrap text-[13px] font-semibold tracking-normal transition-colors duration-300 ${
+                `whitespace-nowrap text-sm font-semibold tracking-normal transition-colors duration-300 ${
                   isActive ? "text-leaf underline underline-offset-8 decoration-2 decoration-flame" : "text-leaf/70 hover:text-leaf"
                 }`
               }

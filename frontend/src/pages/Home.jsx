@@ -7,7 +7,7 @@ import { MILESTONES } from "@/data/content";
 const GRID_PHOTOS = Array.from({ length: 12 }, (_, i) => `/assets/hero-grid-${i + 1}.jpg`);
 const FLIP_STAGGER = 0.12;
 const FLIP_DURATION = 1.0;
-const HOLD_MS = 5000;
+const HOLD_MS = 2500;
 const EXIT_COL_STAGGER = 0.45;
 const EXIT_DURATION = 0.8;
 const EXIT_SWEEP = 5 * EXIT_COL_STAGGER + EXIT_DURATION;
@@ -109,10 +109,10 @@ const Hero = () => (
 
       <Reveal delay={0.28}>
         <p data-testid="hero-description" className="mt-8 text-2xl sm:text-3xl leading-relaxed font-semibold text-leaf">
-          Created and managed by Responsible Charity Society, AimGame uses competitive play to select children
-          from slum communities in India for an immersive 15-year scholarship program, providing access to
-          quality education, healthcare, and employment support through college graduation with a clear path
-          to poverty eradication in one generation.
+          Created by Responsible Charity Society, AimGame is a 15-year scholarship program for
+          underprivileged children in India. Students are selected through structured competitions in a
+          variety of games and supported with education, healthcare, and employment assistance through
+          college graduation, achieving poverty eradication in one generation.
         </p>
       </Reveal>
     </div>

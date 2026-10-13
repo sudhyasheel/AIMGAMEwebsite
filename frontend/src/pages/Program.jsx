@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, ArrowRight, GraduationCap, Facebook } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Facebook } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 
@@ -299,6 +299,10 @@ const PillarSection = ({ pillar }) => (
 const PARTNER_LOGOS = [
   { src: "/assets/partner-logo-1.png", name: "The Modern Academy" },
   { src: "/assets/partner-logo-2.jpg", name: "D Y Patil School of Hospitality & Tourism Studies, Navi Mumbai" },
+  { src: "/assets/partner-logo-3.png", name: "Indira Institute of Management PGDM" },
+  { src: "/assets/partner-logo-4.png", name: "South City International School" },
+  { src: "/assets/partner-logo-5.png", name: "IHM Institute of Hotel Management Hyderabad" },
+  { src: "/assets/partner-logo-6.png", name: "I.P. Memorial School, Liluah Howrah" },
 ];
 
 const EducationPartners = () => (
@@ -324,18 +328,6 @@ const EducationPartners = () => (
                 className="rounded-2xl border border-ink/10 bg-white px-6 py-6 flex items-center justify-center"
               >
                 <img src={l.src} alt={`${l.name} logo`} className="h-20 w-full object-contain" />
-              </div>
-            ))}
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                data-testid={`education-partner-slot-${i + 2}`}
-                className="rounded-2xl border border-dashed border-ink/20 bg-sand px-6 py-8 flex flex-col items-center justify-center gap-3"
-              >
-                <GraduationCap className="h-6 w-6 text-leaf/50" />
-                <span className="font-mono text-[10px] tracking-[0.2em] text-ink-muted font-semibold">
-                  PARTNER LOGO
-                </span>
               </div>
             ))}
           </div>
@@ -456,8 +448,8 @@ const Program = () => {
           <Reveal delay={0.1}>
             <div className="rounded-3xl overflow-hidden border border-leaf/15 shadow-[0_30px_60px_-30px_rgba(15,70,35,0.4)] aspect-[4/3]">
               <img
-                src={IMG.parentsWorkshop}
-                alt="Parents gathered for a group workshop at a community center"
+                src="/assets/parents-meeting.jpg"
+                alt="Parents gathered for a group meeting with the Responsible Charity Society team"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
