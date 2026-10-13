@@ -102,6 +102,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - OUR WORK blocks: removed 01.1 numbering; real uploaded photos in Education blocks 1-4 (edu-1 game, edu-2 school, edu-3 tuitions, edu-4 violin); per-block album pill buttons with Facebook icon + click tracking: Game Competitions NATIONAL, Quality Schools KOLKATA+PUNE, Tuitions NATIONAL, Music NATIONAL, PE NATIONAL, Field Trips KOLKATA+MUMBAI+PUNE (exact user-provided FB media-set URLs)
 - Footer certification text 40% smaller (12px, icons 20px to match)
 
+- Real RC photos now in all Education blocks (edu-1..6: game, school, tuitions, violin, PE yoga, field trip bus) and all Healthcare blocks (health-1 workshop, health-2 check-up, health-3 hygiene distribution); Healthcare blocks got KOLKATA+PUNE album pills (workshops album + Pune album) per user URLs
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

@@ -66,8 +66,8 @@ const PILLARS = [
       {
         title: "PHYSICAL EDUCATION",
         text: "Sports and fitness that build healthy bodies and teamwork.",
-        img: IMG.sports,
-        alt: "Children in a group sports session",
+        img: "/assets/edu-5.jpg",
+        alt: "A yoga and fitness session with scholars at a community center",
         albums: [
           { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1704141059596929&type=3" },
         ],
@@ -75,8 +75,8 @@ const PILLARS = [
       {
         title: "FIELD TRIPS & MORE",
         text: "Outings and movie days that show children a world bigger than their neighborhood.",
-        img: IMG.fieldtrip,
-        alt: "A group of schoolchildren on an outing",
+        img: "/assets/edu-6.jpg",
+        alt: "Scholars and mentors on a field trip in front of the tour bus",
         albums: [
           { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.410205948990453&type=3" },
           { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.2062621347082230&type=3" },
@@ -96,20 +96,32 @@ const PILLARS = [
       {
         title: "WORKSHOPS & PREVENTION PLANS",
         text: "Workshops and personalized prevention plans that teach families how to stay healthy and stop illness before it becomes an emergency.",
-        img: IMG.healthWorkshop,
-        alt: "A health workshop in session with a group of parents",
+        img: "/assets/health-1.jpg",
+        alt: "A health workshop in session for parents at a community center",
+        albums: [
+          { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.409889655688749&type=3" },
+          { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495728567104857&type=3" },
+        ],
       },
       {
         title: "DIAGNOSIS, CHECK-UPS, MEDICINES & PROCEDURES",
         text: "Regular check-ups, treatments, and small surgeries for every scholar and their parents, so no family has to choose between healthcare and everything else.",
-        img: IMG.healthCheckup,
-        alt: "A health check-up day at a community center",
+        img: "/assets/health-2.jpg",
+        alt: "A doctor examining a scholar during a check-up day",
+        albums: [
+          { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.409889655688749&type=3" },
+          { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495728567104857&type=3" },
+        ],
       },
       {
         title: "SANITARY NAPKINS & GENERAL HYGIENE",
         text: "Our quarterly hygiene packages and sanitary pad distribution keep daily essentials from becoming a luxury, protecting health and dignity for our students and the women in their communities.",
-        img: IMG.healthHygiene,
-        alt: "Schoolgirls together at a supply distribution day",
+        img: "/assets/health-3.jpg",
+        alt: "Scholars and team at a hygiene supplies distribution day",
+        albums: [
+          { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.409889655688749&type=3" },
+          { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495728567104857&type=3" },
+        ],
       },
     ],
     closing: "…and more.",
