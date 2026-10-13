@@ -6,7 +6,7 @@ import { MILESTONES } from "@/data/content";
 
 const GRID_PHOTOS = Array.from({ length: 12 }, (_, i) => `/assets/hero-grid-${i + 1}.jpg`);
 const FLIP_STAGGER = 0.12;
-const FLIP_DURATION = 0.5;
+const FLIP_DURATION = 1.0;
 const HOLD_MS = 5000;
 
 const HeroGraphic = () => {
@@ -52,7 +52,7 @@ const HeroGraphic = () => {
               className="absolute inset-0 z-10"
               initial={false}
               animate={showBanner ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
-              transition={{ duration: 1.2, ease: [0.77, 0, 0.18, 1] }}
+              transition={{ duration: 2.4, ease: [0.77, 0, 0.18, 1] }}
             >
               <img
                 src="/assets/hero-timeline.jpg"

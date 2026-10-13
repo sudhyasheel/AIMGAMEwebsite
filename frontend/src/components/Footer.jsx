@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Instagram, Facebook, Linkedin, Youtube, BadgeCheck, ShieldCheck, FileCheck2, Building2 } from "lucide-react";
+import { ArrowUpRight, Instagram, Facebook, Linkedin, BadgeCheck, ShieldCheck, FileCheck2, Building2, Files, FileBarChart2, FolderOpen } from "lucide-react";
 
 const SOCIALS = [
-  { Icon: Instagram, name: "instagram", href: "https://www.instagram.com/responsiblecharity" },
   { Icon: Facebook, name: "facebook", href: "https://www.facebook.com/responsiblecharity" },
+  { Icon: Instagram, name: "instagram", href: "https://www.instagram.com/responsiblecharity" },
   { Icon: Linkedin, name: "linkedin", href: "https://www.linkedin.com/company/responsiblecharity" },
-  { Icon: Youtube, name: "youtube", href: "https://www.youtube.com/@responsiblecharity" },
 ];
 
 const MENU = [
   ["Home", "/"],
-  ["The Work", "/program"],
-  ["The Results", "/transformations"],
+  ["Our Work", "/program"],
+  ["Results", "/transformations"],
   ["Our Story", "/about"],
   ["Internships", "/internships"],
   ["CSR Partners", "/csr-partners"],
@@ -23,6 +22,9 @@ const CERTIFICATIONS = [
   [BadgeCheck, "80G TAX DEDUCTIBLE"],
   [Building2, "CSR APPROVED"],
   [FileCheck2, "SEC 135 COMPLIANCE"],
+  [Files, "UTILIZATION CERTIFICATES"],
+  [FileBarChart2, "CUSTOMIZED IMPACT REPORTS"],
+  [FolderOpen, "ANNUAL REPORTS & FINANCIALS"],
 ];
 
 const Footer = () => (
@@ -30,18 +32,15 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-20 pb-10">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <div className="flex items-center gap-3">
-            <span className="h-12 w-12 rounded-xl bg-white p-1">
+          <div className="flex items-center gap-4">
+            <span className="h-16 w-16 rounded-xl bg-white p-1.5">
               <img src="/assets/logo.png" alt="AimGame logo" className="h-full w-full object-contain" />
             </span>
-            <span className="font-display font-extrabold text-2xl text-flame">AimGame</span>
+            <span className="font-display font-extrabold text-4xl text-flame">AimGame</span>
           </div>
           <p className="mt-6 text-sand/70 max-w-sm leading-relaxed">
             The most effective education program eradicating poverty in one generation — a fifteen-year
             scholarship from a child's first game to their first salary.
-          </p>
-          <p className="mt-6 font-mono text-xs tracking-[0.25em] text-leaf font-semibold">
-            80G CERTIFIED SINCE 2012
           </p>
         </div>
 
@@ -52,7 +51,7 @@ const Footer = () => (
               <li key={to}>
                 <Link
                   to={to}
-                  data-testid={`footer-link-${label.toLowerCase().replace(/'/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`}
+                  data-testid={`footer-link-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
                   className="text-sand/80 hover:text-flame transition-colors duration-300 font-medium"
                 >
                   {label}
@@ -79,7 +78,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-14 flex flex-col lg:flex-row items-center justify-between gap-8 border-t border-sand/10 pt-10">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {SOCIALS.map(({ Icon, name, href }) => (
             <a
               key={name}
@@ -88,15 +87,15 @@ const Footer = () => (
               rel="noopener noreferrer"
               aria-label={name}
               data-testid={`footer-social-${name}`}
-              className="h-11 w-11 rounded-full border border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
+              className="h-[88px] w-[88px] rounded-full border-2 border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="h-8 w-8" />
             </a>
           ))}
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+        <div className="flex flex-wrap items-center justify-center lg:justify-end gap-x-8 gap-y-3 max-w-3xl">
           {CERTIFICATIONS.map(([Icon, label]) => (
-            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/'/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
+            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
               <Icon className="h-4 w-4 text-leaf" />
               {label}
             </span>
@@ -117,12 +116,12 @@ const Footer = () => (
         </div>
       </div>
 
-      <p data-testid="footer-80g-note" className="mt-8 text-[11px] text-sand/50 leading-relaxed max-w-4xl">
+      <p data-testid="footer-80g-note" className="mt-8 text-xs text-sand/50 leading-relaxed max-w-4xl">
         Donations to Responsible Charity Society are eligible for deduction under Section 80G of the Income
         Tax Act, 1961.
       </p>
 
-      <p data-testid="footer-disclaimer" className="mt-4 text-[11px] text-sand/40 leading-relaxed max-w-4xl">
+      <p data-testid="footer-disclaimer" className="mt-4 text-sm sm:text-base text-sand/50 leading-relaxed max-w-4xl">
         Disclaimer & Terms of Use: This website and all its content are the property of Responsible Charity
         Society and may not be reproduced without written permission. Information here is provided for general
         awareness; donation terms, 80G receipts and CSR documentation are issued in accordance with applicable

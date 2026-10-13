@@ -92,6 +92,10 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 
 - Homepage hero graphic is now a two-phase animation: 12 real game-competition photos (sliced from user-uploaded grid into hero-grid-1..12.jpg, 300px tiles) flip in one by one (rotateY, 0.12s stagger), hold 5 seconds, then the timeline banner wipes in left-to-right (clip-path inset, 1.2s) with the 5 milestone hotspot links intact; reduced-motion skips straight to the banner
 
+- Animation slowed 50%: flips 1.0s each, banner wipe 2.4s left-to-right
+- Nav labels: THE WORK → OUR WORK, THE RESULTS → RESULTS (footer menu synced)
+- Footer: socials now FB/IG/LinkedIn only at double size (88px circles), certification strip expanded to all 7 items, AimGame brand enlarged, "80G CERTIFIED SINCE 2012" line removed, disclaimer font enlarged
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
