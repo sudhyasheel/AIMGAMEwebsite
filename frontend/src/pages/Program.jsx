@@ -136,22 +136,31 @@ const PILLARS = [
       {
         title: "CAREER COUNSELING & INDUSTRY WORKSHOPS",
         text: "Every scholar gets one-on-one guidance to find the path that fits their strengths, starting well before college ends. Industry leaders then share what their fields really demand and how to get started.",
-        img: IMG.careerWorkshop,
-        alt: "A guest speaker in front of a group of scholars",
+        img: "/assets/emp-1.jpg",
+        alt: "A mentor guiding scholars working on laptops during a career workshop",
         partner: true,
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1349759245035114&type=3" },
+        ],
       },
       {
         title: "CV PREPARATION & INTERVIEW TRAINING",
         text: "Every scholar builds a CV that shows what they have achieved, then practices presenting it with confidence. Mock interviews cover answers, body language, and voice, and workshops teach the unwritten rules of the workplace.",
-        img: IMG.careerCv,
-        alt: "A scholar working on a CV with a mentor",
+        img: "/assets/emp-2.jpg",
+        alt: "An AimGame graduate at his workplace, a hotel front desk",
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1349759245035114&type=3" },
+        ],
       },
       {
         title: "INTERNSHIPS & JOB CONNECTIONS",
         text: "Introductions through our network and beyond open the door to real, on-the-job internships. The same connections carry scholars from internship to employment, because a first job often comes through a first introduction.",
-        img: "/assets/tl-5.jpg",
-        alt: "An AimGame graduate presenting at her workplace",
+        img: "/assets/emp-3.jpg",
+        alt: "A scholar in a one-on-one career conversation with an industry professional",
         partner: true,
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1349759245035114&type=3" },
+        ],
       },
     ],
     closing: "…and more.",
@@ -228,9 +237,9 @@ const PillarSection = ({ pillar }) => (
           <Reveal key={b.title} delay={0.04 + i * 0.05} className="h-full">
             <article
               data-testid={`pillar-card-${pillar.id}-${i}`}
-              className="group h-full rounded-3xl bg-white border border-ink/10 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(15,23,42,0.3)]"
+              className="group h-full rounded-3xl bg-white border border-ink/10 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(15,23,42,0.3)] flex flex-col"
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden shrink-0">
                 <img
                   src={b.img}
                   alt={b.alt}
@@ -238,39 +247,41 @@ const PillarSection = ({ pillar }) => (
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <h3 className="font-display font-extrabold tracking-tight text-lg">{b.title}</h3>
                 <p className="mt-2 text-sm text-ink-muted leading-relaxed">{b.text}</p>
-                {b.albums && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {b.albums.map((a) => (
-                      <a
-                        key={a.label}
-                        href={a.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-testid={`block-album-${pillar.id}-${i}-${a.label.toLowerCase()}`}
-                        onClick={() => {
-                          window.dataLayer = window.dataLayer || [];
-                          window.dataLayer.push({ event: "album_click", page: "our-work", block: `${pillar.id}-${i}`, city: a.label });
-                        }}
-                        className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-leaf-soft border border-leaf/25 px-4 font-mono text-[10px] tracking-[0.15em] font-bold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
-                      >
-                        <Facebook className="h-3 w-3" />
-                        {a.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-                {b.partner && (
-                  <Link
-                    to="/csr-partners"
-                    data-testid={`partner-link-${pillar.id}-${i}`}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-flame transition-colors hover:text-flame-dark"
-                  >
-                    Partner with us <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                )}
+                <div className="mt-auto pt-4">
+                  {b.partner && (
+                    <Link
+                      to="/csr-partners"
+                      data-testid={`partner-link-${pillar.id}-${i}`}
+                      className="mb-3 inline-flex items-center gap-1.5 text-sm font-bold text-flame transition-colors hover:text-flame-dark"
+                    >
+                      Partner with us <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  )}
+                  {b.albums && (
+                    <div className="flex flex-wrap gap-2">
+                      {b.albums.map((a) => (
+                        <a
+                          key={a.label}
+                          href={a.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-testid={`block-album-${pillar.id}-${i}-${a.label.toLowerCase()}`}
+                          onClick={() => {
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({ event: "album_click", page: "our-work", block: `${pillar.id}-${i}`, city: a.label });
+                          }}
+                          className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-leaf-soft border border-leaf/25 px-4 font-mono text-[10px] tracking-[0.15em] font-bold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
+                        >
+                          <Facebook className="h-3 w-3" />
+                          {a.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </article>
           </Reveal>
@@ -284,6 +295,11 @@ const PillarSection = ({ pillar }) => (
     </div>
   </section>
 );
+
+const PARTNER_LOGOS = [
+  { src: "/assets/partner-logo-1.png", name: "The Modern Academy" },
+  { src: "/assets/partner-logo-2.jpg", name: "D Y Patil School of Hospitality & Tourism Studies, Navi Mumbai" },
+];
 
 const EducationPartners = () => (
   <section data-testid="education-partners-band" className="py-16 sm:py-20 border-t border-ink/10">
@@ -301,11 +317,20 @@ const EducationPartners = () => (
           </p>
           <AlbumButtons page="our-work" block="education-partners" />
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {Array.from({ length: 6 }).map((_, i) => (
+            {PARTNER_LOGOS.map((l, i) => (
+              <div
+                key={l.src}
+                data-testid={`education-partner-logo-${i}`}
+                className="rounded-2xl border border-ink/10 bg-white px-6 py-6 flex items-center justify-center"
+              >
+                <img src={l.src} alt={`${l.name} logo`} className="h-20 w-full object-contain" />
+              </div>
+            ))}
+            {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                data-testid={`education-partner-slot-${i}`}
-                className="rounded-2xl border border-dashed border-ink/20 bg-sand px-6 py-8 flex flex-col items-center gap-3"
+                data-testid={`education-partner-slot-${i + 2}`}
+                className="rounded-2xl border border-dashed border-ink/20 bg-sand px-6 py-8 flex flex-col items-center justify-center gap-3"
               >
                 <GraduationCap className="h-6 w-6 text-leaf/50" />
                 <span className="font-mono text-[10px] tracking-[0.2em] text-ink-muted font-semibold">

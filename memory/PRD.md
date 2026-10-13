@@ -104,6 +104,11 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 
 - Real RC photos now in all Education blocks (edu-1..6: game, school, tuitions, violin, PE yoga, field trip bus) and all Healthcare blocks (health-1 workshop, health-2 check-up, health-3 hygiene distribution); Healthcare blocks got KOLKATA+PUNE album pills (workshops album + Pune album) per user URLs
 
+- Employment blocks: real photos in upload sequence (emp-1 laptop mentoring, emp-2 Marriott front desk, emp-3 studio conversation) + NATIONAL album pill on all 3 (user-provided FB album)
+- All card hyperlink boxes bottom-aligned to the same level (pills last in card flow, partner links above them)
+- Education Partners band: first 2 real logos in (The Modern Academy, DY Patil School of Hospitality & Tourism Studies Navi Mumbai), 4 placeholder slots remain
+- All 12 pillar blocks now use real RC photos
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
