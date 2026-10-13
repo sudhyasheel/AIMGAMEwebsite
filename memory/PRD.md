@@ -99,6 +99,9 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Hero sequence v2: 12 photos flip in (1.0s staggered), hold 5s, then flip OUT column-by-column left→right (0.45s/column + 0.8s), while the timeline banner reveals left→right at the same sweep speed chasing the disappearance
 - Footer certifications doubled: 20px text + 32px icons in their own 4-col grid row
 
+- OUR WORK blocks: removed 01.1 numbering; real uploaded photos in Education blocks 1-4 (edu-1 game, edu-2 school, edu-3 tuitions, edu-4 violin); per-block album pill buttons with Facebook icon + click tracking: Game Competitions NATIONAL, Quality Schools KOLKATA+PUNE, Tuitions NATIONAL, Music NATIONAL, PE NATIONAL, Field Trips KOLKATA+MUMBAI+PUNE (exact user-provided FB media-set URLs)
+- Footer certification text 40% smaller (12px, icons 20px to match)
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team

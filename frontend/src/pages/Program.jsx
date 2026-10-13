@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowUpRight, ArrowRight, GraduationCap, Facebook } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 
@@ -29,38 +29,59 @@ const PILLARS = [
       {
         title: "GAME COMPETITIONS",
         text: "Every scholar's story begins with play. Structured competitions across a rotation of games are how children begin their education journey with us.",
-        img: "/assets/tl-1.jpg",
+        img: "/assets/edu-1.jpg",
         alt: "Children gathered around a game board during an AimGame competition round",
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.894943257183384&type=3" },
+        ],
       },
       {
         title: "QUALITY SCHOOLS",
         text: "Fully sponsored enrollment in private English-medium schools these families could never access, with logistics managed so nothing gets in the way.",
-        img: "/assets/tl-4.jpg",
-        alt: "An AimGame scholar in her school uniform",
+        img: "/assets/edu-2.jpg",
+        alt: "AimGame scholars in their school uniforms with the RC team",
+        albums: [
+          { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
+          { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.1468170039860700&type=3" },
+        ],
       },
       {
         title: "TUITIONS",
         text: "After school, every scholar gets personal attention from our tutors at our community centers.",
-        img: IMG.tuition,
-        alt: "A tutor and student working together over books",
+        img: "/assets/edu-3.jpg",
+        alt: "Scholars studying with tutors at a community center",
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1348426635168375&type=3" },
+        ],
       },
       {
         title: "MUSIC, ART & DANCE",
         text: "Classes and workshops that build creativity and confidence beyond the textbook.",
-        img: IMG.arts,
-        alt: "Children in a creative class beyond their textbooks",
+        img: "/assets/edu-4.jpg",
+        alt: "Children in a violin class at a community center",
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.637523422925370&type=3" },
+        ],
       },
       {
         title: "PHYSICAL EDUCATION",
         text: "Sports and fitness that build healthy bodies and teamwork.",
         img: IMG.sports,
         alt: "Children in a group sports session",
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1704141059596929&type=3" },
+        ],
       },
       {
         title: "FIELD TRIPS & MORE",
         text: "Outings and movie days that show children a world bigger than their neighborhood.",
         img: IMG.fieldtrip,
         alt: "A group of schoolchildren on an outing",
+        albums: [
+          { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.410205948990453&type=3" },
+          { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.2062621347082230&type=3" },
+          { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.1149537578390616&type=3" },
+        ],
       },
     ],
     closing: "…and so much more.",
@@ -206,11 +227,29 @@ const PillarSection = ({ pillar }) => (
                 />
               </div>
               <div className="p-6">
-                <p className="font-mono text-[10px] tracking-[0.25em] text-ink-muted font-bold">
-                  {pillar.index}.{i + 1}
-                </p>
-                <h3 className="mt-2 font-display font-extrabold tracking-tight text-lg">{b.title}</h3>
+                <h3 className="font-display font-extrabold tracking-tight text-lg">{b.title}</h3>
                 <p className="mt-2 text-sm text-ink-muted leading-relaxed">{b.text}</p>
+                {b.albums && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {b.albums.map((a) => (
+                      <a
+                        key={a.label}
+                        href={a.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid={`block-album-${pillar.id}-${i}-${a.label.toLowerCase()}`}
+                        onClick={() => {
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({ event: "album_click", page: "our-work", block: `${pillar.id}-${i}`, city: a.label });
+                        }}
+                        className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-leaf-soft border border-leaf/25 px-4 font-mono text-[10px] tracking-[0.15em] font-bold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
+                      >
+                        <Facebook className="h-3 w-3" />
+                        {a.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {b.partner && (
                   <Link
                     to="/csr-partners"
