@@ -8,18 +8,21 @@ const GRID_PHOTOS = Array.from({ length: 12 }, (_, i) => `/assets/hero-grid-${i 
 const FLIP_STAGGER = 0.12;
 const FLIP_DURATION = 1.0;
 const HOLD_MS = 5000;
+const EXIT_COL_STAGGER = 0.45;
+const EXIT_DURATION = 0.8;
+const EXIT_SWEEP = 5 * EXIT_COL_STAGGER + EXIT_DURATION;
 
 const HeroGraphic = () => {
-  const [showBanner, setShowBanner] = useState(false);
+  const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      setShowBanner(true);
+      setExiting(true);
       return;
     }
     const flipDone = (GRID_PHOTOS.length - 1) * FLIP_STAGGER * 1000 + FLIP_DURATION * 1000;
-    const t = setTimeout(() => setShowBanner(true), flipDone + HOLD_MS);
+    const t = setTimeout(() => setExiting(true), flipDone + HOLD_MS);
     return () => clearTimeout(t);
   }, []);
 
@@ -35,8 +38,12 @@ const HeroGraphic = () => {
                   data-testid={`hero-grid-photo-${i}`}
                   className="relative overflow-hidden rounded-lg bg-white"
                   initial={{ rotateY: 90, opacity: 0 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  transition={{ delay: i * FLIP_STAGGER, duration: FLIP_DURATION, ease: "easeOut" }}
+                  animate={exiting ? { rotateY: -90, opacity: 0 } : { rotateY: 0, opacity: 1 }}
+                  transition={
+                    exiting
+                      ? { delay: (i % 6) * EXIT_COL_STAGGER, duration: EXIT_DURATION, ease: "easeIn" }
+                      : { delay: i * FLIP_STAGGER, duration: FLIP_DURATION, ease: "easeOut" }
+                  }
                   style={{ transformPerspective: 600, backfaceVisibility: "hidden" }}
                 >
                   <img
@@ -51,8 +58,8 @@ const HeroGraphic = () => {
             <motion.div
               className="absolute inset-0 z-10"
               initial={false}
-              animate={showBanner ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
-              transition={{ duration: 2.4, ease: [0.77, 0, 0.18, 1] }}
+              animate={exiting ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
+              transition={{ duration: EXIT_SWEEP, delay: exiting ? EXIT_COL_STAGGER : 0, ease: [0.77, 0, 0.18, 1] }}
             >
               <img
                 src="/assets/hero-timeline.jpg"

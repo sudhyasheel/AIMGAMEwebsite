@@ -77,7 +77,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="mt-14 flex flex-col lg:flex-row items-center justify-between gap-8 border-t border-sand/10 pt-10">
+      <div className="mt-14 border-t border-sand/10 pt-10">
         <div className="flex items-center gap-4">
           {SOCIALS.map(({ Icon, name, href }) => (
             <a
@@ -93,10 +93,10 @@ const Footer = () => (
             </a>
           ))}
         </div>
-        <div className="flex flex-wrap items-center justify-center lg:justify-end gap-x-8 gap-y-3 max-w-3xl">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
           {CERTIFICATIONS.map(([Icon, label]) => (
-            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-sand/60 font-semibold">
-              <Icon className="h-4 w-4 text-leaf" />
+            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-3 font-mono text-xl tracking-[0.15em] text-sand/70 font-semibold">
+              <Icon className="h-8 w-8 text-leaf shrink-0" />
               {label}
             </span>
           ))}

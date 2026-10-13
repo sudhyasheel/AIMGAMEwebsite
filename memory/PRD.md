@@ -96,6 +96,9 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Nav labels: THE WORK → OUR WORK, THE RESULTS → RESULTS (footer menu synced)
 - Footer: socials now FB/IG/LinkedIn only at double size (88px circles), certification strip expanded to all 7 items, AimGame brand enlarged, "80G CERTIFIED SINCE 2012" line removed, disclaimer font enlarged
 
+- Hero sequence v2: 12 photos flip in (1.0s staggered), hold 5s, then flip OUT column-by-column left→right (0.45s/column + 0.8s), while the timeline banner reveals left→right at the same sweep speed chasing the disappearance
+- Footer certifications doubled: 20px text + 32px icons in their own 4-col grid row
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
