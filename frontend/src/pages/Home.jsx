@@ -54,17 +54,6 @@ const ScholarStrip = () => {
               }}
             />
           ))}
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: "3%",
-              left: "3%",
-              width: "94%",
-              height: "94%",
-              clipPath: chevronClip(i === 0),
-              background: "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.3) 100%)",
-            }}
-          />
         </div>
       ))}
     </div>
