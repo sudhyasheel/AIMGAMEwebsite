@@ -45,10 +45,10 @@ const ScholarStrip = () => {
               aria-hidden={s !== setIdx}
               className="absolute object-cover transition-opacity duration-700"
               style={{
-                top: "3%",
-                left: "3%",
-                width: "94%",
-                height: "94%",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
                 clipPath: chevronClip(i === 0),
                 opacity: s === setIdx ? 1 : 0,
               }}
