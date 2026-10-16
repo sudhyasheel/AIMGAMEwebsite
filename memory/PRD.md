@@ -123,3 +123,4 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - P1: Real CSR partner logos and live Instagram embed
 - P2: 20–30s graduate video clips paired with childhood photos
 - P2: CMS-editable content for scholars/partners/milestones
+- Scholar set B reprocessed (Oct 16): scholar-b-1..5 backgrounds removed via rembg (isnet-general-use for the group scene, u2net + alpha matting for portraits), subjects recomposed bottom-centered on 1200x950 canvases (~1.26:1 to match chevron panel aspect, prevents object-cover cropping heads) with radial-gradient backgrounds in the exact panel colors (#E8490F/#1E7A3C/#F2A500). This removed the "colour shadow lines" (real photo backgrounds clashing inside colored chevrons). Verified in browser: both rotation states render cleanly. Originals backed up at /tmp/scholar-bak (ephemeral)
