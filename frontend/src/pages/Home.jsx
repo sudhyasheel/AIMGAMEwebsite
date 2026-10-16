@@ -4,6 +4,73 @@ import { motion } from "framer-motion";
 import { Reveal, MaskedLine } from "@/components/Reveal";
 import { MILESTONES } from "@/data/content";
 
+const SCHOLAR_SETS = [
+  ["/assets/tl-1.jpg", "/assets/tl-2.jpg", "/assets/tl-3.jpg", "/assets/tl-4.jpg", "/assets/tl-5.jpg"],
+  ["/assets/scholar-b-1.jpg", "/assets/scholar-b-2.jpg", "/assets/scholar-b-3.jpg", "/assets/scholar-b-4.jpg", "/assets/scholar-b-5.jpg"],
+];
+const PANEL_COLORS = ["#E8490F", "#1E7A3C", "#F2A500", "#E8490F", "#1E7A3C"];
+const SET_ROTATE_MS = 2500;
+
+const chevronClip = (first) =>
+  first
+    ? "polygon(0 0, calc(100% - 12%) 0, 100% 50%, calc(100% - 12%) 100%, 0 100%)"
+    : "polygon(0 0, calc(100% - 12%) 0, 100% 50%, calc(100% - 12%) 100%, 0 100%, 12% 50%)";
+
+const ScholarStrip = () => {
+  const [setIdx, setSetIdx] = useState(0);
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const t = setInterval(() => setSetIdx((s) => (s + 1) % SCHOLAR_SETS.length), SET_ROTATE_MS);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div
+      data-testid="hero-scholar-strip"
+      className="absolute top-[2.5%] h-[44.5%] left-[1.75%] right-[1.75%] flex"
+      style={{ gap: "0.8%" }}
+    >
+      {PANEL_COLORS.map((color, i) => (
+        <div
+          key={i}
+          data-testid={`hero-scholar-panel-${i}`}
+          className="relative flex-1"
+          style={{ clipPath: chevronClip(i === 0), backgroundColor: color }}
+        >
+          {SCHOLAR_SETS.map((set, s) => (
+            <img
+              key={s}
+              src={set[i]}
+              alt=""
+              aria-hidden={s !== setIdx}
+              className="absolute object-cover transition-opacity duration-700"
+              style={{
+                top: "3%",
+                left: "3%",
+                width: "94%",
+                height: "94%",
+                clipPath: chevronClip(i === 0),
+                opacity: s === setIdx ? 1 : 0,
+              }}
+            />
+          ))}
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              top: "3%",
+              left: "3%",
+              width: "94%",
+              height: "94%",
+              clipPath: chevronClip(i === 0),
+              background: "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.3) 100%)",
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const GRID_PHOTOS = Array.from({ length: 12 }, (_, i) => `/assets/hero-grid-${i + 1}.jpg`);
 const FLIP_STAGGER = 0.12;
 const FLIP_DURATION = 1.0;
@@ -67,6 +134,7 @@ const HeroGraphic = () => {
                 data-testid="hero-timeline-graphic"
                 className="h-full w-full object-cover"
               />
+              <ScholarStrip />
               <div className="absolute inset-0 flex">
                 {MILESTONES.map((m, i) => (
                   <Link

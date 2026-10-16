@@ -114,6 +114,8 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - Homepage: new description copy ("Created by Responsible Charity Society..."), grid hold shortened to 2.5s
 - Nav menu font bumped to 14px
 
+- Hero banner now has a live ScholarStrip overlay: 5 chevron panels (same shape, orange/green/yellow colors, vignette, matching the banner geometry) crossfading every 2.5s between scholar set A (girl, tl-1..5) and set B (Vishnu: scholar-b-1..5 — connect-four, guitar, teen portrait, college admission, graduation); milestone hotspots preserved
+
 ## Prioritized Backlog
 - P0: Real Razorpay integration (India gateway) replacing simulated payment
 - P0: Real scholar stories, photos and impact numbers from RC team
