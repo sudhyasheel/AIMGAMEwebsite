@@ -14,7 +14,7 @@ def gradient_arr(size, hexcolor):
     # smooth vertical gradient: light tint of panel colour at top -> exact panel colour at bottom
     w, h = size
     base = hex2rgb(hexcolor)
-    top = base + (255 - base) * 0.28
+    top = base + (255 - base) * 0.48
     yy = (np.arange(h, dtype=float) / max(h - 1, 1))[:, None, None]
     img = top * (1 - yy) + base * yy
     return np.ascontiguousarray(np.broadcast_to(img, (h, w, 3))).astype(np.uint8)
