@@ -30,7 +30,7 @@ const ScholarStrip = () => {
     <div
       data-testid="hero-scholar-strip"
       className="absolute top-[2.5%] h-[44.5%] left-[1.75%] right-[1.75%] flex"
-      style={{ gap: "0.8%" }}
+      style={{ gap: "2%" }}
     >
       {PANEL_COLORS.map((color, i) => (
         <div

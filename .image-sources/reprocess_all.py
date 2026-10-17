@@ -10,16 +10,17 @@ def hex2rgb(h):
     h = h.lstrip('#')
     return np.array([int(h[i:i+2], 16) for i in (0, 2, 4)], dtype=float)
 
-def gradient_bg(size, hexcolor, cx=0.5, cy=0.42):
-    # tight glow behind subject, EXACT panel colour well before edges (no colour band at outline)
+def gradient_arr(size, hexcolor):
+    # smooth vertical gradient: light tint of panel colour at top -> exact panel colour at bottom
     w, h = size
     base = hex2rgb(hexcolor)
-    center = base + (255 - base) * 0.20
-    yy, xx = np.mgrid[0:h, 0:w]
-    t = np.clip(np.sqrt(((xx/w-cx)*2)**2 + ((yy/h-cy)*2)**2), 0, 1)
-    t = np.clip((t - 0.30) / 0.45, 0, 1) ** 1.2   # glow pure to 30% radius, exact base from 75%
-    img = (center * (1 - t[..., None]) + base * t[..., None]).astype(np.uint8)
-    return Image.fromarray(img, 'RGB').convert('RGBA')
+    top = base + (255 - base) * 0.28
+    yy = (np.arange(h, dtype=float) / max(h - 1, 1))[:, None, None]
+    img = top * (1 - yy) + base * yy
+    return np.ascontiguousarray(np.broadcast_to(img, (h, w, 3))).astype(np.uint8)
+
+def gradient_bg(size, hexcolor, cx=0.5, cy=0.42):
+    return Image.fromarray(gradient_arr(size, hexcolor), 'RGB').convert('RGBA')
 
 def clean_alpha(an, lo=18, min_island=2500):
     an = an.astype(float)
@@ -126,10 +127,7 @@ subj = cut.resize((max(1,int(cut.width*scale)), max(1,int(cut.height*scale))), I
 bg.alpha_composite(subj, ((CANVAS[0]-subj.width)//2, CANVAS[1]-subj.height))
 comp = np.array(bg.convert('RGB'))
 w, h = CANVAS
-yy, xx = np.mgrid[0:h, 0:w]
-t = np.clip(np.sqrt(((xx/w-0.5)*2)**2 + ((yy/h-0.42)*2)**2), 0, 1)
-t = np.clip((t - 0.30) / 0.45, 0, 1) ** 1.2
-base = hex2rgb(PANEL[1]); grad = ((base + (255-base)*0.20)*(1-t[..., None]) + base*t[..., None]).astype(np.uint8)
+grad = gradient_arr(CANVAS, PANEL[1])
 def paint(x0, y0, x1, y1):
     comp[y0:y1, x0:x1] = grad[y0:y1, x0:x1]
 paint(575, 555, 648, 695)
