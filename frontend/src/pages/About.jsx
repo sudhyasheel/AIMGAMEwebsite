@@ -53,16 +53,16 @@ const CENTERS = [
     tag: "Our second center",
     photos: [
       {
-        src: "https://images.unsplash.com/photo-1637257526540-43d96c33fbe7?crop=entropy&cs=srgb&fm=jpg&q=85",
-        alt: "Children in a music and art class at the Pune community center",
+        src: "/assets/center-pune-1.jpg",
+        alt: "A team member walking visitors through the Responsible Charity Principles wall at the Pune community center",
       },
       {
-        src: "https://images.unsplash.com/photo-1529209076408-5a115ec9f1c6?crop=entropy&cs=srgb&fm=jpg&q=85",
-        alt: "A group activity in the hall at the Pune community center",
+        src: "/assets/center-pune-2.jpg",
+        alt: "Students sharing a snack together in a circle at the Pune community center",
       },
       {
-        src: "https://images.unsplash.com/photo-1551731409-43eb3e517a1a?crop=entropy&cs=srgb&fm=jpg&q=85",
-        alt: "A parents and community meeting at the Pune community center",
+        src: "/assets/center-pune-3.jpg",
+        alt: "The scholar family wall at the Pune community center with framed portraits of each family",
       },
     ],
   },
