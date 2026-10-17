@@ -7,6 +7,7 @@ import { MILESTONES } from "@/data/content";
 const SCHOLAR_SETS = [
   ["/assets/tl-1.jpg", "/assets/tl-2.jpg", "/assets/tl-3.jpg", "/assets/tl-4.jpg", "/assets/tl-5.jpg"],
   ["/assets/scholar-b-1.jpg", "/assets/scholar-b-2.jpg", "/assets/scholar-b-3.jpg", "/assets/scholar-b-4.jpg", "/assets/scholar-b-5.jpg"],
+  ["/assets/scholar-c-1.jpg", "/assets/scholar-c-2.jpg", "/assets/scholar-c-3.jpg", "/assets/scholar-c-4.jpg", "/assets/scholar-c-5.jpg"],
 ];
 const PANEL_COLORS = ["#E8490F", "#1E7A3C", "#F2A500", "#E8490F", "#1E7A3C"];
 const SET_ROTATE_MS = 2500;
