@@ -33,16 +33,16 @@ const CENTERS = [
     tag: "Our larger center",
     photos: [
       {
-        src: "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&q=85",
-        alt: "Students in an after-school tutoring session at the Kolkata community center",
+        src: "/assets/center-kolkata-1.jpg",
+        alt: "Music class in the Kolkata community center — students watching a violin and flute performance",
       },
       {
-        src: "https://images.unsplash.com/photo-1627475312657-3752fa068473?crop=entropy&cs=srgb&fm=jpg&q=85",
-        alt: "Children playing indoor games together at the Kolkata community center",
+        src: "/assets/center-kolkata-2.jpg",
+        alt: "Students at laptops in the Kolkata community center computer room",
       },
       {
-        src: "https://images.unsplash.com/photo-1764661441867-473a59a765bc?crop=entropy&cs=srgb&fm=jpg&q=85",
-        alt: "A group class in session at the Kolkata community center",
+        src: "/assets/center-kolkata-3.jpg",
+        alt: "Students playing dominoes together at the Kolkata community center",
       },
     ],
   },

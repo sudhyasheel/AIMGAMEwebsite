@@ -18,7 +18,7 @@ export const ALBUM_LINKS = [
   { page: "our-work", block: "parents", label: "PUNE", city: "Pune", url: "https://www.facebook.com/media/set/?set=a.1468170039860700&type=3", verified: true, checked: CHECKED },
   { page: "our-work", block: "parents", label: "MUMBAI", city: "Mumbai", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3", verified: true, checked: CHECKED },
   // OUR STORY — Our Community Centers (per-center)
-  { page: "our-story", block: "kolkata", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-story", block: "kolkata", label: "See more photos", city: "Kolkata", url: "https://www.facebook.com/media/set/?set=a.621972941147085&type=3", verified: true, checked: CHECKED },
   { page: "our-story", block: "pune", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
 ];
 
