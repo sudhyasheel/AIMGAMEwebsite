@@ -5,9 +5,10 @@ import { MapPin } from "lucide-react";
 const STORY_PHOTOS = [
   { src: "/assets/story-1.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-2.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-3.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-4.jpg", alt: "Responsible Charity Society team member" },
+  { src: "/assets/story-18.jpg", alt: "Responsible Charity Society team member portrait collage" },
   { src: "/assets/story-5.jpg", alt: "Responsible Charity Society team member" },
+  { src: "/assets/story-3.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-6.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-7.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-8.jpg", alt: "Responsible Charity Society team member" },
@@ -17,7 +18,6 @@ const STORY_PHOTOS = [
   { src: "/assets/story-12.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-13.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-14.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-15.jpg", alt: "Responsible Charity Society team member portrait collage" },
   { src: "/assets/story-16.jpg", alt: "Responsible Charity Society team member portrait collage" },
   { src: "/assets/story-17.jpg", alt: "Responsible Charity Society team member portrait collage" },
 ];
