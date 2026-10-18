@@ -18,8 +18,7 @@ const STORY_PHOTOS = [
   { src: "/assets/story-13.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-10.jpg", alt: "Responsible Charity Society team member" },
   { src: "/assets/story-11.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-3.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-12.jpg", alt: "Responsible Charity Society team member" },
+  { src: "/assets/story-19.jpg", alt: "Responsible Charity Society team member portrait collage" },
 ];
 
 const STORY_TEXT = [
