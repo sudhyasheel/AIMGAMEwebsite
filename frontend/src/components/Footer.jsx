@@ -29,83 +29,57 @@ const CERTIFICATIONS = [
 
 const Footer = () => (
   <footer data-testid="site-footer" className="bg-night text-sand relative grain">
-    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-20 pb-10">
-      <div className="grid gap-12 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <img
-            src="/assets/aimgame-logo-transparent.png"
-            alt="AimGame — Life-Changing Scholarships by Responsible Charity Society"
-            data-testid="footer-logo"
-            className="h-20 sm:h-24 w-auto"
-          />
-          <p className="mt-6 text-sand/70 max-w-sm leading-relaxed">
-            The most effective education program eradicating poverty in one generation — a fifteen-year
-            scholarship from a child's first game to their first salary.
-          </p>
-        </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-10">
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-4 justify-between">
+        <nav data-testid="footer-menu" className="flex flex-wrap items-center gap-x-7 gap-y-3">
+          {MENU.map(([label, to]) => (
+            <Link
+              key={to}
+              to={to}
+              data-testid={`footer-link-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
+              className="text-sand/80 hover:text-flame transition-colors duration-300 font-medium"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <Link
+          to="/partner"
+          data-testid="footer-cta-donate"
+          className="group inline-flex items-center gap-2 rounded-full bg-flame px-6 py-3 font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
+        >
+          Donate
+          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
+      </div>
 
-        <div className="lg:col-span-3">
-          <p className="font-mono text-xs tracking-[0.25em] text-sand/50 mb-5">MENU</p>
-          <ul className="space-y-3">
-            {MENU.map(([label, to]) => (
-              <li key={to}>
-                <Link
-                  to={to}
-                  data-testid={`footer-link-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
-                  className="text-sand/80 hover:text-flame transition-colors duration-300 font-medium"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <div className="mt-9 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10">
+        <div className="flex items-center gap-4 shrink-0">
+          {SOCIALS.map(({ Icon, name, href }) => (
+            <a
+              key={name}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              data-testid={`footer-social-${name}`}
+              className="h-[88px] w-[88px] rounded-full border-2 border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
+            >
+              <Icon className="h-8 w-8" />
+            </a>
+          ))}
         </div>
-
-        <div className="lg:col-span-4">
-          <p className="font-mono text-xs tracking-[0.25em] text-sand/50 mb-5">START A CONVERSATION</p>
-          <Link
-            to="/partner"
-            data-testid="footer-cta-partner"
-            className="group inline-flex items-center gap-2 rounded-full bg-flame px-6 py-3 font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
-          >
-            Partner With Us
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-          <p className="mt-6 text-sand/60 text-sm leading-relaxed">
-            CSR partners and donors receive scholar-wise reporting — attendance, milestones, outcomes.
-          </p>
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-4 lg:flex-1 lg:justify-between">
+          {CERTIFICATIONS.map(([Icon, label]) => (
+            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.15em] text-sand/70 font-semibold">
+              <Icon className="h-5 w-5 text-leaf shrink-0" />
+              {label}
+            </span>
+          ))}
         </div>
       </div>
 
-      <div className="mt-14 border-t border-sand/10 pt-10">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10">
-          <div className="flex items-center gap-4 shrink-0">
-            {SOCIALS.map(({ Icon, name, href }) => (
-              <a
-                key={name}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={name}
-                data-testid={`footer-social-${name}`}
-                className="h-[88px] w-[88px] rounded-full border-2 border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
-              >
-                <Icon className="h-8 w-8" />
-              </a>
-            ))}
-          </div>
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-4 lg:flex-1 lg:justify-between">
-            {CERTIFICATIONS.map(([Icon, label]) => (
-              <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.15em] text-sand/70 font-semibold">
-                <Icon className="h-5 w-5 text-leaf shrink-0" />
-                {label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-10 pt-8 border-t border-sand/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-sand/50">
+      <div className="mt-9 pt-6 border-t border-sand/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-sand/50">
         <p>
           Donations are received by Responsible Charity Society, a registered Indian NGO. AimGame is its
           flagship program.
@@ -117,18 +91,6 @@ const Footer = () => (
           </Link>
         </div>
       </div>
-
-      <p data-testid="footer-80g-note" className="mt-8 text-xs text-sand/50 leading-relaxed max-w-4xl">
-        Donations to Responsible Charity Society are eligible for deduction under Section 80G of the Income
-        Tax Act, 1961.
-      </p>
-
-      <p data-testid="footer-disclaimer" className="mt-4 text-xs text-sand/50 leading-relaxed max-w-4xl">
-        Disclaimer & Terms of Use: This website and all its content are the property of Responsible Charity
-        Society and may not be reproduced without written permission. Information here is provided for general
-        awareness; donation terms, 80G receipts and CSR documentation are issued in accordance with applicable
-        Indian law.
-      </p>
     </div>
   </footer>
 );
