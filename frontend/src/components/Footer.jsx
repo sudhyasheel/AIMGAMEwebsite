@@ -32,12 +32,12 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-20 pb-10">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <div className="flex items-center gap-4">
-            <span className="h-16 w-16 rounded-xl bg-white p-1.5">
-              <img src="/assets/logo.png" alt="AimGame logo" className="h-full w-full object-contain" />
-            </span>
-            <span className="font-display font-extrabold text-4xl text-flame">AimGame</span>
-          </div>
+          <img
+            src="/assets/aimgame-logo-transparent.png"
+            alt="AimGame — Life-Changing Scholarships by Responsible Charity Society"
+            data-testid="footer-logo"
+            className="h-20 sm:h-24 w-auto"
+          />
           <p className="mt-6 text-sand/70 max-w-sm leading-relaxed">
             The most effective education program eradicating poverty in one generation — a fifteen-year
             scholarship from a child's first game to their first salary.
@@ -78,28 +78,30 @@ const Footer = () => (
       </div>
 
       <div className="mt-14 border-t border-sand/10 pt-10">
-        <div className="flex items-center gap-4">
-          {SOCIALS.map(({ Icon, name, href }) => (
-            <a
-              key={name}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={name}
-              data-testid={`footer-social-${name}`}
-              className="h-[88px] w-[88px] rounded-full border-2 border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
-            >
-              <Icon className="h-8 w-8" />
-            </a>
-          ))}
-        </div>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-5">
-          {CERTIFICATIONS.map(([Icon, label]) => (
-            <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.15em] text-sand/70 font-semibold">
-              <Icon className="h-5 w-5 text-leaf shrink-0" />
-              {label}
-            </span>
-          ))}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-10">
+          <div className="flex items-center gap-4 shrink-0">
+            {SOCIALS.map(({ Icon, name, href }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={name}
+                data-testid={`footer-social-${name}`}
+                className="h-[88px] w-[88px] rounded-full border-2 border-sand/20 inline-flex items-center justify-center text-sand/70 transition-all duration-300 hover:bg-flame hover:border-flame hover:text-white"
+              >
+                <Icon className="h-8 w-8" />
+              </a>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-4 lg:flex-1 lg:justify-between">
+            {CERTIFICATIONS.map(([Icon, label]) => (
+              <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.15em] text-sand/70 font-semibold">
+                <Icon className="h-5 w-5 text-leaf shrink-0" />
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -121,7 +123,7 @@ const Footer = () => (
         Tax Act, 1961.
       </p>
 
-      <p data-testid="footer-disclaimer" className="mt-4 text-sm sm:text-base text-sand/50 leading-relaxed max-w-4xl">
+      <p data-testid="footer-disclaimer" className="mt-4 text-xs text-sand/50 leading-relaxed max-w-4xl">
         Disclaimer & Terms of Use: This website and all its content are the property of Responsible Charity
         Society and may not be reproduced without written permission. Information here is provided for general
         awareness; donation terms, 80G receipts and CSR documentation are issued in accordance with applicable
