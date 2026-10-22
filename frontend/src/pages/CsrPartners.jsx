@@ -25,13 +25,17 @@ const inputCls =
   "w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-flame placeholder:text-ink-muted/60";
 
 const CsrForm = () => {
-  const [form, setForm] = useState({ org: "", name: "", email: "", phone: "", focus: "", range: "", message: "" });
+  const [form, setForm] = useState({ org: "", name: "", email: "", email2: "", phone: "", focus: "", range: "", message: "" });
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
 
   const submit = async () => {
     if (!form.org || !form.name || !form.email) {
       toast.error("Please fill your organisation, name and email.");
+      return;
+    }
+    if (form.email.trim().toLowerCase() !== form.email2.trim().toLowerCase()) {
+      toast.error("Email addresses do not match.");
       return;
     }
     setBusy(true);
@@ -74,7 +78,7 @@ const CsrForm = () => {
           </p>
           <button
             data-testid="csr-form-another-btn"
-            onClick={() => { setDone(false); setForm({ org: "", name: "", email: "", phone: "", focus: "", range: "", message: "" }); }}
+            onClick={() => { setDone(false); setForm({ org: "", name: "", email: "", email2: "", phone: "", focus: "", range: "", message: "" }); }}
             className="mt-8 rounded-full border-2 border-ink/15 px-7 py-3 font-bold text-sm hover:border-flame hover:text-flame transition-colors"
           >
             Send Another Enquiry
@@ -94,7 +98,10 @@ const CsrForm = () => {
             <input data-testid="csr-form-name" className={inputCls} placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
             <input data-testid="csr-form-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
           </div>
-          <input data-testid="csr-form-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          <div className="grid sm:grid-cols-2 gap-4">
+            <input data-testid="csr-form-email-confirm" type="email" className={inputCls} placeholder="Re-enter email" value={form.email2} onChange={(e) => setForm({ ...form, email2: e.target.value })} />
+            <input data-testid="csr-form-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          </div>
           <div className="grid sm:grid-cols-2 gap-4">
             <select data-testid="csr-form-focus" className={inputCls} value={form.focus} onChange={(e) => setForm({ ...form, focus: e.target.value })}>
               <option value="">CSR focus area…</option>
@@ -127,6 +134,30 @@ const CsrForm = () => {
   );
 };
 
+const CSR_LOGOS = [
+  "Paharpur Foundation",
+  "Rojo Integrations",
+  "Kolkata International Womens Club",
+  "Nomura Research Institute",
+  "Cogfree",
+  "ISG",
+  "RDB Group",
+  "Sushila Birla Girls' School",
+  "Wesman",
+  "Ivy League House",
+];
+
+const CSR_PHOTOS = [
+  "Corporate volunteer day group photo with scholars",
+  "Guests and team at a partner evening event",
+  "Scholars and mentors at the Cisco office visit",
+  "Scholars at a live cooking counter with a chef",
+  "Scholars receiving certificates at a partner celebration",
+  "Students with certificates at a partner school event",
+  "Children at a partner store visit with staff",
+  "A career workshop session for scholars at a partner office",
+];
+
 const CsrPartners = () => (
   <main data-testid="csr-partners-page">
     <section className="pt-44 sm:pt-60 pb-16 relative overflow-hidden grain">
@@ -148,7 +179,7 @@ const CsrPartners = () => (
             More Than a Donation. A Relationship.
           </p>
         </Reveal>
-        <div className="mt-10 max-w-4xl space-y-6">
+        <div className="mt-10 space-y-6">
           {PARAGRAPHS.map((p, i) => (
             <Reveal key={i} delay={0.18 + i * 0.06}>
               <p data-testid={`csr-paragraph-${i}`} className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
@@ -158,13 +189,30 @@ const CsrPartners = () => (
           ))}
         </div>
         <div data-testid="csr-logo-grid" className="mt-14 grid grid-cols-2 sm:grid-cols-5 gap-4">
-          {Array.from({ length: 10 }, (_, i) => (
-            <Reveal key={i} delay={0.05 + i * 0.04}>
+          {CSR_LOGOS.map((name, i) => (
+            <Reveal key={name} delay={0.05 + i * 0.04}>
               <div
                 data-testid={`csr-logo-${i + 1}`}
-                className="rounded-2xl border border-ink/10 bg-white aspect-[5/3] flex items-center justify-center"
+                className="rounded-2xl border border-ink/10 bg-white aspect-[5/3] flex items-center justify-center p-4 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40"
               >
-                <span className="font-mono text-sm font-bold text-ink-muted/50">{i + 1}</span>
+                <img src={`/assets/csr-logo-${i + 1}.jpg`} alt={`${name} logo`} loading="lazy" className="max-h-full max-w-full object-contain" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div data-testid="csr-photo-grid" className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {CSR_PHOTOS.map((alt, i) => (
+            <Reveal key={i} delay={0.04 + i * 0.04}>
+              <div
+                data-testid={`csr-photo-${i + 1}`}
+                className="group aspect-[4/3] overflow-hidden rounded-lg bg-white border border-ink/10"
+              >
+                <img
+                  src={`/assets/csr-photo-${i + 1}.jpg`}
+                  alt={alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
               </div>
             </Reveal>
           ))}

@@ -18,7 +18,7 @@ const inputCls =
 
 const Contact = () => {
   const [topic, setTopic] = useState(TOPICS[0]);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", org: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", email2: "", phone: "", org: "", message: "" });
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [searchParams] = useSearchParams();
@@ -41,9 +41,14 @@ const Contact = () => {
       toast.error("Please fill your name, email and message.");
       return;
     }
+    if (form.email.trim().toLowerCase() !== form.email2.trim().toLowerCase()) {
+      toast.error("Email addresses do not match.");
+      return;
+    }
     setBusy(true);
     try {
-      await submitInquiry({ kind: topic.kind, ...form, meta: { topic: topic.label, via: "contact-page" } });
+      const { email2, ...payload } = form;
+      await submitInquiry({ kind: topic.kind, ...payload, meta: { topic: topic.label, via: "contact-page" } });
       setDone(true);
     } catch {
       toast.error("Could not send. Please try again.");
@@ -173,7 +178,7 @@ const Contact = () => {
                   </p>
                   <button
                     data-testid="contact-another-btn"
-                    onClick={() => { setDone(false); setForm({ name: "", email: "", phone: "", org: "", message: "" }); }}
+                    onClick={() => { setDone(false); setForm({ name: "", email: "", email2: "", phone: "", org: "", message: "" }); }}
                     className="mt-8 rounded-full border-2 border-ink/15 px-7 py-3 font-bold text-sm hover:border-flame hover:text-flame transition-colors"
                   >
                     Send Another Message
@@ -204,9 +209,10 @@ const Contact = () => {
                       <input data-testid="contact-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
+                      <input data-testid="contact-email-confirm" type="email" className={inputCls} placeholder="Re-enter email" value={form.email2} onChange={(e) => setForm({ ...form, email2: e.target.value })} />
                       <input data-testid="contact-phone" className={inputCls} placeholder="Phone (optional)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                      <input data-testid="contact-org" className={inputCls} placeholder="Organisation (optional)" value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} />
                     </div>
+                    <input data-testid="contact-org" className={inputCls} placeholder="Organisation (optional)" value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} />
                     <textarea data-testid="contact-message" rows={5} className={inputCls} placeholder="Your message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
                     <button
                       data-testid="contact-submit-btn"

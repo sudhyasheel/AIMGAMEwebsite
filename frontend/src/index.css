@@ -109,6 +109,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* Description text force-justified site-wide (user request) */
-p {
+p, li, blockquote, td {
   text-align: justify;
 }

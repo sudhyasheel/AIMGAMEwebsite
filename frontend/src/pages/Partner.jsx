@@ -210,6 +210,10 @@ const StepPayment = ({ amount, form, setForm, onPay, onPaid, onBack, busy, setBu
   }, []);
 
   const payLive = async () => {
+    if (form.email.trim().toLowerCase() !== form.email2.trim().toLowerCase()) {
+      toast.error("Email addresses do not match.");
+      return;
+    }
     setBusy(true);
     try {
       await loadRazorpay();
@@ -259,7 +263,10 @@ const StepPayment = ({ amount, form, setForm, onPay, onPaid, onBack, busy, setBu
         <div className="p-6 space-y-4">
           <input data-testid="pay-name" className={inputCls} placeholder="Full name (as on PAN, for 80G receipt)" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
           <input data-testid="pay-email" type="email" className={inputCls} placeholder="Email for receipt" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          <input data-testid="pay-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          <input data-testid="pay-email-confirm" type="email" className={inputCls} placeholder="Re-enter email" value={form.email2} onChange={(e) => setForm({ ...form, email2: e.target.value })} />
+          <div className="grid sm:grid-cols-2 gap-4">
+            <input data-testid="pay-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          </div>
           {!live && (
             <div className="rounded-xl border border-dashed border-ink/20 p-4 space-y-3 bg-sand-deep/50">
               <input data-testid="pay-card-number" className={inputCls} placeholder="Card number (simulation)" maxLength={19} value={form.card} onChange={(e) => setForm({ ...form, card: e.target.value })} />
@@ -306,6 +313,9 @@ const StepQualify = ({ kind, form, setForm, onSubmit, onBack, busy }) => (
       <input data-testid="qualify-name" className={inputCls} placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
       <div className="grid sm:grid-cols-2 gap-4">
         <input data-testid="qualify-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+        <input data-testid="qualify-email-confirm" type="email" className={inputCls} placeholder="Re-enter email" value={form.email2} onChange={(e) => setForm({ ...form, email2: e.target.value })} />
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
         <input data-testid="qualify-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
       </div>
       {kind === "csr" && (
@@ -361,6 +371,9 @@ const StepGivingDesk = ({ form, setForm, onSubmit, onBack, busy }) => (
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         <input data-testid="desk-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+        <input data-testid="desk-email-confirm" type="email" className={inputCls} placeholder="Re-enter email" value={form.email2} onChange={(e) => setForm({ ...form, email2: e.target.value })} />
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
         <input data-testid="desk-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
@@ -438,9 +451,9 @@ const Partner = () => {
   const [type, setType] = useState(null);
   const [amount, setAmount] = useState("2500");
   const [busy, setBusy] = useState(false);
-  const [payForm, setPayForm] = useState({ name: "", email: "", phone: "", card: "", expiry: "", cvv: "" });
-  const [qForm, setQForm] = useState({ org: "", name: "", email: "", phone: "", focus: "", range: "", message: "" });
-  const [deskForm, setDeskForm] = useState({ name: "", org: "", email: "", phone: "", method: "", range: "", note: "" });
+  const [payForm, setPayForm] = useState({ name: "", email: "", email2: "", phone: "", card: "", expiry: "", cvv: "" });
+  const [qForm, setQForm] = useState({ org: "", name: "", email: "", email2: "", phone: "", focus: "", range: "", message: "" });
+  const [deskForm, setDeskForm] = useState({ name: "", org: "", email: "", email2: "", phone: "", method: "", range: "", note: "" });
 
   const pickType = (t) => {
     setType(t);
@@ -453,6 +466,10 @@ const Partner = () => {
   };
 
   const doPay = async () => {
+    if (payForm.email.trim().toLowerCase() !== payForm.email2.trim().toLowerCase()) {
+      toast.error("Email addresses do not match.");
+      return;
+    }
     setBusy(true);
     try {
       await submitInquiry({
@@ -472,6 +489,10 @@ const Partner = () => {
   };
 
   const doQualify = async () => {
+    if (qForm.email.trim().toLowerCase() !== qForm.email2.trim().toLowerCase()) {
+      toast.error("Email addresses do not match.");
+      return;
+    }
     setBusy(true);
     try {
       await submitInquiry({
@@ -493,6 +514,10 @@ const Partner = () => {
   };
 
   const doDesk = async () => {
+    if (deskForm.email.trim().toLowerCase() !== deskForm.email2.trim().toLowerCase()) {
+      toast.error("Email addresses do not match.");
+      return;
+    }
     setBusy(true);
     try {
       await submitInquiry({
@@ -517,9 +542,9 @@ const Partner = () => {
     setStep("type");
     setType(null);
     setAmount("2500");
-    setPayForm({ name: "", email: "", phone: "", card: "", expiry: "", cvv: "" });
-    setQForm({ org: "", name: "", email: "", phone: "", focus: "", range: "", message: "" });
-    setDeskForm({ name: "", org: "", email: "", phone: "", method: "", range: "", note: "" });
+    setPayForm({ name: "", email: "", email2: "", phone: "", card: "", expiry: "", cvv: "" });
+    setQForm({ org: "", name: "", email: "", email2: "", phone: "", focus: "", range: "", message: "" });
+    setDeskForm({ name: "", org: "", email: "", email2: "", phone: "", method: "", range: "", note: "" });
   };
 
   const successMode = type === "individual" && Number(amount) < CONVERSATION_THRESHOLD ? "donation" : "conversation";
