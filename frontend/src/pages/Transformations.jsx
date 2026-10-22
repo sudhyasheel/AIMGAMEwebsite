@@ -25,7 +25,6 @@ const CLUB_TIERS = [
     tier: "PLATINUM",
     sub: "ATTENDING COLLEGE",
     color: "text-slate-400",
-    ring: "border-slate-400",
     students: [
       { name: "Naghma Khatoon", city: "Kolkata", cls: "College 2nd Year" },
       { name: "Md Shahnawaz", city: "Kolkata", cls: "College 2nd Year" },
@@ -40,7 +39,6 @@ const CLUB_TIERS = [
     tier: "GOLD",
     sub: "CLASSES XI & XII",
     color: "text-amber-500",
-    ring: "border-amber-500",
     students: [
       { name: "Ayesha Parveen", city: "Kolkata", cls: "Class XII" },
       { name: "Md Obaidullah Ansari", city: "Kolkata", cls: "Class XII" },
@@ -56,7 +54,6 @@ const CLUB_TIERS = [
     tier: "SILVER",
     sub: "CLASSES VIII - X",
     color: "text-gray-400",
-    ring: "border-gray-400",
     students: [
       { name: "Renuka Subhedar", city: "Pune", cls: "Class X" },
       { name: "Kainat Parveen", city: "Kolkata", cls: "Class X" },
@@ -78,7 +75,6 @@ const CLUB_TIERS = [
     tier: "BRONZE",
     sub: "CLASSES VII & BELOW",
     color: "text-orange-600",
-    ring: "border-orange-500",
     students: [
       { name: "Rakshita Bhatgeri", city: "Pune", cls: "Class VII" },
       { name: "Sameer Sheikh", city: "Pune", cls: "Class VI" },
@@ -168,7 +164,7 @@ const StudentClubs = () => (
                     data-testid={`club-student-${ti}-${si}`}
                     className="flex flex-col items-center text-center w-24"
                   >
-                    <div className={`h-20 w-20 rounded-full border-2 ${t.ring} overflow-hidden bg-sand`}>
+                    <div data-testid={`club-student-photo-${ti}-${si}`} className="h-20 w-20 rounded-full border-2 border-gold overflow-hidden bg-sand shadow-none">
                       <img
                         src={clubPhoto(s.name)}
                         alt={`${s.name}, ${s.cls}, ${s.city}`}

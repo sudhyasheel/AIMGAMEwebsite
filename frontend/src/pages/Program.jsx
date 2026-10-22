@@ -368,6 +368,113 @@ const SchoolsPillar = () => (
   </section>
 );
 
+const PARENTS_BLOCKS = [
+  {
+    title: "IN THE LOOP FROM DAY ONE",
+    text: "Parents are with us from day one, kept in the loop on every decision about their child's education and care.",
+    img: "/assets/parents-meeting-3.jpg",
+    alt: "A parents' meeting with the Responsible Charity Society team in Kolkata",
+    albums: [
+      { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
+    ],
+  },
+  {
+    title: "HOME VISITS",
+    text: "Our team visits families at home, so support and guidance carry on well beyond the classroom.",
+    img: IMG.parentsWorkshop,
+    alt: "A mentor in conversation with parents during a home visit",
+    albums: [
+      { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
+    ],
+  },
+  {
+    title: "WORKSHOPS & HEALTHCARE",
+    text: "Parents are welcome at our centers for workshops and updates on their child's grades — and healthcare support extends to them too.",
+    img: IMG.healthFamily,
+    alt: "Families attending a community health workshop together",
+    albums: [
+      { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495665887111125&type=3" },
+    ],
+  },
+];
+
+const ParentsPillar = () => (
+  <section
+    id="parents"
+    data-testid="pillar-section-parents"
+    className="scroll-mt-40 py-16 sm:py-20 border-t border-ink/10"
+  >
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+      <Reveal>
+        <div className="flex items-baseline gap-4">
+          <span className="font-mono text-sm font-bold text-flame">05</span>
+          <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl text-leaf uppercase">
+            Parents as Partners
+          </h2>
+        </div>
+      </Reveal>
+      <Reveal delay={0.06}>
+        <p className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight">
+          No child makes this journey alone.
+        </p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <p data-testid="pillar-intro-parents" className="mt-4 text-leaf font-semibold text-lg sm:text-xl max-w-2xl leading-relaxed">
+          Parents are with us from day one. They're kept in the loop on every decision, visited at home
+          by our team, and welcome at our centers for workshops and updates on their child's grades.
+          Healthcare support extends to them too. When a family is part of the program, what starts in
+          the classroom carries on at home.
+        </p>
+      </Reveal>
+
+      <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {PARENTS_BLOCKS.map((b, i) => (
+          <Reveal key={b.title} delay={0.04 + i * 0.05} className="h-full">
+            <article
+              data-testid={`pillar-card-parents-${i}`}
+              className="group h-full rounded-3xl bg-white border border-ink/10 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(15,23,42,0.3)] flex flex-col"
+            >
+              <div className="aspect-[4/3] overflow-hidden shrink-0">
+                <img
+                  src={b.img}
+                  alt={b.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-display font-extrabold tracking-tight text-lg">{b.title}</h3>
+                <p className="mt-2 text-sm text-ink-muted leading-relaxed">{b.text}</p>
+                <div className="mt-auto pt-4">
+                  <div className="flex flex-wrap gap-2">
+                    {b.albums.map((a) => (
+                      <a
+                        key={a.label}
+                        href={a.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-testid={`block-album-parents-${i}-${a.label.toLowerCase()}`}
+                        onClick={() => {
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({ event: "album_click", page: "our-work", block: `parents-${i}`, city: a.label });
+                        }}
+                        className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-leaf-soft border border-leaf/25 px-4 font-mono text-[10px] tracking-[0.15em] font-bold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
+                      >
+                        <Facebook className="h-3 w-3" />
+                        {a.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Program = () => {
   const location = useLocation();
   const [active, setActive] = useState("education");
@@ -452,71 +559,7 @@ const Program = () => {
 
       <SchoolsPillar />
 
-      <section id="parents" data-testid="parents-band" className="bg-leaf-soft border-y border-leaf/15 scroll-mt-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-16 sm:py-20 grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <Reveal>
-              <div className="flex items-baseline gap-4">
-                <span className="font-mono text-sm font-bold text-flame">05</span>
-                <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl text-leaf uppercase">
-                  Parents as Partners
-                </h2>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight">
-                No child makes this journey alone.
-              </p>
-            </Reveal>
-            <Reveal delay={0.14}>
-              <p className="mt-6 text-leaf-dark/80 text-lg leading-relaxed max-w-xl">
-                Parents are with us from day one. They're kept in the loop on every decision, visited at home
-                by our team, and welcome at our centers for workshops and updates on their child's grades.
-                Healthcare support extends to them too. When a family is part of the program, what starts in
-                the classroom carries on at home.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl">
-                {[
-                  { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
-                  { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
-                  { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495665887111125&type=3" },
-                ].map((a) => (
-                  <a
-                    key={a.label}
-                    href={a.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-testid={`parents-album-${a.label.toLowerCase()}`}
-                    onClick={() => {
-                      window.dataLayer = window.dataLayer || [];
-                      window.dataLayer.push({ event: "album_click", page: "our-work", block: "parents", city: a.label });
-                    }}
-                    className="group flex items-center justify-between gap-2 rounded-2xl bg-night px-5 py-5 transition-colors duration-300 hover:bg-flame"
-                  >
-                    <span className="flex items-center gap-2 font-mono text-xs tracking-[0.15em] font-bold text-sand">
-                      <Facebook className="h-4 w-4" />
-                      {a.label}
-                    </span>
-                    <ArrowUpRight className="h-4 w-4 text-sand/60 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1}>
-            <div className="rounded-3xl overflow-hidden border border-leaf/15 shadow-[0_30px_60px_-30px_rgba(15,70,35,0.4)] aspect-[4/3]">
-              <img
-                src="/assets/parents-meeting-2.jpg"
-                alt="Parents gathered for a group meeting with the Responsible Charity Society team"
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <ParentsPillar />
     </main>
   );
 };

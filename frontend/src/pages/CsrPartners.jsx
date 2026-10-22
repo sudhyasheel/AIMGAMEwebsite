@@ -157,6 +157,18 @@ const CsrPartners = () => (
             </Reveal>
           ))}
         </div>
+        <div data-testid="csr-logo-grid" className="mt-14 grid grid-cols-2 sm:grid-cols-5 gap-4">
+          {Array.from({ length: 10 }, (_, i) => (
+            <Reveal key={i} delay={0.05 + i * 0.04}>
+              <div
+                data-testid={`csr-logo-${i + 1}`}
+                className="rounded-2xl border border-ink/10 bg-white aspect-[5/3] flex items-center justify-center"
+              >
+                <span className="font-mono text-sm font-bold text-ink-muted/50">{i + 1}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
 

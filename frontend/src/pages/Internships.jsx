@@ -1,9 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Mail, CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
-import { Reveal, EASE } from "@/components/Reveal";
-import { submitInquiry } from "@/lib/api";
+import { MapPin, Mail } from "lucide-react";
+import { Reveal } from "@/components/Reveal";
 
 const PARAGRAPHS = [
   "Our internships are paid, and that's on purpose. We ask for real commitment and accountability, and we believe that deserves fair pay. This isn't a resume-filler or a volunteer weekend. It's real work with real students who count on you showing up.",
@@ -13,6 +9,22 @@ const PARAGRAPHS = [
 ];
 
 const INTERN_PHOTOS = [
+  {
+    src: "/assets/internship-1.jpg",
+    alt: "An intern guiding a scholar through her studies at a community center",
+  },
+  {
+    src: "/assets/internship-2.jpg",
+    alt: "An intern in a study session with a group of scholars",
+  },
+  {
+    src: "/assets/internship-3.jpg",
+    alt: "An intern helping a young scholar with her schoolwork",
+  },
+  {
+    src: "/assets/internship-4.jpg",
+    alt: "An intern reviewing work with two scholars at a community center",
+  },
   {
     src: "https://images.unsplash.com/photo-1771577125646-b38ed7b14411?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjB2b2x1bnRlZXIlMjB0ZWFjaGluZyUyMGNoaWxkcmVuJTIwbWVudG9yfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
     alt: "An intern teaching children at a community center",
@@ -25,102 +37,16 @@ const INTERN_PHOTOS = [
     src: "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHx0dXRvcmluZyUyMG1lbnRvcmluZyUyMHNlc3Npb24lMjBJbmRpYSUyMGNoaWxkcmVuJTIwY2xhc3Nyb29tfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
     alt: "A tutoring session at a community center",
   },
+  {
+    src: "https://images.unsplash.com/photo-1572847748080-bac263fae977?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2NzB8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGxlYXJuaW5nJTIwY2xhc3Nyb29tJTIwbm90ZWJvb2t8ZW58MHx8fHwxNzg4OTM1NzIzfDA&ixlib=rb-4.1.0&q=85",
+    alt: "Scholars learning together with notebooks in a classroom",
+  },
 ];
 
 const CITIES = [
   { city: "Kolkata", email: "hrkolkata@responsiblecharity.org" },
   { city: "Pune", email: "hrpune@responsiblecharity.org" },
 ];
-
-const inputCls =
-  "w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-flame placeholder:text-ink-muted/60";
-
-const InternshipForm = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", city: "", message: "" });
-  const [busy, setBusy] = useState(false);
-  const [done, setDone] = useState(false);
-
-  const submit = async () => {
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill your name, email and message.");
-      return;
-    }
-    setBusy(true);
-    try {
-      await submitInquiry({
-        kind: "career",
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        message: form.message,
-        meta: { topic: "Internship", city: form.city, via: "internships-page" },
-      });
-      setDone(true);
-    } catch {
-      toast.error("Could not send. Please try again.");
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  return (
-    <div data-testid="internship-form" className="max-w-2xl mx-auto">
-      <AnimatePresence mode="wait">
-        {done ? (
-          <motion.div
-            key="done"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="rounded-3xl bg-white border border-ink/10 p-12 text-center"
-          >
-            <span className="mx-auto h-16 w-16 rounded-full bg-leaf-soft text-leaf inline-flex items-center justify-center">
-              <CheckCircle2 className="h-8 w-8" />
-            </span>
-            <h3 className="mt-6 font-display font-extrabold text-2xl tracking-tight">Application noted.</h3>
-            <p className="mt-4 text-ink-muted leading-relaxed max-w-sm mx-auto">
-              Remember: questions go through email only — write to your city's HR inbox and mention you
-              applied here. Orientation happens monthly in Kolkata and Pune.
-            </p>
-            <button
-              data-testid="internship-another-btn"
-              onClick={() => { setDone(false); setForm({ name: "", email: "", phone: "", city: "", message: "" }); }}
-              className="mt-8 rounded-full border-2 border-ink/15 px-7 py-3 font-bold text-sm hover:border-flame hover:text-flame transition-colors"
-            >
-              Send Another
-            </button>
-          </motion.div>
-        ) : (
-          <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <div className="rounded-3xl bg-white border border-ink/10 p-8 space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <input data-testid="internship-name" className={inputCls} placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                <input data-testid="internship-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <input data-testid="internship-phone" className={inputCls} placeholder="Phone (optional)" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-                <select data-testid="internship-city" className={inputCls} value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })}>
-                  <option value="">Preferred city…</option>
-                  <option>Kolkata</option>
-                  <option>Pune</option>
-                </select>
-              </div>
-              <textarea data-testid="internship-message" rows={4} className={inputCls} placeholder="Tell us why you want to show up, consistently, for years" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-              <button
-                data-testid="internship-submit-btn"
-                onClick={submit}
-                disabled={busy}
-                className="w-full rounded-full bg-flame py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark disabled:opacity-40"
-              >
-                {busy ? "Sending…" : "Apply for the Internship"}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
 
 const Internships = () => (
   <main data-testid="internships-page">
@@ -146,7 +72,7 @@ const Internships = () => (
           </Reveal>
         </div>
 
-        <div data-testid="internships-photos" className="mt-12 grid sm:grid-cols-3 gap-4 sm:gap-6">
+        <div data-testid="internships-photos" className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {INTERN_PHOTOS.map((p, i) => (
             <Reveal key={p.src} delay={0.05 + i * 0.06}>
               <div
@@ -198,19 +124,6 @@ const Internships = () => (
               </div>
             </Reveal>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <section className="pb-24 lg:pb-32 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-8">
-        <Reveal>
-          <h2 className="text-center font-display font-extrabold text-2xl sm:text-3xl tracking-tight">
-            Ready to <span className="text-flame">show up?</span>
-          </h2>
-        </Reveal>
-        <div className="mt-8">
-          <InternshipForm />
         </div>
       </div>
     </section>
