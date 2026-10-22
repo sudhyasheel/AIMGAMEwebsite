@@ -7,10 +7,10 @@ const SCHOLAR_SETS = [
   ["/assets/scholar-c-1.jpg", "/assets/scholar-c-2.jpg", "/assets/scholar-c-3.jpg", "/assets/scholar-c-4.jpg", "/assets/scholar-c-5.jpg"],
   ["/assets/scholar-d-1.jpg", "/assets/scholar-d-2.jpg", "/assets/scholar-d-3.jpg", "/assets/scholar-d-4.jpg", "/assets/scholar-d-5.jpg"],
 ];
-const PANEL_COLORS = ["#E8490F", "#1E7A3C", "#F2A500", "#E8490F", "#1E7A3C"];
+export const PANEL_COLORS = ["#E8490F", "#1E7A3C", "#F2A500", "#E8490F", "#1E7A3C"];
 const SET_ROTATE_MS = 2500;
 
-const chevronClip = (first) =>
+export const chevronClip = (first) =>
   first
     ? "polygon(0 0, calc(100% - 12%) 0, 100% 50%, calc(100% - 12%) 100%, 0 100%)"
     : "polygon(0 0, calc(100% - 12%) 0, 100% 50%, calc(100% - 12%) 100%, 0 100%, 12% 50%)";

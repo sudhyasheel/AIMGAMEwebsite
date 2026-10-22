@@ -107,3 +107,8 @@ html.lenis, html.lenis body { height: auto; }
         border-bottom-color: inherit;
     }
 }
+
+/* Description text force-justified site-wide (user request) */
+p {
+  text-align: justify;
+}

@@ -463,6 +463,11 @@ const Program = () => {
                 </h2>
               </div>
             </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight">
+                No child makes this journey alone.
+              </p>
+            </Reveal>
             <Reveal delay={0.14}>
               <p className="mt-6 text-leaf-dark/80 text-lg leading-relaxed max-w-xl">
                 Parents are with us from day one. They're kept in the loop on every decision, visited at home
@@ -472,7 +477,7 @@ const Program = () => {
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl">
                 {[
                   { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
                   { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
@@ -488,10 +493,13 @@ const Program = () => {
                       window.dataLayer = window.dataLayer || [];
                       window.dataLayer.push({ event: "album_click", page: "our-work", block: "parents", city: a.label });
                     }}
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-night px-6 font-mono text-xs tracking-[0.15em] font-bold text-sand transition-colors duration-300 hover:bg-flame"
+                    className="group flex items-center justify-between gap-2 rounded-2xl bg-night px-5 py-5 transition-colors duration-300 hover:bg-flame"
                   >
-                    <Facebook className="h-3.5 w-3.5" />
-                    {a.label}
+                    <span className="flex items-center gap-2 font-mono text-xs tracking-[0.15em] font-bold text-sand">
+                      <Facebook className="h-4 w-4" />
+                      {a.label}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-sand/60 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 ))}
               </div>

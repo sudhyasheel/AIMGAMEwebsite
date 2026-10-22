@@ -1,7 +1,207 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { MapPin, Medal } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { JourneyGraphic } from "@/components/JourneyGraphic";
+import { JourneyGraphic, PANEL_COLORS, chevronClip } from "@/components/JourneyGraphic";
+
+const GRADUATES = [
+  {
+    name: "Vishnu Dore",
+    city: "Pune",
+    photos: ["/assets/scholar-b-1.jpg", "/assets/scholar-b-2.jpg", "/assets/scholar-b-3.jpg", "/assets/scholar-b-4.jpg", "/assets/scholar-b-5.jpg"],
+  },
+  {
+    name: "Neha Prajapati",
+    city: "Pune",
+    photos: ["/assets/results-neha-1.jpg", "/assets/results-neha-2.jpg", "/assets/results-neha-3.jpg", "/assets/results-neha-4.jpg", "/assets/results-neha-5.jpg"],
+  },
+  {
+    name: "Firdous Ali",
+    city: "Kolkata",
+    photos: ["/assets/scholar-d-1.jpg", "/assets/scholar-d-2.jpg", "/assets/scholar-d-3.jpg", "/assets/scholar-d-4.jpg", "/assets/scholar-d-5.jpg"],
+  },
+  {
+    name: "Sheikh Karim",
+    city: "Kolkata",
+    photos: ["/assets/scholar-c-1.jpg", "/assets/scholar-c-2.jpg", "/assets/scholar-c-3.jpg", "/assets/scholar-c-4.jpg", "/assets/scholar-c-5.jpg"],
+  },
+];
+
+const CLUB_TIERS = [
+  {
+    tier: "PLATINUM",
+    sub: "ATTENDING COLLEGE",
+    color: "text-slate-300",
+    ring: "border-slate-300",
+    students: [
+      { name: "Naghma Khatoon", city: "Kolkata", cls: "College 2nd Year" },
+      { name: "Md Shahnawaz", city: "Kolkata", cls: "College 2nd Year" },
+      { name: "Karan Rajbhar", city: "Pune", cls: "College 1st Year" },
+      { name: "Anjali Prajapati", city: "Pune", cls: "College 1st Year" },
+      { name: "Aijaj Shaikh", city: "Pune", cls: "College 1st Year" },
+      { name: "Amrin Khatoon", city: "Kolkata", cls: "College 1st Year" },
+      { name: "Siddhu Bhatgeri", city: "Pune", cls: "College 1st Year" },
+    ],
+  },
+  {
+    tier: "GOLD",
+    sub: "CLASSES XI & XII",
+    color: "text-amber-400",
+    ring: "border-amber-400",
+    students: [
+      { name: "Ayesha Parveen", city: "Kolkata", cls: "Class XII" },
+      { name: "Md Obaidullah Ansari", city: "Kolkata", cls: "Class XII" },
+      { name: "Md Zeeshan", city: "Kolkata", cls: "Class XII" },
+      { name: "Daraksha Parveen", city: "Kolkata", cls: "Class XI" },
+      { name: "Goushia Takrim", city: "Kolkata", cls: "Class XI" },
+      { name: "Sameer Ali", city: "Kolkata", cls: "Class XI" },
+      { name: "Shreya Chaurasiya", city: "Mumbai", cls: "Class XI" },
+      { name: "Jiya Mishra", city: "Mumbai", cls: "Class XI" },
+    ],
+  },
+  {
+    tier: "SILVER",
+    sub: "CLASSES VIII - X",
+    color: "text-gray-300",
+    ring: "border-gray-300",
+    students: [
+      { name: "Renuka Subhedar", city: "Pune", cls: "Class X" },
+      { name: "Kainat Parveen", city: "Kolkata", cls: "Class X" },
+      { name: "Aliya Adiba", city: "Kolkata", cls: "Class X" },
+      { name: "Ashiya Parveen", city: "Kolkata", cls: "Class X" },
+      { name: "Sheikh Miraj", city: "Kolkata", cls: "Class X" },
+      { name: "Md Jasimuddin", city: "Kolkata", cls: "Class X" },
+      { name: "Sarifun Nisha", city: "Kolkata", cls: "Class IX" },
+      { name: "Pradhnya Allapur", city: "Pune", cls: "Class IX" },
+      { name: "Kajal Gaikwad", city: "Pune", cls: "Class IX" },
+      { name: "Muskan Sah", city: "Pune", cls: "Class IX" },
+      { name: "Muskan Sheikh", city: "Pune", cls: "Class VIII" },
+      { name: "Divya Prajapati", city: "Pune", cls: "Class VIII" },
+      { name: "Arshi Khatoon", city: "Kolkata", cls: "Class VIII" },
+      { name: "Md. Saif", city: "Kolkata", cls: "Class VIII" },
+    ],
+  },
+  {
+    tier: "BRONZE",
+    sub: "CLASSES VII & BELOW",
+    color: "text-orange-400",
+    ring: "border-orange-400",
+    students: [
+      { name: "Rakshita Bhatgeri", city: "Pune", cls: "Class VII" },
+      { name: "Sameer Sheikh", city: "Pune", cls: "Class VI" },
+      { name: "Mantasha Khatoon", city: "Kolkata", cls: "Class V" },
+      { name: "Ayyan Alam", city: "Kolkata", cls: "Class V" },
+      { name: "Hayatun Khatoon", city: "Kolkata", cls: "Class V" },
+    ],
+  },
+];
+
+const initials = (name) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+
+const GraduateRows = () => (
+  <section data-testid="results-graduates" className="pb-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+      <Reveal>
+        <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">OUR GRADUATES · NAME & DEGREE</p>
+      </Reveal>
+      <div className="mt-8 space-y-14">
+        {GRADUATES.map((g, gi) => (
+          <Reveal key={g.name} delay={0.05}>
+            <div data-testid={`graduate-row-${g.name.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
+              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <h3 className="font-display font-extrabold tracking-tight text-2xl text-ink">{g.name}</h3>
+                <span className="font-mono text-[11px] tracking-[0.2em] font-bold text-flame">
+                  {g.city.toUpperCase()} · COLLEGE GRADUATE
+                </span>
+              </div>
+              <div className="mt-4 overflow-x-auto no-scrollbar">
+                <div className="flex min-w-[760px] sm:min-w-0" style={{ gap: "2%" }}>
+                  {g.photos.map((src, i) => (
+                    <div
+                      key={i}
+                      data-testid={`graduate-${gi}-photo-${i}`}
+                      className="relative flex-1 aspect-[1.263/1]"
+                      style={{ clipPath: chevronClip(i === 0), backgroundColor: PANEL_COLORS[i] }}
+                    >
+                      <img
+                        src={src}
+                        alt={`${g.name} — scholar journey photo ${i + 1}`}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover"
+                        style={{ clipPath: chevronClip(i === 0) }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const StudentClubs = () => (
+  <section data-testid="results-student-clubs" className="bg-night text-sand relative grain">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
+      <Reveal>
+        <p className="font-mono text-xs tracking-[0.3em] text-gold font-bold">STUDENT CLUBS</p>
+      </Reveal>
+      <Reveal delay={0.06}>
+        <h2 className="mt-4 font-display font-extrabold tracking-tight text-3xl sm:text-4xl uppercase">
+          The scholars on the path right now
+        </h2>
+      </Reveal>
+      <div className="mt-10">
+        {CLUB_TIERS.map((t, ti) => (
+          <Reveal key={t.tier} delay={0.04}>
+            <div
+              data-testid={`club-tier-${t.tier.toLowerCase()}`}
+              className="flex flex-col sm:flex-row gap-6 sm:gap-10 border-t border-sand/10 py-10 first:border-t-0 first:pt-0"
+            >
+              <div className="sm:w-48 shrink-0 flex sm:flex-col items-center sm:items-start gap-4">
+                <Medal className={`h-14 w-14 ${t.color}`} />
+                <div className="sm:text-left">
+                  <h3 className="font-display font-extrabold tracking-wide text-2xl text-sand">{t.tier}</h3>
+                  <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-sand/50">{t.sub}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-x-6 gap-y-8 flex-1">
+                {t.students.map((s, si) => (
+                  <div
+                    key={s.name}
+                    data-testid={`club-student-${ti}-${si}`}
+                    className="flex flex-col items-center text-center w-24"
+                  >
+                    <div
+                      className={`h-20 w-20 rounded-full border-2 ${t.ring} bg-white/5 flex items-center justify-center font-display font-extrabold text-lg text-sand`}
+                    >
+                      {initials(s.name)}
+                    </div>
+                    <p className="mt-2 text-xs font-bold text-sand leading-tight">{s.name}</p>
+                    <p className="mt-1 text-[10px] font-semibold text-flame inline-flex items-center gap-1">
+                      <MapPin className="h-2.5 w-2.5" />
+                      {s.city}
+                    </p>
+                    <span className="mt-1.5 rounded-full border border-sand/25 px-2 py-0.5 font-mono text-[9px] tracking-wider text-sand/70">
+                      {s.cls}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 const Transformations = () => (
   <main data-testid="transformations-page">
@@ -47,40 +247,8 @@ const Transformations = () => (
       </div>
     </section>
 
-    <section data-testid="results-cta-band" className="bg-leaf text-white relative grain">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-20 sm:py-24 text-center">
-        <Reveal>
-          <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl uppercase">
-            Every graduate started with a game.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <p className="mt-4 text-white/80 text-lg max-w-2xl mx-auto">
-            The next fifteen years are being written right now — come be part of them.
-          </p>
-        </Reveal>
-        <Reveal delay={0.14}>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link
-              to="/partner"
-              data-testid="cta-donate-btn"
-              className="group inline-flex items-center gap-2 rounded-full bg-flame px-8 py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
-            >
-              Donate
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/csr-partners"
-              data-testid="cta-partner-btn"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 font-bold text-white transition-colors duration-300 hover:border-flame hover:text-flame"
-            >
-              Partner With Us
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </Reveal>
-      </div>
-    </section>
+    <GraduateRows />
+    <StudentClubs />
   </main>
 );
 
