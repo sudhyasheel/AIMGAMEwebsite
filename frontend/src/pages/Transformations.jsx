@@ -213,7 +213,7 @@ const Transformations = () => (
           </p>
         </Reveal>
         <Reveal delay={0.18}>
-          <p data-testid="results-description" className="mt-8 max-w-3xl text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+          <p data-testid="results-description" className="mt-8 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
             Each of our graduates began as a child playing a game. Today they hold a college degree. The
             scholars below them are on the same path, one milestone at a time.
           </p>

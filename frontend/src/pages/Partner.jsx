@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, User, Gem, ShieldCheck, CheckCircle2, BadgeCheck, FileCheck2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, User, Gem, ShieldCheck, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
-import { PARTNERS, MIN_DONATION, CONVERSATION_THRESHOLD } from "@/data/content";
+import { MIN_DONATION, CONVERSATION_THRESHOLD } from "@/data/content";
+import { CredibilityGrid } from "@/pages/CsrPartners";
 import { submitInquiry, getDonationConfig, createDonationOrder, verifyDonation, loadRazorpay } from "@/lib/api";
 
 const PRESETS = [1000, 2500, 5000, 10000, 25000];
@@ -33,13 +34,6 @@ const SCHOLAR_PHOTOS = [
   { src: "/assets/tl-2.jpg", alt: "Current AimGame scholar" },
   { src: "/assets/tl-4.jpg", alt: "Current AimGame scholar" },
   { src: "/assets/tl-3.jpg", alt: "Current AimGame scholar" },
-];
-
-const TRUST_ITEMS = [
-  { icon: ShieldCheck, title: "Indian Registered Non-Profit", desc: "Receipts issued by Responsible Charity Society.", testid: "trust-registered" },
-  { icon: BadgeCheck, title: "80G Certified", desc: "Tax-deductible under Section 80G, continuously since 2012.", testid: "trust-80g" },
-  { icon: Building2, title: "CSR Approved", desc: "Structured partnerships with scholar-wise reporting.", testid: "trust-csr" },
-  { icon: FileCheck2, title: "Sec 135 Compliance", desc: "CSR documentation aligned with Section 135 of the Companies Act.", testid: "trust-audited" },
 ];
 
 const Donut = () => {
@@ -627,37 +621,10 @@ const Partner = () => {
         </div>
       </section>
 
-      <section className="pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {TRUST_ITEMS.map((t, i) => (
-              <Reveal key={t.title} delay={i * 0.06}>
-                <div data-testid={t.testid} className="h-full rounded-2xl bg-white border border-ink/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40">
-                  <t.icon className="h-6 w-6 text-leaf" />
-                  <p className="mt-4 font-display font-bold">{t.title}</p>
-                  <p className="mt-1.5 text-xs text-ink-muted leading-relaxed">{t.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="pb-24 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-          <Reveal>
-            <div id="current-partners" data-testid="current-partners-block" className="rounded-3xl bg-leaf-soft border border-leaf/15 p-8 sm:p-10">
-              <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">CURRENT CSR PARTNERS</p>
-              <div className="mt-6 flex flex-wrap gap-x-12 gap-y-4">
-                {PARTNERS.map((p) => (
-                  <span key={p} className="font-display font-bold text-lg text-leaf-dark/70">{p}</span>
-                ))}
-              </div>
-              <p className="mt-6 text-sm text-leaf-dark/70 max-w-2xl">
-                Partners receive audited utilization reports and scholar-wise progress tracking. Join them.
-              </p>
-            </div>
-          </Reveal>
+          <Reveal><Eyebrow>Your Side, Made Easy</Eyebrow></Reveal>
+          <CredibilityGrid />
         </div>
       </section>
     </main>

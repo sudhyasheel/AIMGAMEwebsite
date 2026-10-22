@@ -112,7 +112,7 @@ const About = () => (
           ))}
         </div>
 
-        <div className="mt-14 max-w-6xl mx-auto space-y-7">
+        <div className="mt-14 space-y-7">
           {STORY_TEXT.map((para, i) => (
             <Reveal key={i} delay={0.08 + i * 0.08}>
               <p data-testid={`story-paragraph-${i}`} className="text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
@@ -134,13 +134,13 @@ const About = () => (
           <Reveal delay={0.08}>
             <p
               data-testid="centers-subheader"
-              className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight max-w-4xl"
+              className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight"
             >
               Two community centers, Kolkata and Pune, built for everything a scholarship alone can't provide.
             </p>
           </Reveal>
           <Reveal delay={0.14}>
-            <p data-testid="centers-description" className="mt-6 max-w-3xl text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+            <p data-testid="centers-description" className="mt-6 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
               Our community centers are where the program lives day to day. After school, students come for
               tutoring, music classes, yoga and games. Parents come for meetings and workshops. Supplies are
               distributed here, and visitors are welcome by arrangement. It's a second home for our students,

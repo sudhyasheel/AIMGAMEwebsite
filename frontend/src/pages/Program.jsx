@@ -229,7 +229,7 @@ const PillarSection = ({ pillar }) => (
         </div>
       </Reveal>
       <Reveal delay={0.08}>
-        <p data-testid={`pillar-intro-${pillar.id}`} className="mt-4 text-leaf font-semibold text-lg sm:text-xl max-w-2xl leading-relaxed">
+        <p data-testid={`pillar-intro-${pillar.id}`} className="mt-4 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
           {pillar.intro}
         </p>
       </Reveal>
@@ -323,7 +323,7 @@ const SchoolsPillar = () => (
         </div>
       </Reveal>
       <Reveal delay={0.08}>
-        <p data-testid="pillar-intro-schools" className="mt-4 text-leaf font-semibold text-lg sm:text-xl max-w-2xl leading-relaxed">
+        <p data-testid="pillar-intro-schools" className="mt-4 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
           Our scholars study at accredited private schools, colleges and universities with years of service
           across India. These institutions are pillars of their communities, and they understand our
           students' backgrounds and challenges. Together, year after year, we help every scholar succeed.
@@ -419,7 +419,7 @@ const ParentsPillar = () => (
         </p>
       </Reveal>
       <Reveal delay={0.1}>
-        <p data-testid="pillar-intro-parents" className="mt-4 text-leaf font-semibold text-lg sm:text-xl max-w-2xl leading-relaxed">
+        <p data-testid="pillar-intro-parents" className="mt-4 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
           Parents are with us from day one. They're kept in the loop on every decision, visited at home
           by our team, and welcome at our centers for workshops and updates on their child's grades.
           Healthcare support extends to them too. When a family is part of the program, what starts in
@@ -540,7 +540,7 @@ const Program = () => {
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p data-testid="work-description" className="mt-8 max-w-3xl text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+            <p data-testid="work-description" className="mt-8 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
               Education alone doesn't end poverty. Our scholars also need healthy families, a real path
               to a career, strong institutions, and parents beside them. So the work rests on five pillars:
               education, healthcare, employment, schools &amp; colleges, and parents as partners.

@@ -158,6 +158,20 @@ const CSR_PHOTOS = [
   "A career workshop session for scholars at a partner office",
 ];
 
+export const CredibilityGrid = () => (
+  <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {CREDENTIALS.map((c, i) => (
+      <Reveal key={c.title} delay={i * 0.06}>
+        <div data-testid={c.testid} className="h-full rounded-2xl bg-white border border-ink/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40">
+          <c.icon className="h-6 w-6 text-leaf" />
+          <p className="mt-4 font-display font-bold">{c.title}</p>
+          <p className="mt-1.5 text-xs text-ink-muted leading-relaxed">{c.desc}</p>
+        </div>
+      </Reveal>
+    ))}
+  </div>
+);
+
 const CsrPartners = () => (
   <main data-testid="csr-partners-page">
     <section className="pt-44 sm:pt-60 pb-16 relative overflow-hidden grain">
@@ -239,17 +253,7 @@ const CsrPartners = () => (
     <section className="pb-24 lg:pb-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <Reveal><Eyebrow>Your Side, Made Easy</Eyebrow></Reveal>
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {CREDENTIALS.map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.06}>
-              <div data-testid={c.testid} className="h-full rounded-2xl bg-white border border-ink/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-leaf/40">
-                <c.icon className="h-6 w-6 text-leaf" />
-                <p className="mt-4 font-display font-bold">{c.title}</p>
-                <p className="mt-1.5 text-xs text-ink-muted leading-relaxed">{c.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <CredibilityGrid />
       </div>
     </section>
   </main>

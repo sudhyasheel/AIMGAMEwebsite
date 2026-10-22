@@ -26,20 +26,20 @@ const INTERN_PHOTOS = [
     alt: "An intern reviewing work with two scholars at a community center",
   },
   {
-    src: "https://images.unsplash.com/photo-1771577125646-b38ed7b14411?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjB2b2x1bnRlZXIlMjB0ZWFjaGluZyUyMGNoaWxkcmVuJTIwbWVudG9yfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
-    alt: "An intern teaching children at a community center",
+    src: "/assets/internship-5.jpg",
+    alt: "An intern teaching a depreciation lesson at the chalkboard",
   },
   {
-    src: "https://images.unsplash.com/photo-1777732340202-1444ea7a8bfa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjB2b2x1bnRlZXIlMjBwbGF5aW5nJTIwYm9hcmQlMjBnYW1lJTIwY2hpbGRyZW4lMjBzcG9ydHN8ZW58MHx8fHwxNzkxODEyMzg0fDA&ixlib=rb-4.1.0&q=85",
-    alt: "An intern playing a board game with children",
+    src: "/assets/internship-6.jpg",
+    alt: "An intern tutoring two scholars at the library table",
   },
   {
-    src: "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHx0dXRvcmluZyUyMG1lbnRvcmluZyUyMHNlc3Npb24lMjBJbmRpYSUyMGNoaWxkcmVuJTIwY2xhc3Nyb29tfGVufDB8fHx8MTc5MTgxMjM4NHww&ixlib=rb-4.1.0&q=85",
-    alt: "A tutoring session at a community center",
+    src: "/assets/internship-7.jpg",
+    alt: "A study circle with an intern and scholars on the center floor",
   },
   {
-    src: "https://images.unsplash.com/photo-1572847748080-bac263fae977?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2NzB8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjBzY2hvb2wlMjBjaGlsZHJlbiUyMGxlYXJuaW5nJTIwY2xhc3Nyb29tJTIwbm90ZWJvb2t8ZW58MHx8fHwxNzg4OTM1NzIzfDA&ixlib=rb-4.1.0&q=85",
-    alt: "Scholars learning together with notebooks in a classroom",
+    src: "/assets/internship-8.jpg",
+    alt: "An intern working through notebooks with a group of scholars",
   },
 ];
 

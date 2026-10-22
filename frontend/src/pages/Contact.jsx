@@ -79,7 +79,7 @@ const Contact = () => {
             </p>
           </Reveal>
 
-          <div className="mt-10 max-w-4xl space-y-6">
+          <div className="mt-10 space-y-6">
             <Reveal delay={0.18}>
               <p data-testid="contact-description-1" className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
                 We're not chasing every donation, we're building long-term partnerships with people and
@@ -96,7 +96,7 @@ const Contact = () => {
             </Reveal>
           </div>
 
-          <div className="mt-12 max-w-4xl space-y-4">
+          <div className="mt-12 space-y-4">
             <Reveal delay={0.3}>
               <div data-testid="contact-fit-individual" className="flex flex-wrap items-center gap-x-4 gap-y-3 rounded-2xl bg-white border border-ink/10 px-6 py-5">
                 <p className="flex-1 min-w-[240px] font-semibold text-ink text-base sm:text-lg">
