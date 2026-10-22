@@ -39,7 +39,7 @@ const Navbar = () => {
           </span>
         </Link>
 
-        <div className="hidden lg:flex flex-col items-end gap-3">
+        <div className="hidden xl:flex flex-col items-end gap-3">
           <img
             src="/assets/banner.png"
             alt="AimGame — Life-Changing Scholarships Across India"
@@ -54,7 +54,7 @@ const Navbar = () => {
               end={l.end}
               data-testid={l.id}
               className={({ isActive }) =>
-                `whitespace-nowrap text-sm font-semibold tracking-normal transition-colors duration-300 ${
+                `whitespace-nowrap text-[17px] font-semibold tracking-normal transition-colors duration-300 ${
                   isActive ? "text-leaf underline underline-offset-8 decoration-2 decoration-flame" : "text-leaf/70 hover:text-leaf"
                 }`
               }
@@ -65,7 +65,7 @@ const Navbar = () => {
           <Link
             to="/partner"
             data-testid="nav-cta-donate"
-            className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-flame px-5 py-2.5 text-[13px] font-bold tracking-wide text-white transition-colors duration-300 hover:bg-flame-dark"
+            className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-flame px-5 py-2.5 text-base font-bold tracking-wide text-white transition-colors duration-300 hover:bg-flame-dark"
           >
             DONATE
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -76,7 +76,7 @@ const Navbar = () => {
         <button
           data-testid="nav-mobile-toggle"
           onClick={() => setOpen(!open)}
-          className="lg:hidden h-11 w-11 inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/70"
+          className="xl:hidden h-11 w-11 inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/70"
           aria-label="Toggle menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,7 +84,7 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div data-testid="nav-mobile-menu" className="lg:hidden bg-sand/95 backdrop-blur-xl border-t border-ink/10">
+        <div data-testid="nav-mobile-menu" className="xl:hidden bg-sand/95 backdrop-blur-xl border-t border-ink/10">
           <div className="px-6 py-6 flex flex-col gap-5">
             {LINKS.map((l) => (
               <NavLink

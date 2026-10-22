@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, ArrowRight, Facebook } from "lucide-react";
+import { ArrowUpRight, Facebook } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 
@@ -172,6 +172,8 @@ const NAV_ITEMS = [
   { id: "education", label: "EDUCATION" },
   { id: "healthcare", label: "HEALTHCARE" },
   { id: "employment", label: "EMPLOYMENT" },
+  { id: "schools", label: "SCHOOLS & COLLEGES" },
+  { id: "parents", label: "PARENTS AS PARTNERS" },
 ];
 
 const PillarNav = ({ active, progress, onJump }) => (
@@ -305,32 +307,61 @@ const PARTNER_LOGOS = [
   { src: "/assets/partner-logo-6.png", name: "I.P. Memorial School, Liluah Howrah" },
 ];
 
-const EducationPartners = () => (
-  <section data-testid="education-partners-band" className="py-16 sm:py-20 border-t border-ink/10">
-    <div className="max-w-5xl mx-auto px-4 sm:px-8">
+const SchoolsPillar = () => (
+  <section
+    id="schools"
+    data-testid="pillar-section-schools"
+    className="scroll-mt-40 py-16 sm:py-20 border-t border-ink/10"
+  >
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
       <Reveal>
-        <div className="rounded-3xl bg-white border border-ink/10 p-10 sm:p-14 text-center">
-          <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">EDUCATION PARTNERS</p>
-          <h2 className="mt-4 font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-leaf uppercase">
-            The Schools & Colleges Behind Our Scholars
+        <div className="flex items-baseline gap-4">
+          <span className="font-mono text-sm font-bold text-flame">04</span>
+          <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl text-leaf uppercase">
+            Schools and Colleges
           </h2>
-          <p className="mt-4 text-ink-muted max-w-2xl mx-auto leading-relaxed">
-            Our scholars study at accredited private schools, colleges and universities with years of service
-            across India. These institutions are pillars of their communities, and they understand our
-            students' backgrounds and challenges. Together, year after year, we help every scholar succeed.
-          </p>
-          <AlbumButtons page="our-work" block="education-partners" />
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {PARTNER_LOGOS.map((l, i) => (
-              <div
-                key={l.src}
-                data-testid={`education-partner-logo-${i}`}
-                className="rounded-2xl border border-ink/10 bg-white px-6 py-6 flex items-center justify-center"
-              >
-                <img src={l.src} alt={`${l.name} logo`} className="h-20 w-full object-contain" />
-              </div>
-            ))}
-          </div>
+        </div>
+      </Reveal>
+      <Reveal delay={0.08}>
+        <p data-testid="pillar-intro-schools" className="mt-4 text-leaf font-semibold text-lg sm:text-xl max-w-2xl leading-relaxed">
+          Our scholars study at accredited private schools, colleges and universities with years of service
+          across India. These institutions are pillars of their communities, and they understand our
+          students' backgrounds and challenges. Together, year after year, we help every scholar succeed.
+        </p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {PARTNER_LOGOS.map((l, i) => (
+            <div
+              key={l.src}
+              data-testid={`education-partner-logo-${i}`}
+              className="rounded-2xl border border-ink/10 bg-white px-6 py-6 flex items-center justify-center"
+            >
+              <img src={l.src} alt={`${l.name} logo`} className="h-20 w-full object-contain" />
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {[
+            { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
+            { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
+          ].map((a) => (
+            <a
+              key={a.label}
+              href={a.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid={`schools-album-${a.label.toLowerCase()}`}
+              onClick={() => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "album_click", page: "our-work", block: "schools", city: a.label });
+              }}
+              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-leaf-soft border border-leaf/25 px-4 font-mono text-[10px] tracking-[0.15em] font-bold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
+            >
+              <Facebook className="h-3 w-3" />
+              {a.label}
+            </a>
+          ))}
         </div>
       </Reveal>
     </div>
@@ -398,13 +429,14 @@ const Program = () => {
               data-testid="work-subheader"
               className="mt-5 font-display font-bold text-3xl sm:text-4xl text-flame tracking-tight"
             >
-              Three pillars, fifteen years, and every step it takes to move a child out of poverty for good.
+              Five pillars, fifteen years, and every step it takes to move a child out of poverty for good.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
             <p data-testid="work-description" className="mt-8 max-w-3xl text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
-              Education alone doesn't end poverty. Our scholars also need healthy families and a real path
-              to a career. So the work rests on three pillars: education, healthcare, and employment.
+              Education alone doesn't end poverty. Our scholars also need healthy families, a real path
+              to a career, strong institutions, and parents beside them. So the work rests on five pillars:
+              education, healthcare, employment, schools &amp; colleges, and parents as partners.
               Explore each one below.
             </p>
           </Reveal>
@@ -418,20 +450,18 @@ const Program = () => {
         ))}
       </div>
 
-      <EducationPartners />
+      <SchoolsPillar />
 
-      <section data-testid="parents-band" className="bg-leaf-soft border-y border-leaf/15">
+      <section id="parents" data-testid="parents-band" className="bg-leaf-soft border-y border-leaf/15 scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-16 sm:py-20 grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <Reveal>
-              <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl text-leaf uppercase">
-                Parents as Partners
-              </h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-4 font-display font-bold text-2xl sm:text-3xl text-flame tracking-tight">
-                No child makes this journey alone.
-              </p>
+              <div className="flex items-baseline gap-4">
+                <span className="font-mono text-sm font-bold text-flame">05</span>
+                <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl text-leaf uppercase">
+                  Parents as Partners
+                </h2>
+              </div>
             </Reveal>
             <Reveal delay={0.14}>
               <p className="mt-6 text-leaf-dark/80 text-lg leading-relaxed max-w-xl">
@@ -442,52 +472,39 @@ const Program = () => {
               </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <AlbumButtons page="our-work" block="parents" align="start" />
+              <div className="mt-8 flex flex-wrap gap-3">
+                {[
+                  { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
+                  { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
+                  { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495665887111125&type=3" },
+                ].map((a) => (
+                  <a
+                    key={a.label}
+                    href={a.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={`parents-album-${a.label.toLowerCase()}`}
+                    onClick={() => {
+                      window.dataLayer = window.dataLayer || [];
+                      window.dataLayer.push({ event: "album_click", page: "our-work", block: "parents", city: a.label });
+                    }}
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-night px-6 font-mono text-xs tracking-[0.15em] font-bold text-sand transition-colors duration-300 hover:bg-flame"
+                  >
+                    <Facebook className="h-3.5 w-3.5" />
+                    {a.label}
+                  </a>
+                ))}
+              </div>
             </Reveal>
           </div>
           <Reveal delay={0.1}>
             <div className="rounded-3xl overflow-hidden border border-leaf/15 shadow-[0_30px_60px_-30px_rgba(15,70,35,0.4)] aspect-[4/3]">
               <img
-                src="/assets/parents-meeting.jpg"
+                src="/assets/parents-meeting-2.jpg"
                 alt="Parents gathered for a group meeting with the Responsible Charity Society team"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section data-testid="work-cta-band" className="bg-night text-sand relative grain">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-20 sm:py-24 text-center">
-          <Reveal>
-            <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl lg:text-5xl uppercase">
-              This is the work. <span className="text-flame">Now meet the results.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mt-4 text-sand/70 text-lg max-w-2xl mx-auto">
-              Fifteen years of games, school, care and careers, and the graduates it has built.
-            </p>
-          </Reveal>
-          <Reveal delay={0.14}>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link
-                to="/transformations"
-                data-testid="cta-graduates-btn"
-                className="group inline-flex items-center gap-2 rounded-full bg-flame px-8 py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark"
-              >
-                Meet Our Graduates
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                to="/contact"
-                data-testid="cta-talk-btn"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-sand/30 px-8 py-4 font-bold text-sand transition-colors duration-300 hover:border-flame hover:text-flame"
-              >
-                Let's Talk
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
             </div>
           </Reveal>
         </div>

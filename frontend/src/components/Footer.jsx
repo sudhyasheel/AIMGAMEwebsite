@@ -69,7 +69,7 @@ const Footer = () => (
             </a>
           ))}
         </div>
-        <div className="flex flex-wrap items-center gap-x-7 gap-y-4 lg:flex-1 lg:justify-between">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-4 lg:flex-1">
           {CERTIFICATIONS.map(([Icon, label]) => (
             <span key={label} data-testid={`footer-cert-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`} className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.15em] text-sand/70 font-semibold">
               <Icon className="h-5 w-5 text-leaf shrink-0" />
@@ -86,9 +86,6 @@ const Footer = () => (
         </p>
         <div className="flex gap-6">
           <span>© {new Date().getFullYear()} Responsible Charity Society</span>
-          <Link to="/admin" data-testid="footer-link-admin" className="hover:text-flame transition-colors">
-            Team Login
-          </Link>
         </div>
       </div>
     </div>

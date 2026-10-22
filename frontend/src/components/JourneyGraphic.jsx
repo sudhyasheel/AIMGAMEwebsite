@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { MILESTONES } from "@/data/content";
 
 const SCHOLAR_SETS = [
-  ["/assets/tl-1.jpg", "/assets/tl-2.jpg", "/assets/tl-3.jpg", "/assets/tl-4.jpg", "/assets/tl-5.jpg"],
   ["/assets/scholar-b-1.jpg", "/assets/scholar-b-2.jpg", "/assets/scholar-b-3.jpg", "/assets/scholar-b-4.jpg", "/assets/scholar-b-5.jpg"],
   ["/assets/scholar-c-1.jpg", "/assets/scholar-c-2.jpg", "/assets/scholar-c-3.jpg", "/assets/scholar-c-4.jpg", "/assets/scholar-c-5.jpg"],
   ["/assets/scholar-d-1.jpg", "/assets/scholar-d-2.jpg", "/assets/scholar-d-3.jpg", "/assets/scholar-d-4.jpg", "/assets/scholar-d-5.jpg"],
