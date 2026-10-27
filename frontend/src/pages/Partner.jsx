@@ -68,6 +68,7 @@ const Donut = () => {
       <circle cx="100" cy="100" r={r} fill="none" stroke="#F3EFEA" strokeWidth="26" />
       {COST_BREAKDOWN.map((s) => {
         const len = (s.pct / 100) * c;
+        const gap = len > 8 ? 2 : 0;
         const el = (
           <circle
             key={s.label}
@@ -77,7 +78,7 @@ const Donut = () => {
             fill="none"
             stroke={s.color}
             strokeWidth="26"
-            strokeDasharray={`${len - 2} ${c - len + 2}`}
+            strokeDasharray={`${len - gap} ${c - len + gap}`}
             strokeDashoffset={-offset}
             transform="rotate(-90 100 100)"
           />
@@ -609,24 +610,25 @@ const Partner = () => {
         <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
-            <h1 className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase" data-testid="donate-header">
-              Donate Today and Be Part of the Journey
+            <h1 className="text-center font-display font-extrabold tracking-tight leading-[1.1] text-4xl sm:text-5xl lg:text-6xl" data-testid="donate-header">
+              <span className="text-ink">Donate Today and</span>{" "}
+              <span className="text-flame">Be Part of the Journey</span>
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
-            <p data-testid="donate-subheader" className="mt-5 font-display font-bold text-3xl sm:text-4xl text-flame tracking-tight">
+            <p data-testid="donate-subheader" className="mt-5 text-center font-display font-bold text-xl sm:text-2xl text-leaf tracking-tight">
               Every gift becomes part of a scholar's 15-year path out of poverty.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p className="mt-5 max-w-2xl text-sm sm:text-base leading-relaxed text-ink-muted">
+            <p className="mt-5 max-w-2xl mx-auto text-center text-sm sm:text-base leading-relaxed text-ink-muted">
               Every scholar's journey is carried by people who chose to be part of it. See what one year takes
               on the left, then choose how you'd like to give on the right. Every gift comes with an 80G
               receipt.
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <p className="mt-4 text-sm text-ink">
+            <p className="mt-6 text-sm text-ink">
               Giving on behalf of a company?{" "}
               <Link
                 to="/csr-partners"
