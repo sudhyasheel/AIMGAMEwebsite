@@ -167,3 +167,9 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - DONATE: "Giving on behalf of a company? Let's talk about a CSR partnership" bumped to text-xl sm:text-2xl (24px) to match description text.
 - Verified via preview screenshots: team grid 5-col uncropped, centers description 24px, no closing text, no extra schools buttons, CSR line 24px.
 - NOTE: preview URL is foundation-site-12.preview.emergentagent.com (routes: /about /program /partner). Deploy status unknown — remind user to press Deploy.
+
+## 2026-10-27 — Employment partner links removed + Results club list synced to Club Levels poster
+- OUR WORK: removed orange "Partner with us" links from Employment boxes (removed partner flags, Link/ArrowUpRight imports in Program.jsx).
+- RESULTS "The scholars on the path right now" club list rewritten to match user's Club Levels poster exactly (35 scholars): DIAMOND: Vishnu Dore, Neha Prajapati, Firdus Ali, Sheikh Karim (renamed from Sk. Karim in clubs list only; graduates section still "Sk. Karim" per earlier instruction). PLATINUM reordered w/ Siddhu Bhatgeri first, Nagma Khatoon (was Naghma), Md Shahnawaz (was Md Shah Nawaz), Ayesha Parveen city Pune. GOLD: Shreya/Jiya now Class XII, Renuka Subhedar moved here (Class XI), Kainath Parveen (was Kainat, Class XI), SK Miraz Class XI. SILVER: 6 students, sub now CLASSES IX - X. BRONZE: Rakshita first.
+- Copied student photos for new name spellings: nagma-khatoon.jpg, kainath-parveen.jpg (all 35 photos verified loading, white bg + gold circle treatment kept).
+- Verified via preview screenshots: clubs match poster, 0 partner links remain, Employment boxes clean.

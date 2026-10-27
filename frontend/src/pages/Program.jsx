@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, Facebook } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { Facebook } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 
@@ -118,7 +118,6 @@ const PILLARS = [
         text: "Every scholar gets one-on-one guidance to find the path that fits their strengths, starting well before college ends. Industry leaders then share what their fields really demand and how to get started.",
         img: "/assets/emp-1.jpg",
         alt: "A mentor guiding scholars working on laptops during a career workshop",
-        partner: true,
         albums: [
           { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1349759245035114&type=3" },
         ],
@@ -137,7 +136,6 @@ const PILLARS = [
         text: "Introductions through our network and beyond open the door to real, on-the-job internships. The same connections carry scholars from internship to employment, because a first job often comes through a first introduction.",
         img: "/assets/emp-3.jpg",
         alt: "A scholar in a one-on-one career conversation with an industry professional",
-        partner: true,
         albums: [
           { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.1349759245035114&type=3" },
         ],
@@ -231,15 +229,6 @@ const PillarSection = ({ pillar }) => (
                 <h3 className="font-display font-extrabold tracking-tight text-lg">{b.title}</h3>
                 <p className="mt-2 text-sm text-ink-muted leading-relaxed">{b.text}</p>
                 <div className="mt-auto pt-4">
-                  {b.partner && (
-                    <Link
-                      to="/csr-partners"
-                      data-testid={`partner-link-${pillar.id}-${i}`}
-                      className="mb-3 inline-flex items-center gap-1.5 text-sm font-bold text-flame transition-colors hover:text-flame-dark"
-                    >
-                      Partner with us <ArrowUpRight className="h-4 w-4" />
-                    </Link>
-                  )}
                   {b.albums && (
                     <div className="flex flex-wrap gap-2">
                       {b.albums.map((a) => (
