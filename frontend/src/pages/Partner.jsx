@@ -509,14 +509,14 @@ const Partner = () => {
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <p className="mt-6 text-sm text-ink">
+            <p className="mt-6 text-xl sm:text-2xl text-ink font-semibold leading-relaxed">
               Giving on behalf of a company?{" "}
               <Link
                 to="/csr-partners"
                 data-testid="donate-csr-link"
                 className="inline-flex items-center gap-1 font-bold text-flame transition-colors hover:text-flame-dark"
               >
-                Let's talk about a CSR partnership <ArrowUpRight className="h-4 w-4" />
+                Let's talk about a CSR partnership <ArrowUpRight className="h-5 w-5" />
               </Link>
             </p>
           </Reveal>

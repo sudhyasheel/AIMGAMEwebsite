@@ -80,20 +80,16 @@ const About = () => (
           </Reveal>
         </div>
 
-        <div data-testid="story-collage" className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+        <div data-testid="story-collage" className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
           {STORY_PHOTOS.map((p, i) => (
             <Reveal key={p.src} delay={0.05 + i * 0.04}>
-              <div
+              <img
                 data-testid={`story-photo-${i}`}
-                className="group w-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.25)]"
-              >
-                <img
-                  src={p.src}
-                  alt={p.alt}
-                  loading={i < 5 ? "eager" : "lazy"}
-                  className="h-full w-full object-cover aspect-[3/2] transition-transform duration-700 group-hover:scale-[1.04]"
-                />
-              </div>
+                src={p.src}
+                alt={p.alt}
+                loading={i < 5 ? "eager" : "lazy"}
+                className="w-full h-auto block"
+              />
             </Reveal>
           ))}
         </div>
@@ -126,7 +122,7 @@ const About = () => (
             </p>
           </Reveal>
           <Reveal delay={0.14}>
-            <p data-testid="centers-description" className="mt-6 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+            <p data-testid="centers-description" className="mt-6 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
               Our community centers are where the program lives day to day. After school, students come for
               tutoring, music classes, yoga and games. Parents come for meetings and workshops. Supplies are
               distributed here, and visitors are welcome by arrangement. It's a second home for our students,

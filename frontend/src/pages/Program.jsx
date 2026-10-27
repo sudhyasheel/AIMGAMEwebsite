@@ -68,8 +68,6 @@ const PILLARS = [
         ],
       },
     ],
-    closing: "…and so much more.",
-    albumLabel: "See the albums over the years",
   },
   {
     id: "healthcare",
@@ -108,8 +106,6 @@ const PILLARS = [
         ],
       },
     ],
-    closing: "…and more.",
-    albumLabel: "See the full Healthcare album",
   },
   {
     id: "employment",
@@ -147,8 +143,6 @@ const PILLARS = [
         ],
       },
     ],
-    closing: "…and more.",
-    albumLabel: "See the full Employment album",
   },
 ];
 
@@ -275,8 +269,9 @@ const PillarSection = ({ pillar }) => (
       </div>
 
       <Reveal delay={0.1}>
-        <p className="mt-10 text-ink-muted">{pillar.closing}</p>
-        <AlbumButtons page="our-work" block={pillar.id} align="start" />
+        <div className="mt-10">
+          <AlbumButtons page="our-work" block={pillar.id} align="start" />
+        </div>
       </Reveal>
     </div>
   </section>
@@ -373,33 +368,10 @@ const SchoolsPillar = () => (
         ))}
       </div>
 
-      <Reveal delay={0.1}>
-        <div className="mt-10 flex flex-wrap gap-2">
-          {[
-            { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
-            { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
-          ].map((a) => (
-            <a
-              key={a.label}
-              href={a.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid={`schools-album-${a.label.toLowerCase()}`}
-              onClick={() => {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({ event: "album_click", page: "our-work", block: "schools", city: a.label });
-              }}
-              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-leaf-soft border border-leaf/25 px-4 font-mono text-[10px] tracking-[0.15em] font-bold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
-            >
-              <Facebook className="h-3 w-3" />
-              {a.label}
-            </a>
-          ))}
-        </div>
-      </Reveal>
-
       <Reveal delay={0.12}>
-        <AlbumButtons page="our-work" block="schools" align="start" />
+        <div className="mt-10">
+          <AlbumButtons page="our-work" block="schools" align="start" />
+        </div>
       </Reveal>
     </div>
   </section>
