@@ -8,7 +8,7 @@ import { submitInquiry } from "@/lib/api";
 
 const TOPICS = [
   { id: "partnership", icon: HeartHandshake, label: "Partner / Donate", kind: "csr", hint: "CSR, HNI or large gifts — routed to the partnerships desk." },
-  { id: "volunteer", icon: HandHelping, label: "Volunteer", kind: "volunteer", hint: "Teaching, mentoring, field support — routed to the program team." },
+  { id: "volunteer", icon: HandHelping, label: "Internships", kind: "volunteer", hint: "Teaching, mentoring, field support — routed to the program team." },
   { id: "career", icon: Briefcase, label: "Work With Us", kind: "career", hint: "Roles across program ops and fundraising — routed to hiring." },
   { id: "general", icon: Mail, label: "General", kind: "general", hint: "Everything else — routed to the RC Society office." },
 ];
@@ -67,7 +67,7 @@ const Contact = () => {
               data-testid="contact-header"
               className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
             >
-              Let's Talk
+              LETS TALK
             </h1>
           </Reveal>
           <Reveal delay={0.12}>

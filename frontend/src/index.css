@@ -108,7 +108,7 @@ html.lenis, html.lenis body { height: auto; }
     }
 }
 
-/* Description text force-justified site-wide (user request) */
+/* body text left-aligned site-wide (user request) */
 p, li, blockquote, td {
-  text-align: justify;
+  text-align: left;
 }

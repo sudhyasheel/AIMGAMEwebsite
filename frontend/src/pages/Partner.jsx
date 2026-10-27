@@ -20,7 +20,7 @@ const TYPES = [
   { id: "hni", icon: Gem, title: "High-Net-Worth Individual", desc: "Sponsor full fifteen-year arcs with dedicated impact reporting.", testid: "donor-type-hni" },
 ];
 
-const YEARLY_COST = "₹33,500";
+const YEARLY_COST = "₹3.25 Lakhs";
 
 const COST_BREAKDOWN = [
   { label: "Tuition & school fees", pct: 55, color: "#E8490F" },
@@ -62,7 +62,7 @@ const Donut = () => {
         offset += len;
         return el;
       })}
-      <text x="100" y="94" textAnchor="middle" fontSize="24" fontWeight="800" fill="#0F172A" fontFamily="Poppins, sans-serif">
+      <text x="100" y="94" textAnchor="middle" fontSize="17" fontWeight="800" fill="#0F172A" fontFamily="Poppins, sans-serif">
         {YEARLY_COST}
       </text>
       <text x="100" y="118" textAnchor="middle" fontSize="7.5" fill="#475569" letterSpacing="1" fontFamily="JetBrains Mono, monospace">

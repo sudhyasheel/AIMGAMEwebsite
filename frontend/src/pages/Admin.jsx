@@ -7,7 +7,7 @@ const KIND_LABELS = {
   donation: "Donations",
   csr: "CSR Inquiries",
   hni: "HNI Inquiries",
-  volunteer: "Volunteers",
+  volunteer: "Internships",
   career: "Careers",
   general: "General",
 };
