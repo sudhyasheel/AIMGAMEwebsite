@@ -7,16 +7,14 @@ const CHECKED = "2026-07-12";
 
 export const ALBUM_LINKS = [
   // THE WORK — pillar sections
-  { page: "our-work", block: "education", label: "See the albums over the years", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  { page: "our-work", block: "healthcare", label: "See the full Healthcare album", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  { page: "our-work", block: "employment", label: "See the full Employment album", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-work", block: "education", label: "See albums over the years", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-work", block: "healthcare", label: "See albums over the years", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-work", block: "employment", label: "See albums over the years", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-work", block: "schools", label: "See albums over the years", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
+  { page: "our-work", block: "parents", label: "See albums over the years", city: null, url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   // THE WORK — Education Partners band (city albums share the albums tab for now)
   { page: "our-work", block: "education-partners", label: "See more photos", city: "Kolkata", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
   { page: "our-work", block: "education-partners", label: "See more photos", city: "Pune", url: FB_ALBUMS_TAB, verified: true, checked: CHECKED },
-  // THE WORK — Parents as Partners band
-  { page: "our-work", block: "parents", label: "KOLKATA", city: "Kolkata", url: "https://www.facebook.com/media/set/?set=a.116071365070581&type=3", verified: true, checked: CHECKED },
-  { page: "our-work", block: "parents", label: "PUNE", city: "Pune", url: "https://www.facebook.com/media/set/?set=a.1468170039860700&type=3", verified: true, checked: CHECKED },
-  { page: "our-work", block: "parents", label: "MUMBAI", city: "Mumbai", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3", verified: true, checked: CHECKED },
   // OUR STORY — Our Community Centers (per-center)
   { page: "our-story", block: "kolkata", label: "See more photos", city: "Kolkata", url: "https://www.facebook.com/media/set/?set=a.621972941147085&type=3", verified: true, checked: CHECKED },
   { page: "our-story", block: "pune", label: "See more photos", city: "Pune", url: "https://www.facebook.com/media/set/?set=a.2369685556375806&type=3", verified: true, checked: CHECKED },
