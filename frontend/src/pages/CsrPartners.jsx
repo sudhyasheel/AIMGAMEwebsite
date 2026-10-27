@@ -106,10 +106,8 @@ const CsrForm = () => {
             <select data-testid="csr-form-focus" className={inputCls} value={form.focus} onChange={(e) => setForm({ ...form, focus: e.target.value })}>
               <option value="">CSR focus area…</option>
               <option>Education</option>
-              <option>Girl child education</option>
-              <option>Skill development</option>
-              <option>Health & education combined</option>
-              <option>Other</option>
+              <option>Health &amp; Wellness</option>
+              <option>Career &amp; Employment Counseling</option>
             </select>
             <select data-testid="csr-form-range" className={inputCls} value={form.range} onChange={(e) => setForm({ ...form, range: e.target.value })}>
               <option value="">Indicative contribution range…</option>

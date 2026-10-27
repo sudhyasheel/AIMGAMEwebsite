@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, User, Gem, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, User, Gem, ShieldCheck, CheckCircle2, BookOpen, HeartPulse, Music, CalendarDays, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
 import { MIN_DONATION, CONVERSATION_THRESHOLD } from "@/data/content";
 import { CredibilityGrid } from "@/pages/CsrPartners";
 import { submitInquiry, getDonationConfig, createDonationOrder, verifyDonation, loadRazorpay } from "@/lib/api";
 
-const PRESETS = [1000, 2500, 5000, 10000, 25000];
 const inr = (n) => "₹" + Number(n).toLocaleString("en-IN");
+
+const GIFT_CARDS = [
+  { amount: 10000, icon: BookOpen, desc: "Helps a scholar keep up with after-school tuition at our community center for a term." },
+  { amount: 15000, icon: HeartPulse, desc: "Helps cover health check-ups and hygiene supplies for a scholar and their family." },
+  { amount: 25000, icon: Music, desc: "Helps fund a scholar's music, art, dance and sports classes through the year." },
+  { amount: 35000, icon: CalendarDays, desc: "Covers about a month of a scholar's fully managed year, from school and tuition to healthcare and activities." },
+  { amount: 50000, icon: Clock, desc: "Covers about six weeks of a scholar's fully managed year, with school, tuition, health and activities working together." },
+  { amount: 100000, icon: Gem, desc: "Funds a full quarter of a scholar's year, with a dedicated RC contact for your questions and impact updates.", badge: "GIVING DESK" },
+];
 
 const inputCls =
   "w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-flame placeholder:text-ink-muted/60";
@@ -20,20 +28,35 @@ const TYPES = [
   { id: "hni", icon: Gem, title: "High-Net-Worth Individual", desc: "Sponsor full fifteen-year arcs with dedicated impact reporting.", testid: "donor-type-hni" },
 ];
 
-const YEARLY_COST = "₹3.25 Lakhs";
+const YEARLY_COST = "₹3,25,000";
 
-const COST_BREAKDOWN = [
-  { label: "Tuition & school fees", pct: 55, color: "#E8490F" },
-  { label: "Transport, books & uniforms", pct: 15, color: "#166534" },
-  { label: "Healthcare & family services", pct: 15, color: "#9A6A0A" },
-  { label: "Enrichment, mentoring & operations", pct: 15, color: "#0F172A" },
+const PROGRAMS = [
+  { label: "Tuition, admission & exam fees", amount: "₹70,500", pct: 22, desc: "School and college tuition, admission and first-year fees, exams", color: "#166534" },
+  { label: "Accommodation", amount: "₹32,500", pct: 10, desc: "Hostel and PG housing for college students studying away from home", color: "#15803D" },
+  { label: "Mentorship & coaching", amount: "₹30,000", pct: 9, desc: "Tutors, mentors, coaching and English classes", color: "#16A34A" },
+  { label: "Devices, books, uniforms & transport", amount: "₹29,000", pct: 9, desc: "Laptops and phones, books, uniforms, stationery, local travel", color: "#22C55E" },
+  { label: "Nutrition, meals & hygiene", amount: "₹25,500", pct: 8, desc: "Nutrition support, meals and hygiene supplies", color: "#4ADE80" },
+  { label: "AimGame", amount: "₹23,000", pct: 7, desc: "Game-based sessions on core values and life skills", color: "#86EFAC" },
+  { label: "Student stipends & connectivity", amount: "₹17,000", pct: 5, desc: "Monthly stipend, phone recharge for online learning, Student of the Month bonus", color: "#BBF7D0" },
 ];
 
-const SCHOLAR_PHOTOS = [
-  { src: "/assets/tl-1.jpg", alt: "Current AimGame scholar" },
-  { src: "/assets/tl-2.jpg", alt: "Current AimGame scholar" },
-  { src: "/assets/tl-4.jpg", alt: "Current AimGame scholar" },
-  { src: "/assets/tl-3.jpg", alt: "Current AimGame scholar" },
+const OPERATIONS = [
+  { label: "Staff & city teams", amount: "₹68,500", pct: 21.1, desc: "City directors, coordinators and program staff, plus year-end bonus", color: "#C2410C" },
+  { label: "Community centers", amount: "₹20,000", pct: 6.2, desc: "Rent, electricity, internet and cleaning supplies for the Kolkata and Pune centers", color: "#EA580C" },
+  { label: "Fundraising & outreach", amount: "₹5,000", pct: 1.5, desc: "Donor outreach, brochures, website, branding", color: "#F97316" },
+  { label: "Legal, audit & compliance", amount: "₹3,000", pct: 0.9, desc: "Annual audit, CSR certificates, tax and society filings", color: "#FB923C" },
+  { label: "Accounting, banking & admin", amount: "₹1,000", pct: 0.3, desc: "Bookkeeping, payment and bank fees, office supplies", color: "#FDBA74" },
+];
+
+const COST_BREAKDOWN = [...PROGRAMS, ...OPERATIONS];
+
+const DONATION_TERMS = [
+  "We do not accept cash donations.",
+  "We accept donations only in Indian Rupees (INR), from within India.",
+  "Donations are eligible for deduction under Section 80G. Every gift gets a receipt, and a Form 10BE certificate follows once our annual statement is filed.",
+  "For a bank transfer or cheque, request our details through the form on this page, then email your amount, date and transaction reference to donations@responsiblecharity.org.",
+  "Donations are non-refundable, except duplicate or mistaken payments reported within three days. Gifts we cannot record because donor details are missing are returned to the source account.",
+  "Responsible Charity Society is registered to undertake CSR activities (CSR Registration No. CSR00050572).",
 ];
 
 const Donut = () => {
@@ -72,45 +95,62 @@ const Donut = () => {
   );
 };
 
+const BreakdownList = ({ title, total, pct, titleColor, items, testid }) => (
+  <div data-testid={testid} className="mt-8">
+    <p className={`font-display font-extrabold text-lg ${titleColor}`}>
+      {title}: {total} <span className="text-ink-muted font-bold">({pct})</span>
+    </p>
+    <ul className="mt-4 space-y-4">
+      {items.map((s) => (
+        <li key={s.label} className="flex gap-3">
+          <span className="mt-1.5 h-3 w-3 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
+          <div className="flex-1">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="font-bold text-sm text-ink">{s.label}</p>
+              <p className="font-mono text-sm font-bold text-ink shrink-0">
+                {s.amount} <span className="ml-1 font-normal text-ink-muted">{s.pct}%</span>
+              </p>
+            </div>
+            <p className="mt-0.5 text-xs text-ink-muted leading-relaxed">{s.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 const CostPanel = () => (
   <div data-testid="donate-cost-panel" className="rounded-3xl bg-white border border-ink/10 p-8 sm:p-10 h-full">
-    <Eyebrow>What a Year Costs</Eyebrow>
+    <h3 data-testid="cost-panel-title" className="font-display font-extrabold tracking-tight text-2xl sm:text-3xl text-leaf">
+      {YEARLY_COST} <span className="text-ink">- Annual Cost Per Scholarship</span>
+    </h3>
     <div className="mt-8 flex flex-col sm:flex-row items-center gap-8">
       <Donut />
       <div className="w-full">
-        <p className="font-mono font-bold text-2xl sm:text-3xl text-ink">{YEARLY_COST}</p>
-        <p className="mt-1 text-xs text-ink-muted">Total yearly scholarship cost per scholar</p>
-        <ul className="mt-6 space-y-3">
-          {COST_BREAKDOWN.map((s) => (
-            <li key={s.label} className="flex items-center gap-3 text-sm">
-              <span className="h-3 w-3 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-              <span className="flex-1 text-ink-muted">{s.label}</span>
-              <span className="font-mono font-bold text-ink">{s.pct}%</span>
-            </li>
-          ))}
-          <li className="text-sm text-ink-muted/70 italic pt-1">…and more.</li>
+        <ul className="space-y-4">
+          <li className="flex items-center gap-3">
+            <span className="h-3 w-3 rounded-full shrink-0 bg-leaf" />
+            <div>
+              <p className="text-sm text-ink-muted">Programs</p>
+              <p className="font-mono font-bold text-2xl text-ink">₹2,27,500 <span className="text-base font-normal text-ink-muted">70%</span></p>
+            </div>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="h-3 w-3 rounded-full shrink-0 bg-flame" />
+            <div>
+              <p className="text-sm text-ink-muted">Operations</p>
+              <p className="font-mono font-bold text-2xl text-ink">₹97,500 <span className="text-base font-normal text-ink-muted">30%</span></p>
+            </div>
+          </li>
         </ul>
+        <div data-testid="cost-split-bar" className="mt-6 h-2.5 w-full rounded-full overflow-hidden flex">
+          <span className="bg-leaf h-full" style={{ width: "70%" }} />
+          <span className="bg-flame h-full" style={{ width: "30%" }} />
+        </div>
       </div>
     </div>
-    <div className="mt-8 pt-6 border-t border-ink/10">
-      <p className="font-mono text-[10px] tracking-[0.25em] text-ink-muted font-semibold">
-        CURRENT SCHOLARS YOUR GIFT CARRIES
-      </p>
-      <div className="mt-4 flex items-center">
-        {SCHOLAR_PHOTOS.map((p, i) => (
-          <img
-            key={p.src}
-            src={p.src}
-            alt={p.alt}
-            data-testid={`cost-scholar-${i}`}
-            className={`h-14 w-14 rounded-full object-cover border-4 border-white shadow-sm ${i > 0 ? "-ml-3" : ""}`}
-          />
-        ))}
-        <span className="-ml-3 h-14 w-14 rounded-full bg-leaf text-white border-4 border-white inline-flex items-center justify-center font-mono text-xs font-bold">
-          +48
-        </span>
-      </div>
-    </div>
+    <BreakdownList title="Programs" total="₹2,27,500" pct="70%" titleColor="text-leaf" items={PROGRAMS} testid="cost-programs" />
+    <BreakdownList title="Operations" total="₹97,500" pct="30%" titleColor="text-flame" items={OPERATIONS} testid="cost-operations" />
   </div>
 );
 
@@ -148,19 +188,34 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
       <p className="mt-3 text-center text-ink-muted text-sm">
         Minimum {inr(MIN_DONATION)} · India-based giving only · 80G receipt for every contribution
       </p>
-      <div className="mt-8 grid grid-cols-3 sm:grid-cols-5 gap-3">
-        {PRESETS.map((p) => (
-          <button
-            key={p}
-            data-testid={`amount-chip-${p}`}
-            onClick={() => setAmount(String(p))}
-            className={`rounded-2xl border py-4 font-mono font-bold text-sm transition-all duration-300 ${
-              Number(amount) === p ? "bg-flame text-white border-flame" : "bg-white border-ink/15 hover:border-flame/50"
-            }`}
-          >
-            {inr(p)}
-          </button>
-        ))}
+      <div className="mt-8 space-y-3">
+        {GIFT_CARDS.map((g) => {
+          const selected = Number(amount) === g.amount;
+          return (
+            <button
+              key={g.amount}
+              data-testid={`gift-card-${g.amount}`}
+              onClick={() => setAmount(String(g.amount))}
+              className={`w-full rounded-2xl border p-4 sm:p-5 flex items-center gap-4 text-left transition-all duration-300 ${
+                selected ? "border-flame bg-flame/5 shadow-[0_12px_30px_-18px_rgba(232,73,15,0.5)]" : "bg-white border-ink/12 hover:border-flame/50"
+              }`}
+            >
+              <span className={`h-11 w-11 rounded-xl inline-flex items-center justify-center shrink-0 transition-colors duration-300 ${selected ? "bg-flame text-white" : "bg-leaf-soft text-leaf"}`}>
+                <g.icon className="h-5 w-5" />
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-sm font-semibold text-ink leading-snug">{g.desc}</span>
+                <span className="mt-1 block font-mono text-sm font-bold text-flame">{inr(g.amount)}{g.amount >= CONVERSATION_THRESHOLD ? "+" : ""}</span>
+              </span>
+              {g.badge && (
+                <span className="shrink-0 rounded-full border border-gold/60 bg-gold/10 px-3 py-1 font-mono text-[9px] tracking-[0.15em] font-bold text-gold">
+                  {g.badge}
+                </span>
+              )}
+              {selected && <CheckCircle2 className="h-5 w-5 text-flame shrink-0" />}
+            </button>
+          );
+        })}
       </div>
       <input
         data-testid="amount-custom-input"
@@ -171,6 +226,11 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
         placeholder={`Custom amount (min ${inr(MIN_DONATION)})`}
         className={`${inputCls} mt-4 text-center font-mono font-bold`}
       />
+      <p data-testid="amount-tax-note" className="mt-5 rounded-xl bg-leaf-soft border border-leaf/15 text-leaf-dark text-xs px-4 py-3 leading-relaxed">
+        Indian tax law requires us to record who every donation comes from. A donation we can't link to a named
+        donor can be taxed heavily, which would take money away from our students. So we can accept gifts only
+        with your full name, address and PAN No.
+      </p>
       {aboveThreshold && (
         <p data-testid="threshold-notice" className="mt-4 rounded-xl bg-leaf-soft text-leaf-dark text-sm font-semibold px-4 py-3 text-center">
           Online checkout covers gifts up to {inr(CONVERSATION_THRESHOLD)} — larger gifts go through our Giving Desk by direct bank transfer, so no gateway fee comes out of your gift.
@@ -616,6 +676,29 @@ const Partner = () => {
                   {step === "success" && <StepSuccess mode={successMode} amount={Number(amount)} onReset={reset} />}
                 </motion.div>
               </AnimatePresence>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+          <Reveal>
+            <div data-testid="donation-terms" className="rounded-3xl bg-white border border-ink/10 p-8 sm:p-10">
+              <p data-testid="donation-terms-intro" className="text-leaf font-semibold text-lg leading-relaxed">
+                Indian tax law requires us to record every donor's name, address and PAN No., for every way of
+                giving, including UPI and bank transfers. A gift we can't link to a named donor can be taxed
+                heavily, which would take money from our students. We use your details only for receipts and
+                legal reporting, and we keep them secure.
+              </p>
+              <ul className="mt-6 space-y-2.5">
+                {DONATION_TERMS.map((t, i) => (
+                  <li key={i} data-testid={`donation-term-${i}`} className="flex items-start gap-3 text-sm text-ink-muted leading-relaxed">
+                    <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-leaf" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
