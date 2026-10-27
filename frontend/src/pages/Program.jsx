@@ -9,7 +9,7 @@ const PILLARS = [
     id: "education",
     index: "01",
     title: "Education",
-    intro: "It starts with games and carries a child all the way to graduation.",
+    intro: "It starts with games and carries a child all the way to graduation. Game competitions open the door, scholarships fund quality schools and colleges, and tuitions, music, art, sports and field trips give every scholar the skills and confidence to thrive.",
     blocks: [
       {
         title: "GAME COMPETITIONS",
@@ -25,6 +25,9 @@ const PILLARS = [
         text: "Five milestones mark every scholar's journey, from Bronze to Diamond. See each achievement celebrated, step by step.",
         img: "/assets/work-milestones.jpg",
         alt: "A graduation milestone celebration poster for an AimGame scholar",
+        albums: [
+          { label: "NATIONAL", url: "https://www.facebook.com/media/set/?set=a.2477953108882383&type=3" },
+        ],
       },
       {
         title: "TUITIONS",
@@ -72,7 +75,7 @@ const PILLARS = [
     id: "healthcare",
     index: "03",
     title: "Health & Wellness",
-    intro: "A child can't stay in school if their family can't stay healthy.",
+    intro: "A child can't stay in school if their family can't stay healthy. Yoga, meditation and wellness workshops build healthy habits, preventive care and treatment catch problems early, and hygiene supplies protect health and dignity.",
     blocks: [
       {
         title: "WORKSHOPS & PREVENTION PLANS",
@@ -210,7 +213,7 @@ const PillarSection = ({ pillar }) => (
         </div>
       </Reveal>
       <Reveal delay={0.08}>
-        <p data-testid={`pillar-intro-${pillar.id}`} className="mt-4 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+        <p data-testid={`pillar-intro-${pillar.id}`} className="mt-4 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
           {pillar.intro}
         </p>
       </Reveal>
@@ -279,15 +282,6 @@ const PillarSection = ({ pillar }) => (
   </section>
 );
 
-const PARTNER_LOGOS = [
-  { src: "/assets/partner-logo-1.png", name: "The Modern Academy" },
-  { src: "/assets/partner-logo-2.jpg", name: "D Y Patil School of Hospitality & Tourism Studies, Navi Mumbai" },
-  { src: "/assets/partner-logo-3.png", name: "Indira Institute of Management PGDM" },
-  { src: "/assets/partner-logo-4.png", name: "South City International School" },
-  { src: "/assets/partner-logo-5.png", name: "IHM Institute of Hotel Management Hyderabad" },
-  { src: "/assets/partner-logo-6.png", name: "I.P. Memorial School, Liluah Howrah" },
-];
-
 const SCHOOLS_BLOCKS = [
   {
     title: "QUALITY SCHOOLS",
@@ -327,7 +321,7 @@ const SchoolsPillar = () => (
         </div>
       </Reveal>
       <Reveal delay={0.08}>
-        <p data-testid="pillar-intro-schools" className="mt-4 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+        <p data-testid="pillar-intro-schools" className="mt-4 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
           Our scholars study at accredited private schools, colleges and universities with years of service
           across India. These institutions are pillars of their communities, and they understand our
           students' backgrounds and challenges. Together, year after year, we help every scholar succeed.
@@ -380,18 +374,7 @@ const SchoolsPillar = () => (
       </div>
 
       <Reveal delay={0.1}>
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {PARTNER_LOGOS.map((l, i) => (
-            <div
-              key={l.src}
-              data-testid={`education-partner-logo-${i}`}
-              className="rounded-2xl border border-ink/10 bg-white px-6 py-6 flex items-center justify-center"
-            >
-              <img src={l.src} alt={`${l.name} logo`} className="h-20 w-full object-contain" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-10 flex flex-wrap gap-2">
           {[
             { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
             { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.2511811812163179&type=3" },
@@ -429,7 +412,9 @@ const PARENTS_BLOCKS = [
     img: "/assets/parents-meeting-3.jpg",
     alt: "A parents' meeting with the Responsible Charity Society team in Kolkata",
     albums: [
-      { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
+      { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.116071365070581&type=3" },
+      { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495665887111125&type=3" },
+      { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
     ],
   },
   {
@@ -438,6 +423,8 @@ const PARENTS_BLOCKS = [
     img: "/assets/work-outreach.jpg",
     alt: "An RC team member on a home visit with a scholar's family",
     albums: [
+      { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.116071365070581&type=3" },
+      { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495665887111125&type=3" },
       { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
     ],
   },
@@ -447,7 +434,9 @@ const PARENTS_BLOCKS = [
     img: "/assets/work-centers.jpg",
     alt: "Parents gathered for a workshop at an RC community center",
     albums: [
+      { label: "KOLKATA", url: "https://www.facebook.com/media/set/?set=a.116071365070581&type=3" },
       { label: "PUNE", url: "https://www.facebook.com/media/set/?set=a.495665887111125&type=3" },
+      { label: "MUMBAI", url: "https://www.facebook.com/media/set/?set=a.1808015935876107&type=3" },
     ],
   },
 ];
@@ -468,7 +457,7 @@ const ParentsPillar = () => (
         </div>
       </Reveal>
       <Reveal delay={0.1}>
-        <p data-testid="pillar-intro-parents" className="mt-4 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+        <p data-testid="pillar-intro-parents" className="mt-4 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
           Parents are with us from day one. They're kept in the loop on every decision, visited at home
           by our team, and welcome at our centers for workshops and updates on their child's grades.
           Healthcare support extends to them too. When a family is part of the program, what starts in
@@ -593,7 +582,7 @@ const Program = () => {
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p data-testid="work-description" className="mt-8 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+            <p data-testid="work-description" className="mt-8 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
               Education alone doesn't end poverty. Our scholars also need healthy families, a real path
               to a career, strong institutions, and parents beside them. So the work rests on five pillars:
               education, schools &amp; colleges, health &amp; wellness, parent partnership, and employment.

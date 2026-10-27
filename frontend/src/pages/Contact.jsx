@@ -81,7 +81,7 @@ const Contact = () => {
 
           <div className="mt-10 space-y-6">
             <Reveal delay={0.18}>
-              <p data-testid="contact-description-1" className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+              <p data-testid="contact-description-1" className="text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
                 We're not chasing every donation, we're building long-term partnerships with people and
                 organizations ready to walk a decade-long journey with us, from a child's first day in our
                 program to their college graduation. That kind of commitment takes real focus, and we'd
@@ -89,7 +89,7 @@ const Contact = () => {
               </p>
             </Reveal>
             <Reveal delay={0.24}>
-              <p data-testid="contact-description-2" className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+              <p data-testid="contact-description-2" className="text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
                 Because of that, we work with a starting threshold for support: ₹10,000 for individual
                 donors and ₹1,00,000 for CSR partners. If that sounds like you, we'd love to talk.
               </p>
@@ -220,7 +220,7 @@ const Contact = () => {
                       disabled={busy}
                       className="w-full rounded-full bg-flame py-4 font-bold text-white transition-colors duration-300 hover:bg-flame-dark disabled:opacity-40"
                     >
-                      {busy ? "Sending…" : `Send to the ${topic.label} Desk`}
+                      {busy ? "Sending…" : "Send"}
                     </button>
                   </div>
                 </motion.div>

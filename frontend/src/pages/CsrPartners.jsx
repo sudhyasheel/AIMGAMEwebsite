@@ -124,7 +124,7 @@ const CsrForm = () => {
             disabled={busy}
             className="w-full rounded-full bg-leaf py-4 font-bold text-white transition-colors duration-300 hover:bg-leaf-dark disabled:opacity-40"
           >
-            {busy ? "Sending…" : "Request a Call from the RC Team"}
+            {busy ? "Sending…" : "Request a Call from Our Team"}
           </button>
         </motion.div>
       )}
@@ -194,7 +194,7 @@ const CsrPartners = () => (
         <div className="mt-10 space-y-6">
           {PARAGRAPHS.map((p, i) => (
             <Reveal key={i} delay={0.18 + i * 0.06}>
-              <p data-testid={`csr-paragraph-${i}`} className="text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+              <p data-testid={`csr-paragraph-${i}`} className="text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
                 {p}
               </p>
             </Reveal>

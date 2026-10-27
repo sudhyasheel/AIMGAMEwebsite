@@ -59,7 +59,7 @@ const Internships = () => (
               data-testid="internships-header"
               className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase"
             >
-              Show Up. Play. Teach. Repeat!
+              Show Up, Play, Teach, Repeat!
             </h1>
           </Reveal>
           <Reveal delay={0.12}>

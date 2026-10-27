@@ -60,7 +60,7 @@ const HeroGraphic = () => {
               animate={exiting ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
               transition={{ duration: EXIT_SWEEP, delay: exiting ? EXIT_COL_STAGGER : 0, ease: [0.77, 0, 0.18, 1] }}
             >
-              <JourneyGraphic />
+              <JourneyGraphic rotateDelay={(GRID_PHOTOS.length - 1) * FLIP_STAGGER * 1000 + FLIP_DURATION * 1000 + HOLD_MS} />
             </motion.div>
           </div>
         </div>

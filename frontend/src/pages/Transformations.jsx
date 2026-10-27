@@ -5,21 +5,25 @@ import { PANEL_COLORS, chevronClip } from "@/components/JourneyGraphic";
 const GRADUATES = [
   {
     name: "Vishnu Dore",
+    degree: "Bachelor of Commerce",
     city: "Pune",
     photos: ["/assets/scholar-b-1.jpg", "/assets/scholar-b-2.jpg", "/assets/scholar-b-3.jpg", "/assets/scholar-b-4.jpg", "/assets/scholar-b-5.jpg"],
   },
   {
     name: "Neha Prajapati",
+    degree: "Bachelor of Commerce (B.Com.)",
     city: "Pune",
     photos: ["/assets/scholar-e-1.jpg", "/assets/scholar-e-2.jpg", "/assets/scholar-e-3.jpg", "/assets/scholar-e-4.jpg", "/assets/scholar-e-5.jpg"],
   },
   {
-    name: "Sheikh Karim",
+    name: "Sk. Karim",
+    degree: "B.Sc. Hotel Management",
     city: "Kolkata",
     photos: ["/assets/scholar-c-1.jpg", "/assets/scholar-c-2.jpg", "/assets/scholar-c-3.jpg", "/assets/scholar-c-4.jpg", "/assets/scholar-c-5.jpg"],
   },
   {
-    name: "Firdous Ali",
+    name: "Firdus Ali",
+    degree: "Bachelor of Business Administration",
     city: "Kolkata",
     photos: ["/assets/scholar-d-1.jpg", "/assets/scholar-d-2.jpg", "/assets/scholar-d-3.jpg", "/assets/scholar-d-4.jpg", "/assets/scholar-d-5.jpg"],
   },
@@ -33,8 +37,8 @@ const CLUB_TIERS = [
     students: [
       { name: "Vishnu Dore", city: "Pune", cls: "College Graduate" },
       { name: "Neha Prajapati", city: "Pune", cls: "College Graduate" },
-      { name: "Firdous Ali", city: "Kolkata", cls: "College Graduate" },
-      { name: "Sheikh Karim", city: "Kolkata", cls: "College Graduate" },
+      { name: "Firdus Ali", city: "Kolkata", cls: "College Graduate" },
+      { name: "Sk. Karim", city: "Kolkata", cls: "College Graduate" },
     ],
   },
   {
@@ -114,6 +118,7 @@ const GraduateRows = () => (
                   {g.city.toUpperCase()} · COLLEGE GRADUATE
                 </span>
               </div>
+              <p className="mt-1 text-sm font-semibold text-ink-muted">{g.degree}</p>
               <div className="mt-4 overflow-x-auto no-scrollbar">
                 <div className="flex min-w-[760px] sm:min-w-0" style={{ gap: "2%" }}>
                   {g.photos.map((src, i) => (
@@ -226,7 +231,7 @@ const Transformations = () => (
           </p>
         </Reveal>
         <Reveal delay={0.18}>
-          <p data-testid="results-description" className="mt-8 text-leaf font-semibold text-lg sm:text-xl leading-relaxed">
+          <p data-testid="results-description" className="mt-8 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
             Each of our graduates began as a child playing a game. Today they hold a college degree. The
             scholars below them are on the same path, one milestone at a time.
           </p>

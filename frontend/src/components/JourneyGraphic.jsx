@@ -4,9 +4,9 @@ import { MILESTONES } from "@/data/content";
 
 const SCHOLAR_SETS = [
   ["/assets/scholar-b-1.jpg", "/assets/scholar-b-2.jpg", "/assets/scholar-b-3.jpg", "/assets/scholar-b-4.jpg", "/assets/scholar-b-5.jpg"],
+  ["/assets/scholar-e-1.jpg", "/assets/scholar-e-2.jpg", "/assets/scholar-e-3.jpg", "/assets/scholar-e-4.jpg", "/assets/scholar-e-5.jpg"],
   ["/assets/scholar-c-1.jpg", "/assets/scholar-c-2.jpg", "/assets/scholar-c-3.jpg", "/assets/scholar-c-4.jpg", "/assets/scholar-c-5.jpg"],
   ["/assets/scholar-d-1.jpg", "/assets/scholar-d-2.jpg", "/assets/scholar-d-3.jpg", "/assets/scholar-d-4.jpg", "/assets/scholar-d-5.jpg"],
-  ["/assets/scholar-e-1.jpg", "/assets/scholar-e-2.jpg", "/assets/scholar-e-3.jpg", "/assets/scholar-e-4.jpg", "/assets/scholar-e-5.jpg"],
 ];
 export const PANEL_COLORS = ["#E8490F", "#1E7A3C", "#F2A500", "#E8490F", "#1E7A3C"];
 const SET_ROTATE_MS = 2500;
@@ -16,14 +16,20 @@ export const chevronClip = (first) =>
     ? "polygon(0 0, calc(100% - 12%) 0, 100% 50%, calc(100% - 12%) 100%, 0 100%)"
     : "polygon(0 0, calc(100% - 12%) 0, 100% 50%, calc(100% - 12%) 100%, 0 100%, 12% 50%)";
 
-export const ScholarStrip = () => {
+export const ScholarStrip = ({ rotateDelay = 0 }) => {
   const [setIdx, setSetIdx] = useState(0);
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
-    const t = setInterval(() => setSetIdx((s) => (s + 1) % SCHOLAR_SETS.length), SET_ROTATE_MS);
-    return () => clearInterval(t);
-  }, []);
+    let interval;
+    const t = setTimeout(() => {
+      interval = setInterval(() => setSetIdx((s) => (s + 1) % SCHOLAR_SETS.length), SET_ROTATE_MS);
+    }, rotateDelay);
+    return () => {
+      clearTimeout(t);
+      if (interval) clearInterval(interval);
+    };
+  }, [rotateDelay]);
   return (
     <div
       data-testid="hero-scholar-strip"
@@ -60,7 +66,7 @@ export const ScholarStrip = () => {
   );
 };
 
-export const JourneyGraphic = () => (
+export const JourneyGraphic = ({ rotateDelay = 0 }) => (
   <div className="absolute inset-0" data-testid="journey-graphic">
     <img
       src="/assets/hero-timeline.jpg"
@@ -68,7 +74,7 @@ export const JourneyGraphic = () => (
       data-testid="hero-timeline-graphic"
       className="h-full w-full object-cover"
     />
-    <ScholarStrip />
+    <ScholarStrip rotateDelay={rotateDelay} />
     <div className="absolute inset-0 flex">
       {MILESTONES.map((m, i) => (
         <Link

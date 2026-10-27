@@ -2,24 +2,10 @@ import { Reveal, Eyebrow } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 import { MapPin } from "lucide-react";
 
-const STORY_PHOTOS = [
-  { src: "/assets/story-1.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-2.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-4.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-18.jpg", alt: "Responsible Charity Society team member portrait collage" },
-  { src: "/assets/story-5.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-6.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-8.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-9.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-7.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-16.jpg", alt: "Responsible Charity Society team member portrait collage" },
-  { src: "/assets/story-17.jpg", alt: "Responsible Charity Society team member portrait collage" },
-  { src: "/assets/story-14.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-13.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-10.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-11.jpg", alt: "Responsible Charity Society team member" },
-  { src: "/assets/story-19.jpg", alt: "Responsible Charity Society team member portrait collage" },
-];
+const STORY_PHOTOS = Array.from({ length: 16 }, (_, i) => ({
+  src: `/assets/team-${i + 1}.jpg`,
+  alt: "Responsible Charity Society team member",
+}));
 
 const STORY_TEXT = [
   "In late 2010, a group of friends came together in India and saw something that stayed with them: children with real potential, families with real determination, and no real system built to help them break the cycle of poverty for good. So they built one.",
@@ -94,7 +80,7 @@ const About = () => (
           </Reveal>
         </div>
 
-        <div data-testid="story-collage" className="mt-14 grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
+        <div data-testid="story-collage" className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
           {STORY_PHOTOS.map((p, i) => (
             <Reveal key={p.src} delay={0.05 + i * 0.04}>
               <div
@@ -105,7 +91,7 @@ const About = () => (
                   src={p.src}
                   alt={p.alt}
                   loading={i < 5 ? "eager" : "lazy"}
-                  className="h-full w-full object-cover aspect-square transition-transform duration-700 group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover aspect-[3/2] transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
             </Reveal>

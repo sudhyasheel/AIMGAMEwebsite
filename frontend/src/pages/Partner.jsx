@@ -45,6 +45,7 @@ const OPERATIONS = [
 const COST_BREAKDOWN = [...PROGRAMS, ...OPERATIONS];
 
 const DONATION_TERMS = [
+  "AimGame is the flagship program of Responsible Charity Society. All donations are received by Responsible Charity Society, the registered Indian NGO, and receipts are issued in its name.",
   "We do not accept cash donations.",
   "We accept donations only in Indian Rupees (INR), from within India.",
   "Donations are eligible for deduction under Section 80G. Every gift gets a receipt, and a Form 10BE certificate follows once our annual statement is filed.",
@@ -208,11 +209,11 @@ const StepAmount = ({ amount, setAmount, onContinue, onGivingDesk, busy }) => {
           Read the full donation terms.
         </a>
       </p>
-      <p className="mt-3 text-center">
+      <p className="mt-5 text-center">
         <button
           data-testid="amount-banktransfer-link"
           onClick={onGivingDesk}
-          className="text-sm font-bold text-leaf hover:text-leaf-dark transition-colors"
+          className="inline-flex items-center gap-2 rounded-full border-2 border-leaf bg-leaf-soft px-7 py-3.5 text-base font-extrabold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
         >
           Prefer a bank transfer or UPI? Request our details.
         </button>
@@ -491,18 +492,17 @@ const Partner = () => {
         <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
-            <h1 className="font-display font-extrabold tracking-tight leading-[1.1] text-4xl sm:text-5xl lg:text-6xl" data-testid="donate-header">
-              <span className="text-ink">Donate Today and</span>{" "}
-              <span className="text-flame">Be Part of the Journey</span>
+            <h1 className="font-display font-extrabold tracking-tight leading-[1.05] text-4xl sm:text-5xl lg:text-6xl text-leaf uppercase" data-testid="donate-header">
+              Donate Today and Be Part of the Journey
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
-            <p data-testid="donate-subheader" className="mt-5 font-display font-bold text-xl sm:text-2xl text-leaf tracking-tight">
+            <p data-testid="donate-subheader" className="mt-5 font-display font-bold text-3xl sm:text-4xl text-flame tracking-tight">
               Every gift becomes part of a scholar's 15-year path out of poverty.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p data-testid="donate-intro" className="mt-5 text-ink font-semibold text-lg sm:text-xl leading-relaxed">
+            <p data-testid="donate-intro" className="mt-5 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
               Every scholar's journey is carried by people who chose to be part of it. See what one year takes
               on the left, then choose how you'd like to give on the right. Every gift comes with an 80G
               receipt.
