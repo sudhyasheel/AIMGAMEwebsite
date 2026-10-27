@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, User, Gem, ShieldCheck, CheckCircle2, BookOpen, HeartPulse, Music, CalendarDays, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Gem, ShieldCheck, CheckCircle2, BookOpen, HeartPulse, Music, CalendarDays, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
-import { MIN_DONATION, CONVERSATION_THRESHOLD } from "@/data/content";
+import { CONVERSATION_THRESHOLD } from "@/data/content";
 import { CredibilityGrid } from "@/pages/CsrPartners";
 import { submitInquiry, getDonationConfig, createDonationOrder, verifyDonation, loadRazorpay } from "@/lib/api";
 
@@ -21,12 +21,6 @@ const GIFT_CARDS = [
 
 const inputCls =
   "w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-flame placeholder:text-ink-muted/60";
-
-const TYPES = [
-  { id: "individual", icon: User, title: "Individual Donor", desc: `Direct giving from ${inr(MIN_DONATION)}. 80G tax receipt issued.`, testid: "donor-type-individual" },
-  { id: "csr", icon: Building2, title: "CSR / Corporate", desc: "Structured partnership with scholar-wise reporting for your board.", testid: "donor-type-csr" },
-  { id: "hni", icon: Gem, title: "High-Net-Worth Individual", desc: "Sponsor full fifteen-year arcs with dedicated impact reporting.", testid: "donor-type-hni" },
-];
 
 const YEARLY_COST = "₹3,25,000";
 
@@ -155,41 +149,11 @@ const CostPanel = () => (
   </div>
 );
 
-const StepType = ({ onPick }) => (
-  <div className="grid gap-4">
-    {TYPES.map((t, i) => (
-      <motion.button
-        key={t.id}
-        data-testid={t.testid}
-        onClick={() => onPick(t.id)}
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: i * 0.08, ease: EASE }}
-        className="group rounded-2xl bg-sand border border-ink/10 p-6 text-left transition-all duration-500 hover:border-flame/50 hover:-translate-y-1 flex items-center gap-5"
-      >
-        <span className="h-12 w-12 rounded-2xl bg-leaf-soft text-leaf inline-flex items-center justify-center shrink-0 transition-colors duration-500 group-hover:bg-flame group-hover:text-white">
-          <t.icon className="h-5 w-5" />
-        </span>
-        <span className="flex-1">
-          <span className="block font-display font-bold text-lg">{t.title}</span>
-          <span className="block mt-1 text-sm text-ink-muted leading-relaxed">{t.desc}</span>
-        </span>
-        <ArrowRight className="h-4 w-4 text-flame shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
-      </motion.button>
-    ))}
-  </div>
-);
-
-const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
+const StepAmount = ({ amount, setAmount, onContinue, onGivingDesk, busy }) => {
   const aboveThreshold = Number(amount) >= CONVERSATION_THRESHOLD;
-  const valid = Number(amount) >= MIN_DONATION;
   return (
     <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
-      <h3 className="font-display font-extrabold text-2xl tracking-tight text-center">Choose an amount</h3>
-      <p className="mt-3 text-center text-ink-muted text-sm">
-        Minimum {inr(MIN_DONATION)} · India-based giving only · 80G receipt for every contribution
-      </p>
-      <div className="mt-8 space-y-3">
+      <div className="space-y-3">
         {GIFT_CARDS.map((g) => {
           const selected = Number(amount) === g.amount;
           return (
@@ -218,15 +182,6 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
           );
         })}
       </div>
-      <input
-        data-testid="amount-custom-input"
-        type="number"
-        min={MIN_DONATION}
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        placeholder={`Custom amount (min ${inr(MIN_DONATION)})`}
-        className={`${inputCls} mt-4 text-center font-mono font-bold`}
-      />
       <p data-testid="amount-tax-note" className="mt-5 rounded-xl bg-leaf-soft border border-leaf/15 text-leaf-dark text-xs px-4 py-3 leading-relaxed">
         Indian tax law requires us to record who every donation comes from. A donation we can't link to a named
         donor can be taxed heavily, which would take money away from our students. So we can accept gifts only
@@ -237,20 +192,31 @@ const StepAmount = ({ amount, setAmount, onContinue, onBack, busy }) => {
           Online checkout covers gifts up to {inr(CONVERSATION_THRESHOLD)} — larger gifts go through our Giving Desk by direct bank transfer, so no gateway fee comes out of your gift.
         </p>
       )}
-      <div className="mt-8 flex items-center justify-between">
-        <button data-testid="amount-back-btn" onClick={onBack} className="inline-flex items-center gap-2 text-sm font-bold text-ink-muted hover:text-ink transition-colors">
-          <ArrowLeft className="h-4 w-4" /> Back
-        </button>
+      <button
+        data-testid="amount-continue-btn"
+        disabled={busy}
+        onClick={onContinue}
+        className="mt-6 w-full inline-flex items-center justify-center gap-3 rounded-full bg-flame py-5 font-display font-extrabold text-lg tracking-wide text-white uppercase transition-colors duration-300 hover:bg-flame-dark disabled:opacity-40 disabled:cursor-not-allowed"
+      >
+        Donate
+        <ArrowRight className="h-5 w-5" />
+      </button>
+      <p className="mt-4 text-center text-xs text-ink-muted leading-relaxed">
+        Donations are accepted in INR from within India and are non-refundable. Eligible for 80G deduction.
+        We need your full name, address and PAN No. to issue your receipt.{" "}
+        <a href="#donation-terms" data-testid="amount-terms-link" className="font-bold text-flame hover:text-flame-dark transition-colors">
+          Read the full donation terms.
+        </a>
+      </p>
+      <p className="mt-3 text-center">
         <button
-          data-testid="amount-continue-btn"
-          disabled={!valid || busy}
-          onClick={onContinue}
-          className="inline-flex items-center gap-2 rounded-full bg-flame px-7 py-3.5 font-bold text-white transition-all duration-300 hover:bg-flame-dark disabled:opacity-40 disabled:cursor-not-allowed"
+          data-testid="amount-banktransfer-link"
+          onClick={onGivingDesk}
+          className="text-sm font-bold text-leaf hover:text-leaf-dark transition-colors"
         >
-          {aboveThreshold ? "Talk to Our Giving Desk" : `Continue · ${valid ? inr(amount) : ""}`}
-          <ArrowRight className="h-4 w-4" />
+          Prefer a bank transfer or UPI? Request our details.
         </button>
-      </div>
+      </p>
     </motion.div>
   );
 };
@@ -353,59 +319,6 @@ const StepPayment = ({ amount, form, setForm, onPay, onPaid, onBack, busy, setBu
   );
 };
 
-const StepQualify = ({ kind, form, setForm, onSubmit, onBack, busy }) => (
-  <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
-    <h3 className="font-display font-extrabold text-2xl tracking-tight text-center">
-      {kind === "csr" ? "Let's talk CSR partnership" : "Let's talk about your gift"}
-    </h3>
-    <p className="mt-3 text-center text-ink-muted text-sm max-w-md mx-auto">
-      No transaction here. This goes straight to the RC team, who will call you within two working days.
-    </p>
-    <div className="mt-8 rounded-2xl bg-white border border-ink/10 p-6 space-y-4">
-      {kind === "csr" && (
-        <input data-testid="qualify-org" className={inputCls} placeholder="Organisation name" value={form.org} onChange={(e) => setForm({ ...form, org: e.target.value })} />
-      )}
-      <input data-testid="qualify-name" className={inputCls} placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-      <div className="grid sm:grid-cols-2 gap-4">
-        <input data-testid="qualify-email" type="email" className={inputCls} placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-        <input data-testid="qualify-email-confirm" type="email" className={inputCls} placeholder="Re-enter email" value={form.email2} onChange={(e) => setForm({ ...form, email2: e.target.value })} />
-      </div>
-      <div className="grid sm:grid-cols-2 gap-4">
-        <input data-testid="qualify-phone" className={inputCls} placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-      </div>
-      {kind === "csr" && (
-        <select data-testid="qualify-focus" className={inputCls} value={form.focus} onChange={(e) => setForm({ ...form, focus: e.target.value })}>
-          <option value="">CSR focus area…</option>
-          <option>Education</option>
-          <option>Girl child education</option>
-          <option>Skill development</option>
-          <option>Health & education combined</option>
-          <option>Other</option>
-        </select>
-      )}
-      <select data-testid="qualify-range" className={inputCls} value={form.range} onChange={(e) => setForm({ ...form, range: e.target.value })}>
-        <option value="">Indicative contribution range…</option>
-        <option>₹1L – ₹5L</option>
-        <option>₹5L – ₹25L</option>
-        <option>₹25L – ₹1Cr</option>
-        <option>Above ₹1Cr</option>
-      </select>
-      <textarea data-testid="qualify-message" rows={3} className={inputCls} placeholder="Anything we should know before the call? (optional)" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-      <button
-        data-testid="qualify-submit-btn"
-        onClick={onSubmit}
-        disabled={busy || !form.name || !form.email || (kind === "csr" && !form.org)}
-        className="w-full rounded-full bg-leaf py-4 font-bold text-white transition-colors duration-300 hover:bg-leaf-dark disabled:opacity-40"
-      >
-        {busy ? "Sending…" : "Request a Call from the RC Team"}
-      </button>
-    </div>
-    <button data-testid="qualify-back-btn" onClick={onBack} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-ink-muted hover:text-ink transition-colors">
-      <ArrowLeft className="h-4 w-4" /> Back
-    </button>
-  </motion.div>
-);
-
 const StepGivingDesk = ({ form, setForm, onSubmit, onBack, busy }) => (
   <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
     <div data-testid="priority-giving-box" className="rounded-2xl bg-leaf-soft border border-leaf/20 p-6">
@@ -502,18 +415,12 @@ const Partner = () => {
     }
   }, [location.hash]);
 
-  const [step, setStep] = useState("type");
-  const [type, setType] = useState(null);
-  const [amount, setAmount] = useState("2500");
+  const [step, setStep] = useState("amount");
+  const [amount, setAmount] = useState("25000");
   const [busy, setBusy] = useState(false);
+  const [successMode, setSuccessMode] = useState("donation");
   const [payForm, setPayForm] = useState({ name: "", email: "", email2: "", phone: "", card: "", expiry: "", cvv: "" });
-  const [qForm, setQForm] = useState({ org: "", name: "", email: "", email2: "", phone: "", focus: "", range: "", message: "" });
   const [deskForm, setDeskForm] = useState({ name: "", org: "", email: "", email2: "", phone: "", method: "", range: "", note: "" });
-
-  const pickType = (t) => {
-    setType(t);
-    setStep(t === "individual" ? "amount" : "qualify");
-  };
 
   const continueAmount = () => {
     if (Number(amount) >= CONVERSATION_THRESHOLD) setStep("givingdesk");
@@ -536,33 +443,9 @@ const Partner = () => {
         meta: { simulated: true },
       });
       setStep("success");
+      setSuccessMode("donation");
     } catch {
       toast.error("Could not record the donation. Please try again.");
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const doQualify = async () => {
-    if (qForm.email.trim().toLowerCase() !== qForm.email2.trim().toLowerCase()) {
-      toast.error("Email addresses do not match.");
-      return;
-    }
-    setBusy(true);
-    try {
-      await submitInquiry({
-        kind: type === "csr" ? "csr" : "hni",
-        name: qForm.name,
-        email: qForm.email,
-        phone: qForm.phone,
-        org: qForm.org,
-        message: qForm.message,
-        amount: type === "individual" ? Number(amount) : null,
-        meta: { focus: qForm.focus, range: qForm.range, via: "partner-flow" },
-      });
-      setStep("success");
-    } catch {
-      toast.error("Could not send. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -586,6 +469,7 @@ const Partner = () => {
         meta: { method: deskForm.method, range: deskForm.range, via: "giving-desk" },
       });
       setStep("success");
+      setSuccessMode("conversation");
     } catch {
       toast.error("Could not send. Please try again.");
     } finally {
@@ -594,15 +478,12 @@ const Partner = () => {
   };
 
   const reset = () => {
-    setStep("type");
-    setType(null);
-    setAmount("2500");
+    setStep("amount");
+    setAmount("25000");
+    setSuccessMode("donation");
     setPayForm({ name: "", email: "", email2: "", phone: "", card: "", expiry: "", cvv: "" });
-    setQForm({ org: "", name: "", email: "", email2: "", phone: "", focus: "", range: "", message: "" });
     setDeskForm({ name: "", org: "", email: "", email2: "", phone: "", method: "", range: "", note: "" });
   };
-
-  const successMode = type === "individual" && Number(amount) < CONVERSATION_THRESHOLD ? "donation" : "conversation";
 
   return (
     <main data-testid="partner-page">
@@ -610,18 +491,18 @@ const Partner = () => {
         <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
-            <h1 className="text-center font-display font-extrabold tracking-tight leading-[1.1] text-4xl sm:text-5xl lg:text-6xl" data-testid="donate-header">
+            <h1 className="font-display font-extrabold tracking-tight leading-[1.1] text-4xl sm:text-5xl lg:text-6xl" data-testid="donate-header">
               <span className="text-ink">Donate Today and</span>{" "}
               <span className="text-flame">Be Part of the Journey</span>
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
-            <p data-testid="donate-subheader" className="mt-5 text-center font-display font-bold text-xl sm:text-2xl text-leaf tracking-tight">
+            <p data-testid="donate-subheader" className="mt-5 font-display font-bold text-xl sm:text-2xl text-leaf tracking-tight">
               Every gift becomes part of a scholar's 15-year path out of poverty.
             </p>
           </Reveal>
           <Reveal delay={0.18}>
-            <p className="mt-5 max-w-2xl mx-auto text-center text-sm sm:text-base leading-relaxed text-ink-muted">
+            <p data-testid="donate-intro" className="mt-5 text-ink font-semibold text-lg sm:text-xl leading-relaxed">
               Every scholar's journey is carried by people who chose to be part of it. See what one year takes
               on the left, then choose how you'd like to give on the right. Every gift comes with an 80G
               receipt.
@@ -651,9 +532,9 @@ const Partner = () => {
               className="h-full rounded-3xl bg-white border-2 border-flame/25 p-6 sm:p-8 shadow-[0_30px_70px_-30px_rgba(232,73,15,0.3)]"
             >
               <div className="flex items-center justify-center gap-2 mb-8 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
-                {["01 TYPE", "02 DETAILS", "03 DONE"].map((s, i) => (
+                {["01 AMOUNT", "02 DETAILS", "03 DONE"].map((s, i) => (
                   <span key={s} className="flex items-center gap-2">
-                    <span className={`${(step === "type" && i === 0) || (["amount", "payment", "qualify", "givingdesk"].includes(step) && i === 1) || (step === "success" && i === 2) ? "text-flame font-bold" : ""}`}>
+                    <span className={`${(step === "amount" && i === 0) || (["payment", "givingdesk"].includes(step) && i === 1) || (step === "success" && i === 2) ? "text-flame font-bold" : ""}`}>
                       {s}
                     </span>
                     {i < 2 && <span className="w-6 h-px bg-ink/20" />}
@@ -662,15 +543,11 @@ const Partner = () => {
               </div>
               <AnimatePresence mode="wait">
                 <motion.div key={step} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                  {step === "type" && <StepType onPick={pickType} />}
                   {step === "amount" && (
-                    <StepAmount amount={amount} setAmount={setAmount} onContinue={continueAmount} onBack={() => setStep("type")} busy={busy} />
+                    <StepAmount amount={amount} setAmount={setAmount} onContinue={continueAmount} onGivingDesk={() => setStep("givingdesk")} busy={busy} />
                   )}
                   {step === "payment" && (
                     <StepPayment amount={Number(amount)} form={payForm} setForm={setPayForm} onPay={doPay} onPaid={() => setStep("success")} onBack={() => setStep("amount")} busy={busy} setBusy={setBusy} />
-                  )}
-                  {step === "qualify" && (
-                    <StepQualify kind={type === "csr" ? "csr" : "hni"} form={qForm} setForm={setQForm} onSubmit={doQualify} onBack={() => setStep(type === "individual" ? "amount" : "type")} busy={busy} />
                   )}
                   {step === "givingdesk" && (
                     <StepGivingDesk form={deskForm} setForm={setDeskForm} onSubmit={doDesk} onBack={() => setStep("amount")} busy={busy} />
@@ -683,7 +560,7 @@ const Partner = () => {
         </div>
       </section>
 
-      <section className="pb-16">
+      <section id="donation-terms" className="pb-16 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <Reveal>
             <div data-testid="donation-terms" className="rounded-3xl bg-white border border-ink/10 p-8 sm:p-10">
