@@ -7,10 +7,10 @@ import { Reveal, EASE } from "@/components/Reveal";
 import { submitInquiry } from "@/lib/api";
 
 const TOPICS = [
-  { id: "partnership", icon: HeartHandshake, label: "Partner / Donate", kind: "csr", hint: "CSR, HNI or large gifts — routed to the partnerships desk." },
-  { id: "volunteer", icon: HandHelping, label: "Internships", kind: "volunteer", hint: "Teaching, mentoring, field support — routed to the program team." },
-  { id: "career", icon: Briefcase, label: "Work With Us", kind: "career", hint: "Roles across program ops and fundraising — routed to hiring." },
-  { id: "general", icon: Mail, label: "General", kind: "general", hint: "Everything else — routed to the RC Society office." },
+  { id: "partnership", icon: HeartHandshake, label: "Partner / Donate", kind: "csr" },
+  { id: "volunteer", icon: HandHelping, label: "Internships", kind: "volunteer" },
+  { id: "career", icon: Briefcase, label: "Work With Us", kind: "career" },
+  { id: "general", icon: Mail, label: "General", kind: "general" },
 ];
 
 const inputCls =
@@ -200,7 +200,6 @@ const Contact = () => {
                       </button>
                     ))}
                   </div>
-                  <p className="mt-4 text-xs text-ink-muted" data-testid="contact-topic-hint">{topic.hint}</p>
 
                   <div className="mt-6 rounded-3xl bg-white border border-ink/10 p-8 space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">

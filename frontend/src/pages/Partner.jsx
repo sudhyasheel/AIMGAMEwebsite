@@ -202,21 +202,19 @@ const StepAmount = ({ amount, setAmount, onContinue, onGivingDesk, busy }) => {
         Donate
         <ArrowRight className="h-5 w-5" />
       </button>
-      <p className="mt-4 text-center text-xs text-ink-muted leading-relaxed">
+      <button
+        data-testid="amount-banktransfer-link"
+        onClick={onGivingDesk}
+        className="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-full border-2 border-leaf bg-leaf-soft py-5 text-lg font-extrabold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
+      >
+        Prefer a bank transfer or UPI? Request our details.
+      </button>
+      <p className="mt-5 text-center text-xs text-ink-muted leading-relaxed">
         Donations are accepted in INR from within India and are non-refundable. Eligible for 80G deduction.
         We need your full name, address and PAN No. to issue your receipt.{" "}
         <a href="#donation-terms" data-testid="amount-terms-link" className="font-bold text-flame hover:text-flame-dark transition-colors">
           Read the full donation terms.
         </a>
-      </p>
-      <p className="mt-5 text-center">
-        <button
-          data-testid="amount-banktransfer-link"
-          onClick={onGivingDesk}
-          className="inline-flex items-center gap-2 rounded-full border-2 border-leaf bg-leaf-soft px-7 py-3.5 text-base font-extrabold text-leaf transition-colors duration-300 hover:bg-leaf hover:text-white"
-        >
-          Prefer a bank transfer or UPI? Request our details.
-        </button>
       </p>
     </motion.div>
   );

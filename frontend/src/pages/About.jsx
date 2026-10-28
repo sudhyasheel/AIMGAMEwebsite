@@ -84,7 +84,7 @@ const About = () => (
                 src={p.src}
                 alt={p.alt}
                 loading={i < 5 ? "eager" : "lazy"}
-                className="w-full h-auto block"
+                className="w-full h-auto block cursor-pointer transition-transform duration-500 ease-out hover:scale-[1.05] hover:-translate-y-1.5"
               />
             </Reveal>
           ))}
@@ -126,9 +126,9 @@ const About = () => (
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-6 text-ink-muted text-base sm:text-lg">
-              Two centers today: <span className="font-bold text-ink">Kolkata</span>, our larger center, and{" "}
-              <span className="font-bold text-ink">Pune</span>.
+            <p className="mt-6 text-leaf font-semibold text-xl sm:text-2xl leading-relaxed">
+              Two centers today: <span className="font-bold">Kolkata</span>, our larger center, and{" "}
+              <span className="font-bold">Pune</span>.
             </p>
           </Reveal>
 

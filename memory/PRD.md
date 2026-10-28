@@ -178,3 +178,10 @@ Brief (from PDF): A rebooted website for Responsible Charity (RC) Society, a reg
 - OUR WORK Employment intro now: "The finish line isn't graduation. It's the first day on the job. Career orientation, CV preparation, internships, talks by working professionals and access to our corporate network give every scholar a real sense of the work ahead."
 - Removed mini-headers: RESULTS "OUR GRADUATES · NAME & DEGREE" + "STUDENT CLUBS"; OUR STORY center eyebrows "Center 01/02 · ..." (index/tag fields removed from CENTERS data, Eyebrow import dropped); CSR PARTNERS "Contact Form" eyebrow before form ("Your Side, Made Easy" credibility eyebrow kept); LET'S TALK "Contact Form" eyebrow; DONATE "01 AMOUNT 02 DETAILS 03 DONE" step indicator above donate widget.
 - All verified via preview: headers absent, pages render correctly, donate widget starts directly with gift cards.
+
+## 2026-10-28 — Micro-copy cleanup + Donate box reorder
+- LET'S TALK: removed topic hint mini-lines below the 4 topic boxes (hint fields removed from TOPICS).
+- CSR PARTNERS: removed "Request a call from our team." heading above the form (redundant with submit button label).
+- OUR STORY: "Two centers today: Kolkata... Pune." line now green (text-leaf) at text-xl/2xl matching centers description. Team/staff images now have hover movement (scale 1.05 + lift, cursor-pointer).
+- DONATE amount step reordered per ref img: gift cards → tax note → DONATE → full-width bank-transfer/UPI button (same width as DONATE, green colors kept) → terms line at bottom.
+- Verified: button widths equal (492px), vertical order correct, hint/heading gone, two-centers line 24px green.
