@@ -111,7 +111,7 @@ const PILLARS = [
     id: "employment",
     index: "05",
     title: "Employment",
-    intro: "The finish line isn't graduation. It's the first day on the job.",
+    intro: "The finish line isn't graduation. It's the first day on the job. Career orientation, CV preparation, internships, talks by working professionals and access to our corporate network give every scholar a real sense of the work ahead.",
     blocks: [
       {
         title: "CAREER COUNSELING & INDUSTRY WORKSHOPS",

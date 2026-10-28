@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, ArrowUpRight, CheckCircle2, HeartHandshake, HandHelping, Briefcase, Mail } from "lucide-react";
 import { toast } from "sonner";
-import { Reveal, Eyebrow, EASE } from "@/components/Reveal";
+import { Reveal, EASE } from "@/components/Reveal";
 import { submitInquiry } from "@/lib/api";
 
 const TOPICS = [
@@ -149,9 +149,8 @@ const Contact = () => {
       <section id="contact-form" className="pb-24 lg:pb-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
           <div className="max-w-3xl">
-            <Reveal><Eyebrow>Contact Form</Eyebrow></Reveal>
             <Reveal delay={0.08}>
-              <h2 className="mt-4 font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-ink">
+              <h2 className="font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-ink">
                 Write to the right desk.
               </h2>
             </Reveal>

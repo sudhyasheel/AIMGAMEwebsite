@@ -105,10 +105,7 @@ const CLUB_TIERS = [
 const GraduateRows = () => (
   <section data-testid="results-graduates" className="pb-20">
     <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-      <Reveal>
-        <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">OUR GRADUATES · NAME & DEGREE</p>
-      </Reveal>
-      <div className="mt-8 space-y-14">
+      <div className="space-y-14">
         {GRADUATES.map((g, gi) => (
           <Reveal key={g.name} delay={0.05}>
             <div data-testid={`graduate-row-${g.name.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
@@ -154,9 +151,6 @@ const StudentClubs = () => (
   <section data-testid="results-student-clubs" className="bg-white text-ink border-t border-ink/10">
     <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <Reveal>
-        <p className="font-mono text-xs tracking-[0.3em] text-leaf font-bold">STUDENT CLUBS</p>
-      </Reveal>
-      <Reveal delay={0.06}>
         <h2 className="mt-4 font-display font-extrabold tracking-tight text-3xl sm:text-4xl uppercase text-ink">
           The scholars on the path right now
         </h2>

@@ -531,16 +531,6 @@ const Partner = () => {
               data-testid="donate-widget"
               className="h-full rounded-3xl bg-white border-2 border-flame/25 p-6 sm:p-8 shadow-[0_30px_70px_-30px_rgba(232,73,15,0.3)]"
             >
-              <div className="flex items-center justify-center gap-2 mb-8 font-mono text-[10px] tracking-[0.25em] text-ink-muted">
-                {["01 AMOUNT", "02 DETAILS", "03 DONE"].map((s, i) => (
-                  <span key={s} className="flex items-center gap-2">
-                    <span className={`${(step === "amount" && i === 0) || (["payment", "givingdesk"].includes(step) && i === 1) || (step === "success" && i === 2) ? "text-flame font-bold" : ""}`}>
-                      {s}
-                    </span>
-                    {i < 2 && <span className="w-6 h-px bg-ink/20" />}
-                  </span>
-                ))}
-              </div>
               <AnimatePresence mode="wait">
                 <motion.div key={step} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
                   {step === "amount" && (

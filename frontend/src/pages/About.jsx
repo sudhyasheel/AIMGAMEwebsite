@@ -1,4 +1,4 @@
-import { Reveal, Eyebrow } from "@/components/Reveal";
+import { Reveal } from "@/components/Reveal";
 import AlbumButtons from "@/components/AlbumButtons";
 import { MapPin } from "lucide-react";
 
@@ -16,9 +16,7 @@ const STORY_TEXT = [
 const CENTERS = [
   {
     id: "kolkata",
-    index: "01",
     city: "Kolkata",
-    tag: "Our larger center",
     photos: [
       {
         src: "/assets/center-kolkata-1.jpg",
@@ -36,9 +34,7 @@ const CENTERS = [
   },
   {
     id: "pune",
-    index: "02",
     city: "Pune",
-    tag: "Our second center",
     photos: [
       {
         src: "/assets/center-pune-1.jpg",
@@ -138,9 +134,6 @@ const About = () => (
 
           {CENTERS.map((c) => (
             <div key={c.id} data-testid={`center-section-${c.id}`} className="mt-16">
-              <Reveal>
-                <Eyebrow>{`Center ${c.index} · ${c.tag}`}</Eyebrow>
-              </Reveal>
               <Reveal delay={0.06}>
                 <h3 className="mt-3 flex items-center gap-3 font-display font-extrabold tracking-tight text-2xl sm:text-3xl text-leaf uppercase">
                   <MapPin className="h-6 w-6 text-flame shrink-0" />

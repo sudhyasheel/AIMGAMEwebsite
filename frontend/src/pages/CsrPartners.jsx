@@ -235,9 +235,8 @@ const CsrPartners = () => (
     <section className="pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <div className="max-w-3xl">
-          <Reveal><Eyebrow>Contact Form</Eyebrow></Reveal>
           <Reveal delay={0.08}>
-            <h2 className="mt-4 mb-10 font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-ink">
+            <h2 className="mb-10 font-display font-extrabold tracking-tight text-3xl sm:text-4xl text-ink">
               Request a call from our team.
             </h2>
           </Reveal>
